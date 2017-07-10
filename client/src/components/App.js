@@ -24,12 +24,14 @@ class App extends Component {
   }
 
       handleChange(event) {
+        //INPUT
         this.setState({
           userInput: event.target.value
         });
         if (event.target.value[0] !== this.state.relevantLetter) {
           alert("Hey! You can't change that first letter! Put that " + this.state.relevantLetter + " back in there! Nice try pal!"),
           this.setState({
+            //CHANGED_FIRST_LETTER dispatch here
             userInput: this.state.relevantLetter
           })
         }
@@ -46,6 +48,7 @@ class App extends Component {
             if (this.state.usedMovies.includes(input)) {
               console.log('a');
               alert('Hey! You already used that one! Game over pal!'),
+              //NEW_GAME action
               this.setState({
                 movies: '',
                 movieTitle: '',
@@ -67,6 +70,7 @@ class App extends Component {
               for (var i = 0; i < splitString.length; i++) {
                 if (splitString[0] = "THE") {
                   alert('Nice try...you know what you did... :)'),
+                  //NEW_GAME action
                   this.setState ({
                     movies: '',
                     movieTitle: '',
@@ -128,6 +132,7 @@ class App extends Component {
               var firstLetterOfLastWord = lastWord[0];
               console.log(firstLetterOfLastWord);
               this.setState({
+                //MAKE_GUESS_WITH_SPACE
                 movies: movies,
                 movieTitle: movies.results[0].title,
                 overview: movies.results[0].overview,
@@ -148,6 +153,7 @@ class App extends Component {
               var highRegString = input.toUpperCase().replace(removeDigits, '');
               var lastLetterOfWord = highRegString[highRegString.length -1];
               this.setState({
+                //MAKE_ONE_WORD_GUESS
                 movies: movies,
                 movieTitle: movies.results[0].title,
                 overview: movies.results[0].overview,
@@ -164,6 +170,7 @@ class App extends Component {
             })
             .catch(err => {
               alert('You lose!')
+              //NEW_GAME action
               this.setState({
                 movies: '',
                 movieTitle: '',
