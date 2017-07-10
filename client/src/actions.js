@@ -4,15 +4,15 @@
 //new action for each variation of state
 
 //guess where input is multiple words/has a space
-export const MAKE_GUESS_WITH_SPACE = 'MAKE_GUESS_WITH_SPACE';
-export const makeGuess = (guess) => ({
-    type: MAKE_GUESS_WITH_SPACE,
+export const MAKE_MULTI_WORD_GUESS = 'MAKE_MULTI_WORD_GUESS';
+export const makeMultiWordGuess = (guess) => ({
+    type: MAKE_MULTI_WORD_GUESS,
     guess
 });
 
 //guess where input is all one word
 export const MAKE_ONE_WORD_GUESS = 'MAKE_ONE_WORD_GUESS';
-export const makeGuess = (guess) => ({
+export const makeOneWordGuess = (guess) => ({
     type: MAKE_ONE_WORD_GUESS,
     guess
 });
@@ -22,9 +22,9 @@ export const newGame = () => ({
     type: NEW_GAME
 });
 
-export const CHANGED_FIRST_LETTER = 'CHANGED_FIRST_LETTER';
-export const changedFirstLetter = () => ({
-    type: CHANGED_FIRST_LETTER
+export const CHANGE_FIRST_LETTER = 'CHANGE_FIRST_LETTER';
+export const changeFirstLetter = () => ({
+    type: CHANGE_FIRST_LETTER
 });
 
 export const INPUT = 'INPUT';

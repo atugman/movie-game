@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import vhs from './vhs.png'
 import './App.css';
 //import '../node_modules/animate.css/animate.min.css'
+import {newGame} from '../actions'
 
 class App extends Component {
 
@@ -14,8 +15,6 @@ class App extends Component {
       userInput: 'T',
       score: 0,
       usedMovies: '',
-      // firstLetterOfLastWord: '',
-      // lastLetterOfWord: ''
       relevantLetter: 'T'
     }
 
@@ -31,7 +30,7 @@ class App extends Component {
         if (event.target.value[0] !== this.state.relevantLetter) {
           alert("Hey! You can't change that first letter! Put that " + this.state.relevantLetter + " back in there! Nice try pal!"),
           this.setState({
-            //CHANGED_FIRST_LETTER dispatch here
+            //CHANGE_FIRST_LETTER dispatch here
             userInput: this.state.relevantLetter
           })
         }
@@ -49,19 +48,7 @@ class App extends Component {
               console.log('a');
               alert('Hey! You already used that one! Game over pal!'),
               //NEW_GAME action
-              this.setState({
-                movies: '',
-                movieTitle: '',
-                overview: '',
-                backdrop: '',
-                poster: '',
-                userInput: 'A',
-                score: 0,
-                usedMovies: '',
-                // firstLetterOfLastWord: '',
-                // lastLetterOfWord: '',
-                relevantLetter: 'A'
-              })
+              this.props.dispatch(newGame());
             }
             else if (this.state.userInput.includes("The")) {
               console.log('b');
@@ -71,19 +58,7 @@ class App extends Component {
                 if (splitString[0] = "THE") {
                   alert('Nice try...you know what you did... :)'),
                   //NEW_GAME action
-                  this.setState ({
-                    movies: '',
-                    movieTitle: '',
-                    overview: '',
-                    backdrop: '',
-                    poster: '',
-                    userInput: 'A',
-                    score: 0,
-                    usedMovies: '',
-                    // firstLetterOfLastWord: '',
-                    // lastLetterOfWord: '',
-                    relevantLetter: 'A'
-                  })
+                  this.props.dispatch(newGame());
                 }
               }
             }
@@ -132,7 +107,7 @@ class App extends Component {
               var firstLetterOfLastWord = lastWord[0];
               console.log(firstLetterOfLastWord);
               this.setState({
-                //MAKE_GUESS_WITH_SPACE
+                //MAKE_MULTI_WORD_GUESS
                 movies: movies,
                 movieTitle: movies.results[0].title,
                 overview: movies.results[0].overview,
@@ -144,7 +119,8 @@ class App extends Component {
                 // firstLetterOfLastWord: firstLetterOfLastWord,
                 // lastLetterOfWord: '',
                 relevantLetter: firstLetterOfLastWord
-              })// for edge cases - ex, the aristocats
+              })
+              // for edge cases - ex, the aristocats
             } else { //if movie is one word, use last letter for next turn
               console.log('e');
               var input = movies.results[0].title
