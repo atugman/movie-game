@@ -4,7 +4,11 @@ const express = require('express');
 const app = express();
 
 // API endpoints go here!
-
+app.get('/existing',
+  (req, res) => {console.log(req.user)
+    res.json({user: req.user})
+  }
+);
 
 // Serve the built client
 app.use(express.static(path.resolve(__dirname, '../client/build')));
