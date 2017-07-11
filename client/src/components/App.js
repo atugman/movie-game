@@ -3,7 +3,14 @@ import React, { Component } from 'react';
 import vhs from './vhs.png'
 import './App.css';
 //import '../node_modules/animate.css/animate.min.css'
-import {newGame} from '../actions'
+import {newGame,
+makeOneWordGuess,
+makeMultiWordGuess,
+input} from '../actions'
+
+import reducer from '../reducer'
+import { connect } from 'react-redux';
+import store from '../store'
 
 class App extends Component {
 
@@ -24,9 +31,8 @@ class App extends Component {
 
       handleChange(event) {
         //INPUT
-        this.setState({
-          userInput: event.target.value
-        });
+        this.props.dispatch(input());
+
         if (event.target.value[0] !== this.state.relevantLetter) {
           alert("Hey! You can't change that first letter! Put that " + this.state.relevantLetter + " back in there! Nice try pal!"),
           this.setState({
@@ -93,73 +99,16 @@ class App extends Component {
             //if movie title is multiple words, the next movie must
             //use the first letter of the last word of original movie
             else if (input.includes(' ')) {
-              console.log('d');
-              var removeDigits = /[0-9]/g
-              var highRegString = input.toUpperCase().replace(removeDigits, '');
-              var splitString = highRegString.split(' ');
-              console.log(splitString);
-              if (splitString.includes('')) {
-                splitString.splice(-1, 1);
-              }
-              console.log(splitString);
-              var lastWord = splitString[splitString.length -1];
-              console.log(lastWord);
-              var firstLetterOfLastWord = lastWord[0];
-              console.log(firstLetterOfLastWord);
-              this.setState({
-                //MAKE_MULTI_WORD_GUESS
-                movies: movies,
-                movieTitle: movies.results[0].title,
-                overview: movies.results[0].overview,
-                backdrop: 'https://image.tmdb.org/t/p/w500' + movies.results[0].backdrop_path,
-                poster: 'https://image.tmdb.org/t/p/w500' + movies.results[0].poster_path,
-                userInput: firstLetterOfLastWord,
-                score: this.state.score+1,
-                usedMovies: this.state.usedMovies + ' ' + input,
-                // firstLetterOfLastWord: firstLetterOfLastWord,
-                // lastLetterOfWord: '',
-                relevantLetter: firstLetterOfLastWord
-              })
+              this.props.dispatch(makeMultiWordGuess());
               // for edge cases - ex, the aristocats
             } else { //if movie is one word, use last letter for next turn
-              console.log('e');
-              var input = movies.results[0].title
-              console.log('input ', input)
-              var removeDigits = /[0-9]/g
-              var highRegString = input.toUpperCase().replace(removeDigits, '');
-              var lastLetterOfWord = highRegString[highRegString.length -1];
-              this.setState({
-                //MAKE_ONE_WORD_GUESS
-                movies: movies,
-                movieTitle: movies.results[0].title,
-                overview: movies.results[0].overview,
-                backdrop: 'https://image.tmdb.org/t/p/w500' + movies.results[0].backdrop_path,
-                poster: 'https://image.tmdb.org/t/p/w500' + movies.results[0].poster_path,
-                userInput: lastLetterOfWord,
-                score: this.state.score+1,
-                usedMovies: this.state.usedMovies + ' ' + input,
-                // firstLetterOfLastWord: '',
-                // lastLetterOfWord: lastLetterOfWord,
-                relevantLetter: lastLetterOfWord
-              })
+              this.props.dispatch(makeOneWordGuess());
             }
             })
             .catch(err => {
               alert('You lose!')
               //NEW_GAME action
-              this.setState({
-                movies: '',
-                movieTitle: '',
-                overview: '',
-                backdrop: '',
-                poster: '',
-                userInput: 'A',
-                score: 0,
-                usedMovies: '',
-                // firstLetterOfLastWord: '',
-                // lastLetterOfWord: '',
-                relevantLetter: 'A'
-              })
+              this.props.dispatch(newGame());
             })
           event.preventDefault();
       }
@@ -205,4 +154,4 @@ return (
   }
 }
 
-export default App;
+export default connect()(App);

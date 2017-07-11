@@ -18,9 +18,10 @@ export const makeOneWordGuess = (guess) => ({
 });
 
 export const NEW_GAME = 'NEW_GAME';
-export const newGame = () => ({
-    type: NEW_GAME
-});
+export const newGame = () => {
+  console.log('hey ');
+  return {type: NEW_GAME}
+};
 
 export const CHANGE_FIRST_LETTER = 'CHANGE_FIRST_LETTER';
 export const changeFirstLetter = () => ({
@@ -30,5 +31,5 @@ export const changeFirstLetter = () => ({
 export const INPUT = 'INPUT';
 export const input = (letter) => ({
     type: INPUT,
-    letter
+    userInput: event.target.value
 });
