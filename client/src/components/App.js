@@ -47,50 +47,31 @@ class App extends Component {
       handleSubmit(event) {
         event.preventDefault()
         let inputVal = event.target.userInput.value
-        console.log(inputVal);
-          //document.getElementById("hi").className = "animated slideInRight"
-          //prevents using the same movie twice
-          let splitString = inputVal.toUpperCase('').split(' ');
-
-          if (splitString.includes("THE")) {
-            console.log('app ', inputVal);
-            //var inputVal = state.userInput
-            //var splitString = inputVal.toUpperCase('').split(' ');
-            console.log(splitString);
-            for (var i = 0; i < splitString.length; i++) {
-              if (splitString[0] = "THE") {
-                console.log(splitString[0]);
-                alert('Nice try...you know what you did... :)'),
-                //NEW_GAME action
-                this.props.dispatch(newGame())
-              }
+        //document.getElementById("hi").className = "animated slideInRight"
+        //prevents using the same movie twice
+        let splitString = inputVal.toUpperCase('').split(' ');
+        if (splitString.includes("THE")) {
+          for (var i = 0; i < splitString.length; i++) {
+            if (splitString[0] = "THE") {
+              alert('Nice try...you know what you did... :)'),
+              this.props.dispatch(newGame())
             }
-          } else if (this.props.usedMovies.includes(inputVal)) {
-              console.log('usedMovies ', this.props.usedMovies);
-              alert('Hey! You already used that one! Game over pal!'),
-              //NEW_GAME action
-              this.props.dispatch(newGame());
-            }
-
-
-            //if movie title is multiple words, the next movie must
-            //use the first letter of the last word of original movie
-            else if (inputVal.includes(' ')) {
-              this.props.dispatch(fetchData(inputVal));
-              // for edge cases - ex, the aristocats
-            } else { //if movie is one word, use last letter for next turn
-              this.props.dispatch(fetchData2(inputVal));
-            }
-            event.preventDefault();
-
-
-            // .catch(err => {
-            //   alert('You lose!')
-            //   //NEW_GAME action
-            //   this.props.dispatch(newGame());
-            // })
-      //}
-    }
+          }
+        } else if (this.props.usedMovies.includes(inputVal)) {
+            console.log('usedMovies ', this.props.usedMovies);
+            alert('Hey! You already used that one! Game over pal!'),
+            this.props.dispatch(newGame());
+        }
+          //if movie title is multiple words, the next movie must
+          //use the first letter of the last word of original movie
+          else if (inputVal.includes(' ')) {
+            this.props.dispatch(fetchData(inputVal));
+          } else {
+            //if movie is one word, use last letter for next turn
+            this.props.dispatch(fetchData2(inputVal));
+          }
+          event.preventDefault();
+        }
 
   render() {
 return (
