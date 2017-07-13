@@ -20,7 +20,7 @@ export default (state, action) => {
     } else if (action.type === 'INPUT') {
       return {
         ...state,
-        userInput: event.target.value
+        userInput: action.payload
       }
     } else if (action.type === 'CHANGE_FIRST_LETTER') {
       return {
@@ -59,7 +59,7 @@ export default (state, action) => {
       return {
         ...state,
         // movies: movies,
-        // movieTitle: movies.results[0].title,
+        //movieTitle: 'Fight Club'
         // overview: movies.results[0].overview,
         // backdrop: 'https://image.tmdb.org/t/p/w500' + movies.results[0].backdrop_path,
         // poster: 'https://image.tmdb.org/t/p/w500' + movies.results[0].poster_path,

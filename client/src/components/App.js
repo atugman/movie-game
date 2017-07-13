@@ -4,11 +4,14 @@ import vhs from './vhs.png'
 import './App.css';
 //import '../node_modules/animate.css/animate.min.css'
 import {newGame,
-makeOneWordGuess,
-makeMultiWordGuess,
-input} from '../actions'
+receiveData,
+receiveData2,
+input,
+fetchData,
+fetchData2} from '../actions'
 
-import reducer from '../reducer'
+
+import rootReducer from '../reducers/index'
 import { connect } from 'react-redux';
 import store from '../store'
 
@@ -17,101 +20,75 @@ class App extends Component {
   constructor() {
     super();
 
-    this.state = {
-      movies: [],
-      userInput: 'T',
-      score: 0,
-      usedMovies: '',
-      relevantLetter: 'T'
-    }
 
-    this.handleChange = this.handleChange.bind(this);
+    //this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-      handleChange(event) {
-        //INPUT
-        this.props.dispatch(input());
+  // componentDidMount() {
+  //   this.props.dispatch(fetchData(this.state))
+  // }
 
-        if (event.target.value[0] !== this.state.relevantLetter) {
-          alert("Hey! You can't change that first letter! Put that " + this.state.relevantLetter + " back in there! Nice try pal!"),
-          this.setState({
-            //CHANGE_FIRST_LETTER dispatch here
-            userInput: this.state.relevantLetter
-          })
-        }
-      }
+      // handleChange(event) {
+      //   const userInput = event.target.value
+      //   console.log(userInput);
+      //   //INPUT
+      //   this.props.dispatch(input(userInput));
+      //
+      //   // if (event.target.value[0] !== this.state.relevantLetter) {
+      //   //   alert("Hey! You can't change that first letter! Put that " + this.state.relevantLetter + " back in there! Nice try pal!"),
+      //   //   this.setState({
+      //   //     //CHANGE_FIRST_LETTER dispatch here
+      //   //     userInput: this.state.relevantLetter
+      //   //   })
+      //   // }
+      // }
 
       handleSubmit(event) {
-        //const url = 'https://api.themoviedb.org/3/search/movie?query=' + this.state.userInput + '&api_key=2301535fa250c0bcc1f89c74b2a2a9b4'
-        fetch('https://api.themoviedb.org/3/search/movie?query=' + this.state.userInput + '&api_key=2301535fa250c0bcc1f89c74b2a2a9b4')
-          .then(response => response.json())
-          .then(movies => {
-            var input = movies.results[0].title
+        event.preventDefault()
+        let inputVal = event.target.userInput.value
+        console.log(inputVal);
+
             //document.getElementById("hi").className = "animated slideInRight"
             //prevents using the same movie twice
-            if (this.state.usedMovies.includes(input)) {
-              console.log('a');
-              alert('Hey! You already used that one! Game over pal!'),
-              //NEW_GAME action
-              this.props.dispatch(newGame());
-            }
-            else if (this.state.userInput.includes("The")) {
-              console.log('b');
-              var userInput = this.state.userInput
-              var splitString = userInput.toUpperCase().split(' ');
-              for (var i = 0; i < splitString.length; i++) {
-                if (splitString[0] = "THE") {
-                  alert('Nice try...you know what you did... :)'),
-                  //NEW_GAME action
-                  this.props.dispatch(newGame());
-                }
-              }
-            }
-          //   else if (input.includes('The')) {
-          //     console.log('c');
-          //     var removeDigits = /[0-9]/g
-          //     var highRegString = input.replace(removeDigits, '');
-          //     var highRegString2 = highRegString.replace("The", "");
-          //     var splitString = highRegString2.toUpperCase().split(' ');
-          //     if (splitString.length === 2) {
-          //       for (var i = 0; i < splitString.length; i++) {
-          //         if (splitString[i].length <= 1) {
-          //           splitString.splice(i, 1);
-          //         }
-          //       }
-          //       var splitString2 = splitString[0];
-          //       var lastLetterOfWord = splitString2.slice(-1);
-          //     } this.setState ({
-          //       movies: movies,
-          //       movieTitle: movies.results[0].title,
-          //       overview: movies.results[0].overview,
-          //       backdrop: 'https://image.tmdb.org/t/p/w500' + movies.results[0].backdrop_path,
-          //       poster: 'https://image.tmdb.org/t/p/w500' + movies.results[0].poster_path,
-          //       userInput: lastLetterOfWord,
-          //       score: this.state.score+1,
-          //       usedMovies: this.state.usedMovies + ' ' + input,
-          //       // firstLetterOfLastWord: '',
-          //       // lastLetterOfWord: lastLetterOfWord,
-          //       relevantLetter: lastLetterOfWord
-          //     })
-          // }
+            // if (this.props.usedMovies.indexOf(inputVal)) {
+            //   console.log('a');
+            //   alert('Hey! You already used that one! Game over pal!'),
+            //   //NEW_GAME action
+            //   this.props.dispatch(newGame());
+            // }
+            //   else if (inputVal.indexOf("The") >= 0) {
+            //   console.log('app ', inputVal);
+            //   var userInput = this.state.userInput
+            //   var splitString = userInput.toUpperCase().split(' ');
+            //   for (var i = 0; i < splitString.length; i++) {
+            //     if (splitString[0] = "THE") {
+            //       alert('Nice try...you know what you did... :)'),
+            //       //NEW_GAME action
+            //       this.props.dispatch(newGame());
+            //     }
+            //   }
+            // }
+
+
             //if movie title is multiple words, the next movie must
             //use the first letter of the last word of original movie
-            else if (input.includes(' ')) {
-              this.props.dispatch(makeMultiWordGuess());
+            if (inputVal.includes(' ')) {
+              this.props.dispatch(fetchData(inputVal));
               // for edge cases - ex, the aristocats
             } else { //if movie is one word, use last letter for next turn
-              this.props.dispatch(makeOneWordGuess());
+              this.props.dispatch(fetchData2(inputVal));
             }
-            })
-            .catch(err => {
-              alert('You lose!')
-              //NEW_GAME action
-              this.props.dispatch(newGame());
-            })
-          event.preventDefault();
-      }
+            event.preventDefault();
+
+
+            // .catch(err => {
+            //   alert('You lose!')
+            //   //NEW_GAME action
+            //   this.props.dispatch(newGame());
+            // })
+      //}
+    }
 
   render() {
 return (
@@ -127,23 +104,25 @@ return (
         <form onSubmit={this.handleSubmit}>
            <label>
              Movie:
-             <input type="text" value={this.state.userInput} onChange={this.handleChange} />
+             <input name="userInput" type="text" //value={this.state.userInput} onChange={this.handleChange} />
+           />
+           <button>Submit</button>
            </label>
-           <input type="submit" value="Submit" />
+           {/* <input type="submit" value="Submit" /> */}
          </form>
 
          <div className="App-intro">
-           <div className="score">Score: {this.state.score}</div>
+           <div className="score">Score: {this.props.score}</div>
            <div className="row" id="hello">
              <div id="hey" className="col-8">
-               <div className="movie-title">{this.state.movieTitle}</div>
-               <div className="overview">{this.state.overview}</div>
+               <div className="movie-title">{this.props.movieTitle}</div>
+               <div className="overview">{this.props.overview}</div>
              </div>
              <div id="hi" className="col-4">
-               <img className="Poster img-responsive" src={this.state.poster}/>
+               <img className="Poster img-responsive" src={this.props.poster}/>
             </div>
           </div>
-           <img className="Backdrop img-responsive" src={this.state.backdrop}/>
+           <img className="Backdrop img-responsive" src={this.props.backdrop}/>
            {/* {this.state.map((movie, index) => (
              <li key={index}>{movie.movies.results[0].title}</li>
            ))} */}
@@ -154,4 +133,13 @@ return (
   }
 }
 
-export default connect()(App);
+const mapStateToProps = state => ({
+    usedMovies: state.movieData.usedMovies,
+    score: state.movieData.score,
+    movieTitle: state.movieData.movieTitle,
+    overview: state.movieData.overview,
+    poster: state.movieData.poster,
+    backdrop: state.movieData.backdrop
+});
+
+export default connect(mapStateToProps)(App);
