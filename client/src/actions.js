@@ -20,7 +20,6 @@ export const makeOneWordGuess = (guess) => ({
 
 export const NEW_GAME = 'NEW_GAME';
 export const newGame = () => {
-  console.log('hey ');
   return {type: NEW_GAME}
 };
 
@@ -56,7 +55,6 @@ export const receiveData2 = (data) => ({
 export const fetchData = (inputVal) => {
   return (dispatch) => {
     dispatch(requestData)
-    console.log(inputVal);
     fetch('https://api.themoviedb.org/3/search/movie?query=' + inputVal + '&api_key=2301535fa250c0bcc1f89c74b2a2a9b4')
       .then(response => response.json())
       .then(movies => dispatch(receiveData(movies)))

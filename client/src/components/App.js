@@ -48,32 +48,34 @@ class App extends Component {
         event.preventDefault()
         let inputVal = event.target.userInput.value
         console.log(inputVal);
+          //document.getElementById("hi").className = "animated slideInRight"
+          //prevents using the same movie twice
+          let splitString = inputVal.toUpperCase('').split(' ');
 
-            //document.getElementById("hi").className = "animated slideInRight"
-            //prevents using the same movie twice
-            // if (this.props.usedMovies.indexOf(inputVal)) {
-            //   console.log('a');
-            //   alert('Hey! You already used that one! Game over pal!'),
-            //   //NEW_GAME action
-            //   this.props.dispatch(newGame());
-            // }
-            //   else if (inputVal.indexOf("The") >= 0) {
-            //   console.log('app ', inputVal);
-            //   var userInput = this.state.userInput
-            //   var splitString = userInput.toUpperCase().split(' ');
-            //   for (var i = 0; i < splitString.length; i++) {
-            //     if (splitString[0] = "THE") {
-            //       alert('Nice try...you know what you did... :)'),
-            //       //NEW_GAME action
-            //       this.props.dispatch(newGame());
-            //     }
-            //   }
-            // }
+          if (splitString.includes("THE")) {
+            console.log('app ', inputVal);
+            //var inputVal = state.userInput
+            //var splitString = inputVal.toUpperCase('').split(' ');
+            console.log(splitString);
+            for (var i = 0; i < splitString.length; i++) {
+              if (splitString[0] = "THE") {
+                console.log(splitString[0]);
+                alert('Nice try...you know what you did... :)'),
+                //NEW_GAME action
+                this.props.dispatch(newGame())
+              }
+            }
+          } else if (this.props.usedMovies.includes(inputVal)) {
+              console.log('usedMovies ', this.props.usedMovies);
+              alert('Hey! You already used that one! Game over pal!'),
+              //NEW_GAME action
+              this.props.dispatch(newGame());
+            }
 
 
             //if movie title is multiple words, the next movie must
             //use the first letter of the last word of original movie
-            if (inputVal.includes(' ')) {
+            else if (inputVal.includes(' ')) {
               this.props.dispatch(fetchData(inputVal));
               // for edge cases - ex, the aristocats
             } else { //if movie is one word, use last letter for next turn
@@ -135,11 +137,13 @@ return (
 
 const mapStateToProps = state => ({
     usedMovies: state.movieData.usedMovies,
-    score: state.movieData.score,
     movieTitle: state.movieData.movieTitle,
     overview: state.movieData.overview,
     poster: state.movieData.poster,
-    backdrop: state.movieData.backdrop
+    backdrop: state.movieData.backdrop,
+    score: state.reducer.score,
+    userInput: state.reducer.userInput,
+    usedMovies: state.reducer.userInput
 });
 
 export default connect(mapStateToProps)(App);

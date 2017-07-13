@@ -12,7 +12,6 @@ const movieData = (state = [], action) => {
     }
   } else if (action.type === 'RECEIVE_DATA') {
     let input = action.data.results[0].title
-    console.log('INPUT ', input);
     let removeDigits = /[0-9]/g
     let highRegString = input.toUpperCase().replace(removeDigits, '');
     let splitString = highRegString.split(' ');
@@ -21,7 +20,6 @@ const movieData = (state = [], action) => {
     }
     let lastWord = splitString[splitString.length -1];
     let firstLetterOfLastWord = lastWord[0];
-    console.log(firstLetterOfLastWord);
     return {
       ...state,
       // movies: //movies,
