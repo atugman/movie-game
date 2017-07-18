@@ -21,7 +21,7 @@ class App extends Component {
     super();
 
 
-    //this.handleChange = this.handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -29,24 +29,22 @@ class App extends Component {
   //   this.props.dispatch(fetchData(this.state))
   // }
 
-      // handleChange(event) {
-      //   const userInput = event.target.value
-      //   console.log(userInput);
-      //   //INPUT
-      //   this.props.dispatch(input(userInput));
-      //
-      //   // if (event.target.value[0] !== this.state.relevantLetter) {
-      //   //   alert("Hey! You can't change that first letter! Put that " + this.state.relevantLetter + " back in there! Nice try pal!"),
-      //   //   this.setState({
-      //   //     //CHANGE_FIRST_LETTER dispatch here
-      //   //     userInput: this.state.relevantLetter
-      //   //   })
-      //   // }
-      // }
+  handleChange(event) {
+    this.setState({
+      userInput: event.target.value
+    });
+    console.log(this.state.userInput);
+    // if (event.target.value[0] !== this.state.relevantLetter) {
+    //   alert("Hey! You can't change that first letter! Put that " + this.state.relevantLetter + " back in there! Nice try pal!"),
+    //   this.setState({
+    //     userInput: this.state.relevantLetter
+    //   })
+    // }
+  }
 
       handleSubmit(event) {
         event.preventDefault()
-        let inputVal = event.target.userInput.value
+        let inputVal = this.state.userInput//event.target.userInput.value
         //document.getElementById("hi").className = "animated slideInRight"
         //prevents using the same movie twice
         let splitString = inputVal.toUpperCase('').split(' ');
@@ -66,9 +64,12 @@ class App extends Component {
           //use the first letter of the last word of original movie
           else if (inputVal.includes(' ')) {
             this.props.dispatch(fetchData(inputVal));
+            console.log(this.props.relevantLetter);
+            //event.target.value = this.state.userInput;
           } else {
             //if movie is one word, use last letter for next turn
             this.props.dispatch(fetchData2(inputVal));
+            //event.target.value = this.state.userInput;
           }
           event.preventDefault();
         }
@@ -87,9 +88,8 @@ return (
         <form onSubmit={this.handleSubmit}>
            <label>
              Movie:
-             <input name="userInput" type="text" //value={this.state.userInput} onChange={this.handleChange} />
-           />
-           <button>Submit</button>
+             <input name="userInput" type="text" value={this.props.userInput} onChange={this.handleChange} />
+           <input type="submit" value="Submit" />
            </label>
            {/* <input type="submit" value="Submit" /> */}
          </form>
@@ -123,8 +123,9 @@ const mapStateToProps = state => ({
     poster: state.movieData.poster,
     backdrop: state.movieData.backdrop,
     score: state.reducer.score,
-    userInput: state.reducer.userInput,
-    usedMovies: state.reducer.userInput
+    userInput: state.movieData.userInput,
+    usedMovies: state.reducer.usedMovies,
+    relevantLetter: state.movieData.relevantLetter
 });
 
 export default connect(mapStateToProps)(App);

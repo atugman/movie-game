@@ -1,9 +1,11 @@
 const initialState = {
   loading: false,
-  data: []
+  data: [],
+  relevantLetter: 'A'
 }
 
-const movieData = (state = [], action) => {
+const movieData = (state, action) => {
+  state = state || initialState;
   if (action.type === 'REQUEST_DATA') {
     return {
       ...state,
@@ -34,15 +36,9 @@ const movieData = (state = [], action) => {
     }
   } else if (action.type === 'RECEIVE_DATA2') {
     let input = action.data.results[0].title
-    console.log('INPUT ', input);
     let removeDigits = /[0-9]/g
     let highRegString = input.toUpperCase().replace(removeDigits, '');
-    let splitString = highRegString.split(' ');
-    if (splitString.includes('')) {
-      splitString.splice(-1, 1);
-    }
-    let lastWord = splitString[splitString.length -1];
-    let firstLetterOfLastWord = lastWord[0];
+    let lastLetterOfWord = highRegString[highRegString.length -1];
     return {
       ...state,
       // movies: //movies,
@@ -50,10 +46,10 @@ const movieData = (state = [], action) => {
       overview: action.data.results[0].overview,
       backdrop: 'https://image.tmdb.org/t/p/w500' + action.data.results[0].backdrop_path,
       poster: 'https://image.tmdb.org/t/p/w500' + action.data.results[0].poster_path,
-      userInput: firstLetterOfLastWord,
+      userInput: lastLetterOfWord,
       score: state.score+1,
       usedMovies: state.usedMovies + ' ' + input,
-      relevantLetter: firstLetterOfLastWord
+      relevantLetter: lastLetterOfWord
     }
   }
     return state
