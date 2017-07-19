@@ -8,12 +8,15 @@ receiveData,
 receiveData2,
 input,
 fetchData,
-fetchData2} from '../actions'
-
-
+fetchData2
+} from '../actions'
+import { reducer as formReducer } from 'redux-form'
+import { Field, reduxForm } from 'redux-form';
 import rootReducer from '../reducers/index'
 import { connect } from 'react-redux';
 import store from '../store'
+//import InfoModal from './InfoModal'
+import Header from './Header'
 
 class App extends Component {
 
@@ -75,29 +78,44 @@ class App extends Component {
         }
 
   render() {
-return (
+    const { handleSubmit } = this.props;
+    return (
       <div className="App">
-        <div className="App-header animated slideInRight">
+        <Header infoModal={this.props.showInfoModal}/>
+        {/* <div className="App-header animated slideInRight">
           <img src={vhs} className="App-logo" alt="logo" />
           <h2 className='animated bounce'>The Movie Game!</h2>
         </div>
-        <p className="App-intro">
+        <p className="instructions">
           Type the name of a movie into the box that starts with the specified letter!
-        </p>
+        </p> */}
+
+        {/* <form onSubmit={handleSubmit}>
+                <div>
+                  <label>First Name</label>
+                  <Field name="firstName" component="input" type="text"/>
+                </div>
+                <button type="submit">Submit</button>
+        </form> */}
+
 
         <form onSubmit={this.handleSubmit}>
-           <label>
-             Movie:
-             <input name="userInput" type="text" value={this.props.userInput} onChange={this.handleChange} />
-           <input type="submit" value="Submit" />
-           </label>
-           {/* <input type="submit" value="Submit" /> */}
-         </form>
+          <div>
+             <label>Movie:</label>
+               <input name="userInput" component="input" type="text" value={this.props.userInput} onChange={this.handleChange}
+               />
+             <button type="submit" value="Submit" />
+          </div>
+        </form>
 
          <div className="App-intro">
            <div className="score">Score: {this.props.score}</div>
            <div className="row" id="hello">
              <div id="hey" className="col-8">
+               <div className='random'>
+                 <img className="tv" src={require('../components/tv2.png')}></img>
+                 <img className="Backdrop img-responsive" src={this.props.backdrop}/>
+               </div>
                <div className="movie-title">{this.props.movieTitle}</div>
                <div className="overview">{this.props.overview}</div>
              </div>
@@ -105,7 +123,6 @@ return (
                <img className="Poster img-responsive" src={this.props.poster}/>
             </div>
           </div>
-           <img className="Backdrop img-responsive" src={this.props.backdrop}/>
            {/* {this.state.map((movie, index) => (
              <li key={index}>{movie.movies.results[0].title}</li>
            ))} */}
@@ -125,7 +142,12 @@ const mapStateToProps = state => ({
     score: state.reducer.score,
     userInput: state.movieData.userInput,
     usedMovies: state.reducer.usedMovies,
-    relevantLetter: state.movieData.relevantLetter
+    relevantLetter: state.movieData.relevantLetter,
+    showInfoModal: state.reducer.showInfoModal
 });
+
+App = reduxForm({
+  form: 'movieForm' // a unique name for this form
+})(App);
 
 export default connect(mapStateToProps)(App);

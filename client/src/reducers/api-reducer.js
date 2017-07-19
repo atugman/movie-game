@@ -51,6 +51,19 @@ const movieData = (state, action) => {
       usedMovies: state.usedMovies + ' ' + input,
       relevantLetter: lastLetterOfWord
     }
+  } else if (action.type === 'NEW_GAME') {
+    return {
+      ...state,
+      movies: [],
+      userInput: 'A',
+      score: 0,
+      usedMovies: '',
+      relevantLetter: 'A',
+      movieTitle: '',
+      overview: '',
+      backdrop: '',
+      poster: ''
+    }
   }
     return state
   }

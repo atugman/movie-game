@@ -3,7 +3,8 @@ const initialState = {
   userInput: 'A',
   score: 0,
   usedMovies: '',
-  relevantLetter: 'A'
+  relevantLetter: 'A',
+  showInfoModal: false
 };
 
 export default (state, action, inputVal) => {
@@ -15,7 +16,11 @@ export default (state, action, inputVal) => {
           userInput: 'A',
           score: 0,
           usedMovies: '',
-          relevantLetter: 'A'
+          relevantLetter: 'A',
+          movieTitle: '',
+          overview: '',
+          backdrop: '',
+          poster: ''
         }
     } else if (action.type === 'INPUT') {
       return {
@@ -27,6 +32,11 @@ export default (state, action, inputVal) => {
         ...state,
         userInput: this.state.relevantLetter
       }//, event.target.userInput.value = this.state.relevantLetter
+    } else if (action.type === 'TOGGLE_INFO_MODAL') {
+      return {
+        ...state,
+        showInfoModal: !state.showInfoModal
+      }
     }
     return state;
 };

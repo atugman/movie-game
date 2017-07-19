@@ -6,6 +6,11 @@ export const newGame = (inputVal) => ({
   inputVal
 });
 
+export const TOGGLE_INFO_MODAL = 'TOGGLE_INFO_MODAL';
+export const toggleInfoModal = () => ({
+    type: TOGGLE_INFO_MODAL
+});
+
 export const CHANGE_FIRST_LETTER = 'CHANGE_FIRST_LETTER';
 export const changeFirstLetter = () => ({
     type: CHANGE_FIRST_LETTER
