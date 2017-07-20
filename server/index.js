@@ -72,13 +72,13 @@ function isAuthenticated (req, res, next) {
 }
 
 // API endpoints
-app.get('/existing',
+app.get('/api/existing',
   (req, res) => {console.log(req.user)
     res.json({user: req.user})
   }
 );
 
-app.get('/scores', (req, res) => {
+app.get('/api/scores', (req, res) => {
   User.find({}, null, {sort: '-score'}, function(err, scores) {
     if(err)
       return res.send(err)

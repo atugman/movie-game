@@ -44,7 +44,7 @@ export const fetchData = (inputVal) => {
     dispatch(requestData)
     fetch('https://api.themoviedb.org/3/search/movie?query=' + inputVal + '&api_key=2301535fa250c0bcc1f89c74b2a2a9b4')
       .then(response => response.json())
-      .then(movies => dispatch(receiveData(movies)))
+      .then(movies => console.log(movies))//;dispatch(receiveData(movies)))
       // .catch(err => {
       //   alert('You lose!')
       //

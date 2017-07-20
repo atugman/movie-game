@@ -10,7 +10,6 @@ import vhs from './vhs.png';
 
 
 export function Header(props) {
-  console.log(props);
     let infoModal;
     if (props.infoModal) {
         infoModal = <InfoModal />;

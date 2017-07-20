@@ -10,7 +10,7 @@ input,
 fetchData,
 fetchData2
 } from '../actions'
-import { reducer as formReducer } from 'redux-form'
+import SimpleForm from './MovieForm'
 import { Field, reduxForm } from 'redux-form';
 import rootReducer from '../reducers/index'
 import { connect } from 'react-redux';
@@ -24,7 +24,7 @@ class App extends Component {
     super();
 
 
-    this.handleChange = this.handleChange.bind(this);
+    //this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -32,22 +32,23 @@ class App extends Component {
   //   this.props.dispatch(fetchData(this.state))
   // }
 
-  handleChange(event) {
-    this.setState({
-      userInput: event.target.value
-    });
-    console.log(this.state.userInput);
-    // if (event.target.value[0] !== this.state.relevantLetter) {
-    //   alert("Hey! You can't change that first letter! Put that " + this.state.relevantLetter + " back in there! Nice try pal!"),
-    //   this.setState({
-    //     userInput: this.state.relevantLetter
-    //   })
-    // }
-  }
+  // handleChange(event) {
+  //   this.setState({
+  //     userInput: event.target.value
+  //   });
+  //   console.log(this.state.userInput);
+  //   // if (event.target.value[0] !== this.state.relevantLetter) {
+  //   //   alert("Hey! You can't change that first letter! Put that " + this.state.relevantLetter + " back in there! Nice try pal!"),
+  //   //   this.setState({
+  //   //     userInput: this.state.relevantLetter
+  //   //   })
+  //   // }
+  // }
 
       handleSubmit(event) {
         event.preventDefault()
-        let inputVal = this.state.userInput//event.target.userInput.value
+        let inputVal = this.state.firstName//event.target.userInput.value
+        console.log(inputVal);
         //document.getElementById("hi").className = "animated slideInRight"
         //prevents using the same movie twice
         let splitString = inputVal.toUpperCase('').split(' ');
@@ -78,7 +79,7 @@ class App extends Component {
         }
 
   render() {
-    const { handleSubmit } = this.props;
+    const { onSubmit } = this.props;
     return (
       <div className="App">
         <Header infoModal={this.props.showInfoModal}/>
@@ -90,23 +91,23 @@ class App extends Component {
           Type the name of a movie into the box that starts with the specified letter!
         </p> */}
 
-        {/* <form onSubmit={handleSubmit}>
+        <form onSubmit={onSubmit}>
                 <div>
                   <label>Movie: </label>
-                  <Field name="firstName" component="input" type="text"/>
+                  <Field name="userInput" component="input" type="text"/>
                 </div>
                 <button type="submit">Submit</button>
-        </form> */}
+        </form>
+        <SimpleForm />
 
-
-        <form onSubmit={this.handleSubmit}>
+        {/* <form onSubmit={this.handleSubmit}>
           <div>
              <label>Movie:</label>
                <input name="userInput" component="input" type="text" value={this.props.userInput} onChange={this.handleChange}
                />
              <button type="submit" value="Submit" />
           </div>
-        </form>
+        </form> */}
 
          <div className="App-intro">
            <div className="score">Score: {this.props.score}</div>
@@ -116,7 +117,7 @@ class App extends Component {
                  <img className="tv" src={require('../components/tv2.png')}></img>
                  <img className="Backdrop img-responsive" src={this.props.backdrop}/>
                </div>
-               <div className="movie-title">{this.props.movieTitle}</div>
+               <div className="movie-title">{this.props.firstName}</div>
                <div className="overview">{this.props.overview}</div>
              </div>
              <div id="hi" className="col-4">
@@ -143,7 +144,8 @@ const mapStateToProps = state => ({
     userInput: state.movieData.userInput,
     usedMovies: state.reducer.usedMovies,
     relevantLetter: state.movieData.relevantLetter,
-    showInfoModal: state.reducer.showInfoModal
+    showInfoModal: state.reducer.showInfoModal,
+    //firstName: state.form.simple.values.firstName
 });
 
 App = reduxForm({
