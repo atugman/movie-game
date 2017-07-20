@@ -3,12 +3,88 @@ const express = require('express');
 
 const app = express();
 
-// API endpoints go here!
+const bodyParser = require('body-parser');
+const serveStatic = require('serve-static');
+const cookieParser = require('cookie-parser');
+const {BasicStrategy} = require('passport-http');
+
+const passport = require('passport');
+
+const mongoose = require('mongoose');
+
+const {User} = require('./models/users')
+
+mongoose.connect('mongodb://atugman:unc123@ds157529.mlab.com:57529/arcade')
+//mongoose.connect('mongodb://localhost:27017/andrewtugman-arcade')
+mongoose.Promise = global.Promise;
+
+//auth
+const basicStrategy = new BasicStrategy((username, password, callback) => {
+  let user;
+  User
+    .findOne({username: username})
+    .exec()
+    .then(_user => {
+      user = _user;
+      if (!user) {
+        return callback(null, false, {message: 'Incorrect username'});
+      }
+      return user.validatePassword(password);
+    })
+    .then(isValid => {
+      if (!isValid) {
+        return callback(null, false, {message: 'Incorrect password'});
+      }
+      else {
+        return callback(null, user)
+      }
+    })
+    .catch(err => console.log('Invalid username or password'))
+});
+
+app.use(require('express-session')({
+  secret: 'something something',
+  resave: false,
+  saveUninitialized: false
+}));
+
+passport.use(basicStrategy);
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  console.log('ID:', id);
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
+
+function isAuthenticated (req, res, next) {
+  if (req.user) {
+    next()
+  } else {
+    res.json({redirect: '/login-page.html', message: 'Please log in'})
+  }
+}
+
+// API endpoints
 app.get('/existing',
   (req, res) => {console.log(req.user)
     res.json({user: req.user})
   }
 );
+
+app.get('/scores', (req, res) => {
+  User.find({}, null, {sort: '-score'}, function(err, scores) {
+    if(err)
+      return res.send(err)
+    res.json(scores)
+  })
+})
 
 // Serve the built client
 app.use(express.static(path.resolve(__dirname, '../client/build')));

@@ -92,7 +92,7 @@ class App extends Component {
 
         {/* <form onSubmit={handleSubmit}>
                 <div>
-                  <label>First Name</label>
+                  <label>Movie: </label>
                   <Field name="firstName" component="input" type="text"/>
                 </div>
                 <button type="submit">Submit</button>
