@@ -64,6 +64,12 @@ const movieData = (state, action) => {
       backdrop: '',
       poster: ''
     }
+  } else if (action.type === 'RECEIVE_SCORES') {
+    return {
+      ...state,
+      username: action.data.username,
+      score: action.data.score
+    }
   }
     return state
   }

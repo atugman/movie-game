@@ -11,6 +11,8 @@ fetchData,
 fetchData2
 } from '../actions'
 import SimpleForm from './MovieForm'
+//import ScoresTable from './ScoresTable'
+import getScores from './ScoresTable'
 import { Field, reduxForm } from 'redux-form';
 import rootReducer from '../reducers/index'
 import { connect } from 'react-redux';
@@ -22,15 +24,8 @@ class App extends Component {
 
   constructor() {
     super();
-
-
-    //this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    //this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-  // componentDidMount() {
-  //   this.props.dispatch(fetchData(this.state))
-  // }
 
   // handleChange(event) {
   //   this.setState({
@@ -45,38 +40,38 @@ class App extends Component {
   //   // }
   // }
 
-      handleSubmit(event) {
-        event.preventDefault()
-        let inputVal = this.state.firstName//event.target.userInput.value
-        console.log(inputVal);
-        //document.getElementById("hi").className = "animated slideInRight"
-        //prevents using the same movie twice
-        let splitString = inputVal.toUpperCase('').split(' ');
-        if (splitString.includes("THE")) {
-          for (var i = 0; i < splitString.length; i++) {
-            if (splitString[0] = "THE") {
-              alert('Nice try...you know what you did... :)'),
-              this.props.dispatch(newGame())
-            }
-          }
-        } else if (this.props.usedMovies.includes(inputVal)) {
-            console.log('usedMovies ', this.props.usedMovies);
-            alert('Hey! You already used that one! Game over pal!'),
-            this.props.dispatch(newGame());
-        }
-          //if movie title is multiple words, the next movie must
-          //use the first letter of the last word of original movie
-          else if (inputVal.includes(' ')) {
-            this.props.dispatch(fetchData(inputVal));
-            console.log(this.props.relevantLetter);
-            //event.target.value = this.state.userInput;
-          } else {
-            //if movie is one word, use last letter for next turn
-            this.props.dispatch(fetchData2(inputVal));
-            //event.target.value = this.state.userInput;
-          }
-          event.preventDefault();
-        }
+      // handleSubmit(event) {
+      //   event.preventDefault()
+      //   let inputVal = this.state.firstName//event.target.userInput.value
+      //   console.log(inputVal);
+      //   //document.getElementById("hi").className = "animated slideInRight"
+      //   //prevents using the same movie twice
+      //   let splitString = inputVal.toUpperCase('').split(' ');
+      //   if (splitString.includes("THE")) {
+      //     for (var i = 0; i < splitString.length; i++) {
+      //       if (splitString[0] = "THE") {
+      //         alert('Nice try...you know what you did... :)'),
+      //         this.props.dispatch(newGame())
+      //       }
+      //     }
+      //   } else if (this.props.usedMovies.includes(inputVal)) {
+      //       console.log('usedMovies ', this.props.usedMovies);
+      //       alert('Hey! You already used that one! Game over pal!'),
+      //       this.props.dispatch(newGame());
+      //   }
+      //     //if movie title is multiple words, the next movie must
+      //     //use the first letter of the last word of original movie
+      //     else if (inputVal.includes(' ')) {
+      //       this.props.dispatch(fetchData(inputVal));
+      //       console.log(this.props.relevantLetter);
+      //       //event.target.value = this.state.userInput;
+      //     } else {
+      //       //if movie is one word, use last letter for next turn
+      //       this.props.dispatch(fetchData2(inputVal));
+      //       //event.target.value = this.state.userInput;
+      //     }
+      //     event.preventDefault();
+      //   }
 
   render() {
     const { onSubmit } = this.props;
@@ -91,15 +86,15 @@ class App extends Component {
           Type the name of a movie into the box that starts with the specified letter!
         </p> */}
 
-        <form onSubmit={onSubmit}>
+        {/* <form onSubmit={onSubmit}>
                 <div>
                   <label>Movie: </label>
                   <Field name="userInput" component="input" type="text"/>
                 </div>
                 <button type="submit">Submit</button>
-        </form>
+        </form> */}
         <SimpleForm />
-
+        {/* <ScoresTable onLoad={getScores}/> */}
         {/* <form onSubmit={this.handleSubmit}>
           <div>
              <label>Movie:</label>
@@ -145,11 +140,11 @@ const mapStateToProps = state => ({
     usedMovies: state.reducer.usedMovies,
     relevantLetter: state.movieData.relevantLetter,
     showInfoModal: state.reducer.showInfoModal,
-    //firstName: state.form.simple.values.firstName
+    // firstName: state.form.simple.values.firstName
 });
 
 App = reduxForm({
-  form: 'movieForm' // a unique name for this form
+  form: 'movieForm'
 })(App);
 
 export default connect(mapStateToProps)(App);

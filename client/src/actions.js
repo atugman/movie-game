@@ -39,6 +39,12 @@ export const receiveData2 = (data) => ({
   data
 })
 
+export const RECEIVE_SCORES = 'RECEIVE_SCORES';
+export const receiveScores = (data) => ({
+  type: 'RECEIVE_SCORES',
+  data
+})
+
 export const fetchData = (inputVal) => {
   return (dispatch) => {
     dispatch(requestData)
@@ -55,17 +61,32 @@ export const fetchData = (inputVal) => {
   }
 
 
-  export const fetchData2 = (inputVal) => {
-    return (dispatch) => {
-      dispatch(requestData)
-      fetch('https://api.themoviedb.org/3/search/movie?query=' + inputVal + '&api_key=2301535fa250c0bcc1f89c74b2a2a9b4')
-        .then(response => response.json())
-        .then(movies => dispatch(receiveData2(movies)))
-        .catch(err => {
-          alert('You lose!')
+export const fetchData2 = (inputVal) => {
+  return (dispatch) => {
+    dispatch(requestData)
+    fetch('https://api.themoviedb.org/3/search/movie?query=' + inputVal + '&api_key=2301535fa250c0bcc1f89c74b2a2a9b4')
+      .then(response => response.json())
+      .then(movies => dispatch(receiveData2(movies)))
+      .catch(err => {
+        alert('You lose!')
 
-          //NEW_GAME action
-          this.props.dispatch(newGame());
-        })
-      }
+        //NEW_GAME action
+        this.props.dispatch(newGame());
+      })
     }
+  }
+
+export const fetchScores = () => {
+  return (dispatch) => {
+    dispatch(requestData)
+    fetch('http://localhost:3001/api/scores')
+      .then(response => response.json())
+      .then(scores => dispatch(receiveScores(scores)))
+      .catch(err => {
+        alert('Error')
+
+        //NEW_GAME action
+        this.props.dispatch(newGame());
+      })
+    }
+  }
