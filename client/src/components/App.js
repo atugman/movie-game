@@ -51,7 +51,6 @@ class App extends Component {
         //use the first letter of the last word of original movie
         else if (inputVal.includes(' ')) {
           this.props.dispatch(fetchData(inputVal));
-          console.log(this.props.relevantLetter);
           //event.target.value = this.state.userInput;
         } else {
           //if movie is one word, use last letter for next turn
