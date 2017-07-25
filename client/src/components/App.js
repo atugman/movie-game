@@ -23,52 +23,15 @@ import backdrop from './backdrop.jpg'
 
 class App extends Component {
 
-  constructor() {
-    super();
+  submit = (values) => {
+    // print the form values to the console
+    // This works now so from here you can for example check this console below
+    // See that it gets the form values ok.
+    // Dispatch a action to do whatever you want once the user submits the form.
+    console.log(values)
   }
 
-      // handleSubmit(event) {
-      //   event.preventDefault()
-      //   console.log('hello');
-        // let inputVal = this.state.firstName//event.target.userInput.value
-        // console.log(inputVal);
-        // //document.getElementById("hi").className = "animated slideInRight"
-        // //prevents using the same movie twice
-        // let splitString = inputVal.toUpperCase('').split(' ');
-        // if (splitString.includes("THE")) {
-        //   for (var i = 0; i < splitString.length; i++) {
-        //     if (splitString[0] = "THE") {
-        //       alert('Nice try...you know what you did... :)'),
-        //       this.props.dispatch(newGame())
-        //     }
-        //   }
-        // } else if (this.props.usedMovies.includes(inputVal)) {
-        //     console.log('usedMovies ', this.props.usedMovies);
-        //     alert('Hey! You already used that one! Game over pal!'),
-        //     this.props.dispatch(newGame());
-        // }
-        //   //if movie title is multiple words, the next movie must
-        //   //use the first letter of the last word of original movie
-        //   else if (inputVal.includes(' ')) {
-        //     this.props.dispatch(fetchData(inputVal));
-        //     console.log(this.props.relevantLetter);
-        //     //event.target.value = this.state.userInput;
-        //   } else {
-        //     //if movie is one word, use last letter for next turn
-        //     this.props.dispatch(fetchData2(inputVal));
-        //     //event.target.value = this.state.userInput;
-        //   }
-        //}
-
-        submit = (values) => {
-          // print the form values to the console
-          console.log(values)
-        }
-
-
-
   render() {
-    const { onSubmit } = this.props;
     return (
       <div className="App">
         <img className="Background" src={require('./backdrop.jpg')}></img>

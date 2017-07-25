@@ -15,10 +15,13 @@ export class ScoresTable extends React.Component {
         <div className="high-scores-column col-lg-3">
           <strong>
             <table className='scores-table'>
-              <th colspan="2">Leaderboard
-              <li>{this.props.username}</li>
-              </th>
-
+              <tbody>
+                <tr>
+                  <th colSpan="2">Leaderboard
+                  <p>{this.props.username}</p>
+                  </th>
+                </tr>
+              </tbody>
             </table>
           </strong>
         </div>
