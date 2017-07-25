@@ -11,7 +11,7 @@ fetchData,
 fetchData2
 } from '../actions'
 import SimpleForm from './MovieForm'
-//import ScoresTable from './ScoresTable'
+import ScoresTable from './ScoresTable'
 import getScores from './ScoresTable'
 import { Field, reduxForm } from 'redux-form';
 import rootReducer from '../reducers/index'
@@ -19,64 +19,59 @@ import { connect } from 'react-redux';
 import store from '../store'
 //import InfoModal from './InfoModal'
 import Header from './Header'
+import backdrop from './backdrop.jpg'
 
 class App extends Component {
 
   constructor() {
     super();
-    //this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-  // handleChange(event) {
-  //   this.setState({
-  //     userInput: event.target.value
-  //   });
-  //   console.log(this.state.userInput);
-  //   // if (event.target.value[0] !== this.state.relevantLetter) {
-  //   //   alert("Hey! You can't change that first letter! Put that " + this.state.relevantLetter + " back in there! Nice try pal!"),
-  //   //   this.setState({
-  //   //     userInput: this.state.relevantLetter
-  //   //   })
-  //   // }
-  // }
 
       // handleSubmit(event) {
       //   event.preventDefault()
-      //   let inputVal = this.state.firstName//event.target.userInput.value
-      //   console.log(inputVal);
-      //   //document.getElementById("hi").className = "animated slideInRight"
-      //   //prevents using the same movie twice
-      //   let splitString = inputVal.toUpperCase('').split(' ');
-      //   if (splitString.includes("THE")) {
-      //     for (var i = 0; i < splitString.length; i++) {
-      //       if (splitString[0] = "THE") {
-      //         alert('Nice try...you know what you did... :)'),
-      //         this.props.dispatch(newGame())
-      //       }
-      //     }
-      //   } else if (this.props.usedMovies.includes(inputVal)) {
-      //       console.log('usedMovies ', this.props.usedMovies);
-      //       alert('Hey! You already used that one! Game over pal!'),
-      //       this.props.dispatch(newGame());
-      //   }
-      //     //if movie title is multiple words, the next movie must
-      //     //use the first letter of the last word of original movie
-      //     else if (inputVal.includes(' ')) {
-      //       this.props.dispatch(fetchData(inputVal));
-      //       console.log(this.props.relevantLetter);
-      //       //event.target.value = this.state.userInput;
-      //     } else {
-      //       //if movie is one word, use last letter for next turn
-      //       this.props.dispatch(fetchData2(inputVal));
-      //       //event.target.value = this.state.userInput;
-      //     }
-      //     event.preventDefault();
-      //   }
+      //   console.log('hello');
+        // let inputVal = this.state.firstName//event.target.userInput.value
+        // console.log(inputVal);
+        // //document.getElementById("hi").className = "animated slideInRight"
+        // //prevents using the same movie twice
+        // let splitString = inputVal.toUpperCase('').split(' ');
+        // if (splitString.includes("THE")) {
+        //   for (var i = 0; i < splitString.length; i++) {
+        //     if (splitString[0] = "THE") {
+        //       alert('Nice try...you know what you did... :)'),
+        //       this.props.dispatch(newGame())
+        //     }
+        //   }
+        // } else if (this.props.usedMovies.includes(inputVal)) {
+        //     console.log('usedMovies ', this.props.usedMovies);
+        //     alert('Hey! You already used that one! Game over pal!'),
+        //     this.props.dispatch(newGame());
+        // }
+        //   //if movie title is multiple words, the next movie must
+        //   //use the first letter of the last word of original movie
+        //   else if (inputVal.includes(' ')) {
+        //     this.props.dispatch(fetchData(inputVal));
+        //     console.log(this.props.relevantLetter);
+        //     //event.target.value = this.state.userInput;
+        //   } else {
+        //     //if movie is one word, use last letter for next turn
+        //     this.props.dispatch(fetchData2(inputVal));
+        //     //event.target.value = this.state.userInput;
+        //   }
+        //}
+
+        submit = (values) => {
+          // print the form values to the console
+          console.log(values)
+        }
+
+
 
   render() {
     const { onSubmit } = this.props;
     return (
       <div className="App">
+        <img className="Background" src={require('./backdrop.jpg')}></img>
         <Header infoModal={this.props.showInfoModal}/>
         {/* <div className="App-header animated slideInRight">
           <img src={vhs} className="App-logo" alt="logo" />
@@ -86,30 +81,16 @@ class App extends Component {
           Type the name of a movie into the box that starts with the specified letter!
         </p> */}
 
-        {/* <form onSubmit={onSubmit}>
-                <div>
-                  <label>Movie: </label>
-                  <Field name="userInput" component="input" type="text"/>
-                </div>
-                <button type="submit">Submit</button>
-        </form> */}
-        <SimpleForm />
-        {/* <ScoresTable onLoad={getScores}/> */}
-        {/* <form onSubmit={this.handleSubmit}>
-          <div>
-             <label>Movie:</label>
-               <input name="userInput" component="input" type="text" value={this.props.userInput} onChange={this.handleChange}
-               />
-             <button type="submit" value="Submit" />
-          </div>
-        </form> */}
+
+        <SimpleForm onSubmit={this.submit}/>
+        <ScoresTable />
+
 
          <div className="App-intro">
            <div className="score">Score: {this.props.score}</div>
            <div className="row" id="hello">
              <div id="hey" className="col-8">
                <div className='random'>
-                 <img className="tv" src={require('../components/tv2.png')}></img>
                  <img className="Backdrop img-responsive" src={this.props.backdrop}/>
                </div>
                <div className="movie-title">{this.props.firstName}</div>
@@ -119,9 +100,6 @@ class App extends Component {
                <img className="Poster img-responsive" src={this.props.poster}/>
             </div>
           </div>
-           {/* {this.state.map((movie, index) => (
-             <li key={index}>{movie.movies.results[0].title}</li>
-           ))} */}
          </div>
 
       </div>

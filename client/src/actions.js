@@ -79,9 +79,9 @@ export const fetchData2 = (inputVal) => {
 export const fetchScores = () => {
   return (dispatch) => {
     dispatch(requestData)
-    fetch('http://localhost:3001/api/scores')
+    fetch('http://localhost:8080/api/scores')
       .then(response => response.json())
-      .then(scores => dispatch(receiveScores(scores)))
+      .then(scores => console.log(scores))//dispatch(receiveScores(scores)))
       .catch(err => {
         alert('Error')
 

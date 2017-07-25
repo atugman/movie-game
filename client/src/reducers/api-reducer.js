@@ -1,7 +1,9 @@
 const initialState = {
   loading: false,
   data: [],
-  relevantLetter: 'A'
+  relevantLetter: 'A',
+  username: '',
+  userScore: ''
 }
 
 const movieData = (state, action) => {
@@ -67,12 +69,14 @@ const movieData = (state, action) => {
   } else if (action.type === 'RECEIVE_SCORES') {
     return {
       ...state,
+      users: action.users,
       username: action.data.username,
-      score: action.data.score
+      userScore: action.data.score
     }
-  }
+  } else {
     return state
   }
+}
 
 
 export default movieData
