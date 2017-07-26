@@ -39,9 +39,9 @@ export const receiveData2 = (data) => ({
   data
 })
 
-export const RECEIVE_SCORES = 'RECEIVE_SCORES';
-export const receiveScores = (data) => ({
-  type: 'RECEIVE_SCORES',
+export const RECEIVE_USERS = 'RECEIVE_USERS';
+export const receiveUsers = (data) => ({
+  type: 'RECEIVE_USERS',
   data
 })
 
@@ -76,12 +76,12 @@ export const fetchData2 = (inputVal) => {
     }
   }
 
-export const fetchScores = () => {
+export const fetchUsers = () => {
   return (dispatch) => {
     dispatch(requestData)
     fetch('http://localhost:8080/api/scores')
       .then(response => response.json())
-      .then(scores => console.log(scores))//dispatch(receiveScores(scores)))
+      .then(scores => dispatch(receiveUsers(scores)))
       .catch(err => {
         alert('Error')
 

@@ -13,7 +13,7 @@ fetchData2
 import SimpleForm from './MovieForm'
 import ScoresTable from './ScoresTable'
 import getScores from './ScoresTable'
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, change } from 'redux-form';
 import rootReducer from '../reducers/index'
 import { connect } from 'react-redux';
 import store from '../store'
@@ -24,7 +24,8 @@ import backdrop from './backdrop.jpg'
 class App extends Component {
 
   submit = (values) => {
-    console.log(values);
+    console.log(this.props.users);
+    this.props.dispatch(change('SimpleForm', 'firstName', 'B'));
     // print the form values to the console
     // This works now so from here you can for example check this console below
     // See that it gets the form values ok.
@@ -47,6 +48,11 @@ class App extends Component {
           alert('Hey! You already used that one! Game over pal!'),
           this.props.dispatch(newGame());
       }
+
+      // else if (inputVal[0] !== this.props.relevantLetter) {
+      //   console.log(this.props.relevantLetter);
+      //
+      // }
         //if movie title is multiple words, the next movie must
         //use the first letter of the last word of original movie
         else if (inputVal.includes(' ')) {
@@ -74,7 +80,7 @@ class App extends Component {
         </p> */}
 
 
-        <SimpleForm onSubmit={this.submit}/>
+        <SimpleForm onSubmit={this.submit} relevantLetter={this.props.relevantLetter}/>
         <ScoresTable />
 
 
@@ -110,6 +116,7 @@ const mapStateToProps = state => ({
     usedMovies: state.reducer.usedMovies,
     relevantLetter: state.movieData.relevantLetter,
     showInfoModal: state.reducer.showInfoModal,
+    users: state.movieData.users
     // firstName: state.form.simple.values.firstName
 });
 

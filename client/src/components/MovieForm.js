@@ -1,14 +1,33 @@
 import React from 'react'
-import { Field, reduxForm } from 'redux-form'
+import { Field, reduxForm, change } from 'redux-form'
+import {connect} from 'react-redux'
 import {newGame,
 fetchData,
 fetchData2
 } from '../actions'
 
-let SimpleForm = (props) => {
-  const { handleSubmit, pristine, reset, submitting } = props
+
+class SimpleForm extends React.Component {
+
+
+  componentDidMount() {
+      this.props.initialize({ firstName:  this.props.relevantLetter});
+      // set the value individually
+    }
+
+  // componentWillReceiveProps() {
+  //   // this.props.initialize({ firstName:  this.props.relevantLetter});
+  //   this.props.dispatch(change('SimpleForm', 'firstName', this.props.relevantLetter));
+  // }
+
+
+  render() {
+    const { handleSubmit, pristine, reset, submitting } = this.props
+
+    // this.props.fields.firstName.onChange('B')
+
   return (
-    <form onSubmit={ handleSubmit }>
+    <form onSubmit={ handleSubmit } >
       <div>
         <label>First Name</label>
         <div>
@@ -22,7 +41,10 @@ let SimpleForm = (props) => {
     </form>
   )
 }
+}
 
-export default reduxForm({
+const FormComponent = reduxForm({
   form: 'simple'
 })(SimpleForm)
+
+export default connect()(FormComponent)
