@@ -12,8 +12,9 @@ const mongoose = require('mongoose');
 
 const {User} = require('./models/users')
 
-mongoose.connect('mongodb://atugman:unc123@ds157529.mlab.com:57529/arcade')
+//mongoose.connect('mongodb://atugman:unc123@ds157529.mlab.com:57529/arcade')
 //mongoose.connect('mongodb://localhost:27017/andrewtugman-arcade')
+mongoose.connect('mongodb://atugman:HeyWhatsUpHello@ds127983.mlab.com:27983/movie-game')
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.urlencoded({ extended: true, }));
