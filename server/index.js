@@ -101,6 +101,70 @@ app.get('/api/login',
   }
 );
 
+//logout
+//response working
+app.get('/api/logout', (req, res) => {
+   req.session.destroy((err) => {
+      if(err) {
+        res.send(err)
+      }
+      res.json({loggedOut: true});
+    });
+});
+
+//update user profile with new score ON GAME OVER
+//working
+app.patch('/api/users/:score',
+  //passport.authenticate('basic', {session: false}),
+  (req, res) => {
+    User.findByIdAndUpdate(req.user._id, {score: req.params.score, currentScore: 0}, {new: true},
+  (err, updatedItem) => {
+    if (err) {
+      res.json(err)
+    }
+    res.json(updatedItem)
+  })
+});
+
+//update current score ON SAVE BUTTON
+app.patch('/api/currentScore/:score',
+  //passport.authenticate('basic', {session: false}),
+  (req, res) => {
+    User.findByIdAndUpdate(req.user._id, {currentScore: req.params.score}, {new: true},
+  (err, updatedItem) => {
+    if (err) {
+      res.json(err)
+    }
+    res.json(updatedItem)
+  })
+});
+
+//ON GAME OVER, erase users current score first
+app.patch('/api/eraseCurrentScore',
+  //passport.authenticate('basic', {session: false}),
+  (req, res) => {
+    User.findByIdAndUpdate(req.user._id, {currentScore: 0}, {new: true},
+  (err, updatedItem) => {
+    if (err) {
+      res.json(err)
+    }
+    res.json(updatedItem)
+  })
+});
+
+//load score button should populate game with current score
+app.get('/api/loadScore',
+  //passport.authenticate('basic', {session: false}),
+  (req, res) => {
+    User.findById(req.user._id,
+      (err, item) => {
+        if (err) {
+          res.json(err)
+        }
+        res.json(item)
+        })
+    })
+
 //create user working
 app.post('/api/users', (req, res) => {
   console.log('req ', req);
@@ -168,6 +232,15 @@ app.post('/api/users', (req, res) => {
     });
 });
 
+//should return user profile only when logged in
+//working
+app.get('/api/userProfile', isAuthenticated, (req, res) => {
+  res.json({user: req.user.apiRepr()})
+})
+
+app.get('/api/checkScore', (req, res) => {
+  res.json({user: req.user})
+})
 
 // Serve the built client
 app.use(express.static(path.resolve(__dirname, '../client/build')));
