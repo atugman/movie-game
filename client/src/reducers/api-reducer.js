@@ -3,7 +3,9 @@ const initialState = {
   data: [],
   relevantLetter: 'A',
   username: '',
-  userScore: ''
+  userScore: '',
+  users: [],
+  score: 0
 }
 
 const movieData = (state, action) => {

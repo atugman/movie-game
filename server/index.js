@@ -78,11 +78,11 @@ app.get('/api/existing',
   }
 );
 
-app.get('/api/scores', (req, res) => {
-  User.find({}, null, {sort: '-score'}, function(err, scores) {
+app.get('/api/users', (req, res) => {
+  User.find({}, null, {sort: '-score'}, function(err, users) {
     if(err)
       return res.send(err)
-    res.json(scores)
+    res.json({users: users.map((user) => user.apiRepr())})
   })
 })
 

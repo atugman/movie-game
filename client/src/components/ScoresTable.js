@@ -8,16 +8,22 @@ import './ScoresTable.css';
 export class ScoresTable extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchUsers());
-    console.log(this.props.users);
+    console.log('hi ', this.props.users);
   }
 
 
 render() {
-  const characters = this.props.users.map((character, index) => (
-    <li key={index}>
-        <strong>{character.name}</strong> ({character.actor}) - {character.description}
-      </li>
+  const users = this.props.users.map((user, index) => (
+  <div key={index}>
+    <td>
+      {user.username}
+    </td>
+    <td>
+      {user.score}
+    </td>
+  </div>
   ))
+
 
 
       return (
@@ -26,9 +32,10 @@ render() {
             <table className='scores-table'>
               <tbody>
                 <tr>
-                  <th colSpan="2">Leaderboard
-                    <span>{this.props.username}</span>
-                  </th>
+                  <th colSpan="2">Leaderboard</th>
+                </tr>
+                <tr>
+                  {users}
                 </tr>
               </tbody>
             </table>
@@ -39,8 +46,6 @@ render() {
   }
 
 const mapStateToProps = state => ({
-  username: state.movieData.username,
-  score: state.movieData.score,
   users: state.movieData.users
 });
 

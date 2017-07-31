@@ -69,7 +69,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <img className="Background" src={require('./backdrop.jpg')}></img>
+        <img className="Background" src={require('./background-curtains.jpg')}></img>
         <Header infoModal={this.props.showInfoModal}/>
         {/* <div className="App-header animated slideInRight">
           <img src={vhs} className="App-logo" alt="logo" />
@@ -80,15 +80,16 @@ class App extends Component {
         </p> */}
 
 
-        <SimpleForm onSubmit={this.submit} relevantLetter={this.props.relevantLetter}/>
         <ScoresTable />
+        <SimpleForm onSubmit={this.submit} relevantLetter={this.props.relevantLetter}/>
+
 
 
          <div className="App-intro">
-           <div className="score">Score: {this.props.score}</div>
            <div className="row" id="hello">
              <div id="hey" className="col-8">
                <div className='random'>
+                 <img className="tv" src={require('../components/tv2.png')}></img>
                  <img className="Backdrop img-responsive" src={this.props.backdrop}/>
                </div>
                <div className="movie-title">{this.props.firstName}</div>

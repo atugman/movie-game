@@ -16,12 +16,6 @@ export const changeFirstLetter = () => ({
     type: CHANGE_FIRST_LETTER
 });
 
-// export const INPUT = 'INPUT';
-// export const input = (word) => ({
-//     type: INPUT,
-//     payload: word
-// });
-
 export const REQUEST_DATA = 'REQUEST_DATA';
 export const requestData = () => ({
   type: 'REQUEST_DATA',
@@ -53,8 +47,6 @@ export const fetchData = (inputVal) => {
       .then(movies => dispatch(receiveData(movies)))
       .catch(err => {
         alert('You lose!')
-
-        //NEW_GAME action
         dispatch(newGame());
       })
     }
@@ -69,9 +61,7 @@ export const fetchData2 = (inputVal) => {
       .then(movies => dispatch(receiveData2(movies)))
       .catch(err => {
         alert('You lose!')
-
-        //NEW_GAME action
-        this.props.dispatch(newGame());
+        dispatch(newGame());
       })
     }
   }
@@ -79,14 +69,12 @@ export const fetchData2 = (inputVal) => {
 export const fetchUsers = () => {
   return (dispatch) => {
     dispatch(requestData)
-    fetch('http://localhost:8080/api/scores')
+    fetch('http://localhost:8080/api/users')
       .then(response => response.json())
-      .then(scores => dispatch(receiveUsers(scores)))
+      .then(data => dispatch(receiveUsers(data.users)))
       .catch(err => {
         alert('Error')
-
-        //NEW_GAME action
-        this.props.dispatch(newGame());
+        dispatch(newGame());
       })
     }
   }
