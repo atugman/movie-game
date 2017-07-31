@@ -1,31 +1,8 @@
 import React from 'react'
-import { Field, reduxForm, change } from 'redux-form'
-import {connect} from 'react-redux'
-import {newGame,
-fetchData,
-fetchData2
-} from '../actions'
+import { Field, reduxForm } from 'redux-form'
 
-
-class SimpleForm extends React.Component {
-
-
-  componentDidMount() {
-      this.props.initialize({ firstName:  this.props.relevantLetter});
-      // set the value individually
-    }
-
-  // componentWillReceiveProps() {
-  //   // this.props.initialize({ firstName:  this.props.relevantLetter});
-  //   this.props.dispatch(change('SimpleForm', 'firstName', this.props.relevantLetter));
-  // }
-
-
-  render() {
-    const { handleSubmit, pristine, reset, submitting } = this.props
-
-    // this.props.fields.firstName.onChange('B')
-
+let LoginForm = props => {
+  const { handleSubmit, pristine, reset, submitting } = this.props
   return (
     <form onSubmit={ handleSubmit } >
       <div>
@@ -34,6 +11,28 @@ class SimpleForm extends React.Component {
           <Field name="firstName" component="input" type="text" placeholder="First Name"/>
         </div>
       </div>
+
+      <div>
+        <label>Last Name</label>
+        <div>
+          <Field name="lastName" component="input" type="text" placeholder="Last Name"/>
+        </div>
+      </div>
+
+      <div>
+        <label>First Name</label>
+        <div>
+          <Field name="firstName" component="input" type="text" placeholder="First Name"/>
+        </div>
+      </div>
+
+      <div>
+        <label>First Name</label>
+        <div>
+          <Field name="firstName" component="input" type="text" placeholder="First Name"/>
+        </div>
+      </div>
+
       <div>
         <button type="submit" disabled={pristine || submitting}>Submit</button>
         <button type="button" disabled={pristine || submitting} onClick={reset}>Clear Values</button>
@@ -41,10 +40,10 @@ class SimpleForm extends React.Component {
     </form>
   )
 }
-}
 
-const FormComponent = reduxForm({
-  form: 'simple'
-})(SimpleForm)
+LoginForm = reduxForm({
+  // a unique name for the form
+  form: 'contact'
+})(LoginForm)
 
-export default connect()(FormComponent)
+export default LoginForm

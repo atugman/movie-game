@@ -1,12 +1,14 @@
 import React from 'react'
 import LoginForm from './LoginForm'
 
-const LoginPage = () => {
-  return (
-    <div>
-      <p>hey</p>
-      <LoginForm />
-    </div>
-)}
-
-export default LoginPage
+class LoginPage extends React.Component {
+  submit = (values) => {
+    // print the form values to the console
+    console.log(values)
+  }
+  render() {
+    return (
+      <LoginForm onSubmit={this.submit} />
+    )
+  }
+}

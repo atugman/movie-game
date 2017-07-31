@@ -105,7 +105,10 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = state => {
+console.log('state ', state);
+
+  return {
     usedMovies: state.movieData.usedMovies,
     movieTitle: state.movieData.movieTitle,
     overview: state.movieData.overview,
@@ -118,7 +121,8 @@ const mapStateToProps = state => ({
     showInfoModal: state.reducer.showInfoModal,
     users: state.movieData.users
     // firstName: state.form.simple.values.firstName
-});
+}
+};
 
 App = reduxForm({
   form: 'movieForm'
