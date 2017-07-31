@@ -78,3 +78,19 @@ export const fetchUsers = () => {
       })
     }
   }
+
+  // export const fetchUsers = (username) => {
+  // return (dispatch) => {
+  //   dispatch(requestData)
+  //   fetch('http://localhost:8080/api/users', {
+  //     method: 'POST',
+  //     data: JSON.stringify({username})
+  //   })
+  //     .then(response => response.json())
+  //     .then(data => dispatch(receiveUsers(data.users)))
+  //     .catch(err => {
+  //       alert('Error')
+  //       dispatch(newGame());
+  //     })
+  //   }
+  // }
