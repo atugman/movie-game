@@ -17,6 +17,8 @@ const {User} = require('./models/users')
 mongoose.connect('mongodb://atugman:HeyWhatsUpHello@ds127983.mlab.com:27983/movie-game')
 mongoose.Promise = global.Promise;
 
+//const {PORT, DATABASE_URL} = require('./config');
+
 app.use(bodyParser.urlencoded({ extended: true, }));
 app.use(bodyParser.json());
 //app.use(jsonParser);
@@ -82,6 +84,7 @@ app.get('/api/existing',
   }
 );
 
+//get and display scores working
 app.get('/api/users', (req, res) => {
   User.find({}, null, {sort: '-score'}, function(err, users) {
     if(err)
@@ -90,7 +93,15 @@ app.get('/api/users', (req, res) => {
   })
 })
 
-//create user
+//login working
+app.get('/api/login',
+  passport.authenticate('basic'),
+  (req, res) => {
+    res.json({user: req.user})
+  }
+);
+
+//create user working
 app.post('/api/users', (req, res) => {
   console.log('req ', req);
   if (!req.body) {
