@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import vhs from './vhs.png'
 import './App.css';
 //import '../node_modules/animate.css/animate.min.css'
+
 import {newGame,
 receiveData,
 receiveData2,
@@ -10,9 +11,15 @@ input,
 fetchData,
 fetchData2
 } from '../actions'
+
 import SimpleForm from './MovieForm'
 import ScoresTable from './ScoresTable'
 import getScores from './ScoresTable'
+//import Homepage from './Homepage'
+import SavedScoreBox from './SavedScoreBox'
+import SaveButton from './SaveButton'
+import LoadButton from './LoadButton'
+
 import { Field, reduxForm, change } from 'redux-form';
 import rootReducer from '../reducers/index'
 import { connect } from 'react-redux';
@@ -83,7 +90,9 @@ class App extends Component {
         <ScoresTable />
         <SimpleForm onSubmit={this.submit} relevantLetter={this.props.relevantLetter}/>
 
-
+        <SavedScoreBox />
+        <SaveButton />
+        <LoadButton />
 
          <div className="App-intro">
            <div className="row" id="hello">

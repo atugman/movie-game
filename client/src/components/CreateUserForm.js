@@ -2,11 +2,11 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 
-let LoginForm = props => {
+let CreateUserForm = props => {
   const { handleSubmit, pristine, reset, submitting } = props
   return (
     <form onSubmit={ handleSubmit } >
-      <div>
+      <div>New Users<br></br>
         <label>First Name</label>
         <div>
           <Field name="firstName" component="input" type="text" placeholder="First Name"/>
@@ -42,9 +42,9 @@ let LoginForm = props => {
   )
 }
 
-const UserLoginForm = reduxForm({
+const NewUserForm = reduxForm({
   // a unique name for the form
   form: 'contact'
-})(LoginForm)
+})(CreateUserForm)
 
-export default connect()(UserLoginForm)
+export default connect()(NewUserForm)

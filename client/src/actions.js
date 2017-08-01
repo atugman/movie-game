@@ -120,10 +120,12 @@ export const fetchUsers = () => {
   export const fetchLogin = (username, password) => {
     return (dispatch) => {
       dispatch(requestData)
-      fetch('http://localhost:8080/api/login', {
-        method: 'GET',
-        data: JSON.stringify({username, password})
-      })
+      fetch('http://localhost:8080/api/login'
+      // , {
+      //   method: 'GET',
+      //   data: JSON.stringify({username, password})
+      // }
+    )
         .then(response => response.json())
         .then(data => dispatch(receiveLogin(data)))
         .catch(err => {
