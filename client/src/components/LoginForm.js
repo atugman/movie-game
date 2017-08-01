@@ -21,16 +21,16 @@ let LoginForm = props => {
       </div>
 
       <div>
-        <label>First Name</label>
+        <label>Username</label>
         <div>
-          <Field name="firstName" component="input" type="text" placeholder="First Name"/>
+          <Field name="username" component="input" type="text" placeholder="Username"/>
         </div>
       </div>
 
       <div>
-        <label>First Name</label>
+        <label>Password</label>
         <div>
-          <Field name="firstName" component="input" type="text" placeholder="First Name"/>
+          <Field name="password" component="input" type="password" placeholder="Password"/>
         </div>
       </div>
 

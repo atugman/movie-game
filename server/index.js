@@ -167,7 +167,7 @@ app.get('/api/loadScore',
 
 //create user working
 app.post('/api/users', (req, res) => {
-  console.log('req ', req);
+  console.log('hey yall ', req.body);
   if (!req.body) {
     return res.json({message: 'No request body'});
   }

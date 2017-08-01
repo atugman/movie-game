@@ -1,5 +1,7 @@
 import React from 'react'
 import LoginForm from './LoginForm'
+import {fetchCreateUser} from '../actions'
+import { connect } from 'react-redux';
 
 class LoginPage extends React.Component {
   submit = (values) => {
@@ -7,6 +9,7 @@ class LoginPage extends React.Component {
     console.log(values)
     //dispatch post request to create user
     //pass it the username/password etc as params
+    this.props.dispatch(fetchCreateUser(values.firstName, values.lastName, values.username, values.password))
   }
   render() {
     return (
@@ -18,4 +21,4 @@ class LoginPage extends React.Component {
   }
 }
 
-export default LoginPage
+export default connect()(LoginPage)
