@@ -6,7 +6,7 @@ import InfoModal from './InfoModal';
 
 import './Header.css';
 import './App.css';
-import popcorn from './Popcorn.jpg';
+import vhs from './vhs.png';
 
 
 export function Header(props) {
@@ -20,7 +20,7 @@ export function Header(props) {
             <TopNav />
             {infoModal}
             <div className="App-header animated slideInRight">
-              <img src={popcorn} className="App-logo" alt="logo" />
+              <img src={vhs} className="App-logo" alt="logo" />
               <h2 className='animated bounce'>The Movie Game!</h2>
             </div>
         </header>

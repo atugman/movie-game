@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './load-save-buttons.css'
 
 class LoadButton extends Component {
     render() {

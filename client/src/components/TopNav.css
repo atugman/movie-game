@@ -1,13 +1,18 @@
 nav {
 	position: relative;
 	height: 10%;
-	padding: 1em;
+	padding-right: 40px;
+}
+
+nav ul {
+
 }
 
 nav ul li {
 	text-transform: uppercase;
 	font-weight: 700;
 	font-size: 1.2em;
+	list-style-type: none;
 }
 
 nav ul li:first-child {

@@ -6,6 +6,7 @@ const serveStatic = require('serve-static');
 const cookieParser = require('cookie-parser');
 const {BasicStrategy} = require('passport-http');
 
+//const jsonParser = require('body-parser').json();
 const passport = require('passport');
 
 const mongoose = require('mongoose');

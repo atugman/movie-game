@@ -7,31 +7,31 @@ fetchData2
 } from '../actions'
 
 
-class SimpleForm extends React.Component {
+class MovieForm extends React.Component {
 
 
   componentDidMount() {
-      this.props.initialize({ firstName:  this.props.relevantLetter});
+      this.props.initialize({ movie:  this.props.relevantLetter});
       // set the value individually
     }
 
   // componentWillReceiveProps() {
-  //   // this.props.initialize({ firstName:  this.props.relevantLetter});
-  //   this.props.dispatch(change('SimpleForm', 'firstName', this.props.relevantLetter));
+  //   // this.props.initialize({ movie:  this.props.relevantLetter});
+  //   this.props.dispatch(change('MovieForm', 'movie', this.props.relevantLetter));
   // }
 
 
   render() {
     const { handleSubmit, pristine, reset, submitting } = this.props
 
-    // this.props.fields.firstName.onChange('B')
+    // this.props.fields.movie.onChange('B')
 
   return (
     <form onSubmit={ handleSubmit } >
       <div>
-        <label>First Name</label>
+        <label>Movie</label>
         <div>
-          <Field name="firstName" component="input" type="text" placeholder="First Name"/>
+          <Field name="movie" component="input" type="text" placeholder="Enter Movie Title Here"/>
         </div>
       </div>
       <div>
@@ -45,6 +45,6 @@ class SimpleForm extends React.Component {
 
 const FormComponent = reduxForm({
   form: 'simple'
-})(SimpleForm)
+})(MovieForm)
 
 export default connect()(FormComponent)

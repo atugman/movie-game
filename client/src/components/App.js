@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-//import logo from './logo.svg';
-import vhs from './vhs.png'
 import './App.css';
 //import '../node_modules/animate.css/animate.min.css'
 
@@ -12,10 +10,9 @@ fetchData,
 fetchData2
 } from '../actions'
 
-import SimpleForm from './MovieForm'
+import MovieForm from './MovieForm'
 import ScoresTable from './ScoresTable'
 import getScores from './ScoresTable'
-//import Homepage from './Homepage'
 import SavedScoreBox from './SavedScoreBox'
 import SaveButton from './SaveButton'
 import LoadButton from './LoadButton'
@@ -31,15 +28,9 @@ import backdrop from './backdrop.jpg'
 class App extends Component {
 
   submit = (values) => {
-    console.log(this.props.users);
-    this.props.dispatch(change('SimpleForm', 'firstName', 'B'));
-    // print the form values to the console
-    // This works now so from here you can for example check this console below
-    // See that it gets the form values ok.
-    // Dispatch a action to do whatever you want once the user submits the form.
+    this.props.dispatch(change('MovieForm', 'movie', 'B'));
       event.preventDefault()
-      let inputVal = values.firstName
-      console.log(inputVal);
+      let inputVal = values.movie
       //document.getElementById("hi").className = "animated slideInRight"
       //prevents using the same movie twice
       let splitString = inputVal.toUpperCase('').split(' ');
@@ -64,11 +55,9 @@ class App extends Component {
         //use the first letter of the last word of original movie
         else if (inputVal.includes(' ')) {
           this.props.dispatch(fetchData(inputVal));
-          //event.target.value = this.state.userInput;
         } else {
           //if movie is one word, use last letter for next turn
           this.props.dispatch(fetchData2(inputVal));
-          //event.target.value = this.state.userInput;
         }
     console.log(values)
   }
@@ -76,39 +65,37 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <img className="Background" src={require('./background-curtains.jpg')}></img> */}
+        {/* <img className="Background" src={require('./Red-Curtains.jpg')}></img> */}
         <Header infoModal={this.props.showInfoModal}/>
         {/* <div className="App-header animated slideInRight">
           <img src={vhs} className="App-logo" alt="logo" />
-          <h2 className='animated bounce'>The Movie Game!</h2>
-        </div>
-        <p className="instructions">
-          Type the name of a movie into the box that starts with the specified letter!
-        </p> */}
-
-
-        <ScoresTable />
-        <SimpleForm onSubmit={this.submit} relevantLetter={this.props.relevantLetter}/>
-
-        <SavedScoreBox />
-        <SaveButton />
-        <LoadButton />
-
-         <div className="App-intro">
+          <h2 className='animated bounce'>The Movie Game!</h2>*/}
+         {/* <div className="App-intro"> */}
            <div className="row" id="hello">
+             <div className="col-2">
+               <MovieForm onSubmit={this.submit} relevantLetter={this.props.relevantLetter}/>
+               <SavedScoreBox />
+               <SaveButton />
+               <LoadButton />
+             </div>
              <div id="hey" className="col-8">
                <div className='random'>
                  <img className="tv" src={require('../components/tv2.png')}></img>
                  <img className="Backdrop img-responsive" src={this.props.backdrop}/>
                </div>
-               <div className="movie-title">{this.props.firstName}</div>
-               <div className="overview">{this.props.overview}</div>
+               <div className="title-overview-box">
+                 <div className="movie-title">{this.props.title}</div>
+                 <div className="overview">{this.props.overview}</div>
+               </div>
              </div>
-             <div id="hi" className="col-4">
+             <div className="col-2">
+               <ScoresTable />
+             </div>
+             {/* <div id="hi" className="col-4">
                <img className="Poster img-responsive" src={this.props.poster}/>
-            </div>
+            </div> */}
           </div>
-         </div>
+         {/* </div> */}
 
       </div>
     );
@@ -127,7 +114,7 @@ const mapStateToProps = state => ({
     relevantLetter: state.movieData.relevantLetter,
     showInfoModal: state.reducer.showInfoModal,
     users: state.movieData.users
-    // firstName: state.form.simple.values.firstName
+    // movie: state.form.simple.values.movie
 });
 
 App = reduxForm({
