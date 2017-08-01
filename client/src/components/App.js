@@ -76,7 +76,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <img className="Background" src={require('./background-curtains.jpg')}></img>
+        {/* <img className="Background" src={require('./background-curtains.jpg')}></img> */}
         <Header infoModal={this.props.showInfoModal}/>
         {/* <div className="App-header animated slideInRight">
           <img src={vhs} className="App-logo" alt="logo" />

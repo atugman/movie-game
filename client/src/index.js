@@ -14,7 +14,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={hashHistory}>
       <Route path='/' component={Homepage} />
-      <Route path='/App' component={App} />
+      <Route path='/Game' component={App} />
       <Route path='/login' component={LoginPage} />
     </Router>
   </Provider>,

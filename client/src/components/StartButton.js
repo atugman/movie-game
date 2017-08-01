@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router'
 
 class StartButton extends Component {
     render() {
         return (
-            <h1>Start Game!</h1>
+          <div>
+            <Link to="login">
+              <h1>Start Game!</h1>
+            </Link>
+          </div>
         );
     }
 }
