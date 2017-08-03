@@ -17,6 +17,7 @@ import SavedScoreBox from './SavedScoreBox'
 import SaveButton from './SaveButton'
 import LoadButton from './LoadButton'
 import CurrentScore from './CurrentScore'
+import LoggedInAs from './LoggedInAs'
 
 import { Field, reduxForm, change } from 'redux-form';
 import rootReducer from '../reducers/index'
@@ -78,6 +79,7 @@ class App extends Component {
            <div className="row" id="hello">
              <div className="col-3">
                <MovieForm onSubmit={this.submit} relevantLetter={this.props.relevantLetter}/>
+               <LoggedInAs />
                <SavedScoreBox />
                <CurrentScore currentScore={this.props.score}/>
                {/* <div>{this.props.loggedInUser}</div> */}

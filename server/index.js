@@ -222,7 +222,8 @@ app.post('/api/users', (req, res) => {
           password: hash,
           firstName: firstName,
           lastName: lastName,
-          score: 0
+          score: 0,
+          currentScore: 0
         })
     })
     .then(user => {

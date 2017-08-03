@@ -40,6 +40,12 @@ export const receiveUsers = (data) => ({
   data
 })
 
+export const RECEIVE_LOGGED_IN_USER_PROFILE = 'RECEIVE_LOGGED_IN_USER_PROFILE';
+export const receiveLoggedInUserProfile = (data) => ({
+  type: 'RECEIVE_LOGGED_IN_USER_PROFILE',
+  data
+})
+
 export const RECEIVE_LOGIN = 'RECEIVE_LOGIN';
 export const receiveLogin = (data) => ({
   type: 'RECEIVE_LOGIN',
@@ -117,6 +123,20 @@ export const fetchUsers = () => {
     }
   }
 
+export const fetchLoggedInUserProfile = () => {
+  return (dispatch) => {
+    dispatch(requestData)
+    console.log('hey');
+    fetch('http://localhost:8080/api/userProfile')
+      .then(response => response.json())
+      .then(data => dispatch(receiveLoggedInUserProfile(data)))
+      .catch(err => {
+        alert('Error')
+        dispatch(newGame());
+      })
+    }
+  }
+
 //dispatch RECEIVE_LOGIN this from redux form
 export const fetchLogin = (username, password) => {
   return (dispatch) => {
@@ -130,7 +150,7 @@ export const fetchLogin = (username, password) => {
      contentType: 'application/json',
      dataType: 'json',
      error: (res) => {
-         console.log(res)
+         console.log('res ', res)
        }
     }
 
@@ -238,6 +258,8 @@ export const fetchCreateUser = (firstName, lastName, username, password) => {
     $.ajax(settings)
        .done((response) => {
            console.log('response ', response);
+           dispatch(createUser(response))
+
        })
       }
      }

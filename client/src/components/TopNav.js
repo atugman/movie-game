@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import {newGame, toggleInfoModal} from '../actions';
+import {newGame, toggleInfoModal, fetchLogout} from '../actions';
 
 import './TopNav.css';
 
@@ -14,6 +14,11 @@ export class TopNav extends React.Component {
     toggleInfoModal(event) {
         event.preventDefault();
         this.props.dispatch(toggleInfoModal());
+    }
+
+    logout(event) {
+
+      this.props.dispatch(fetchLogout());
     }
 
     render() {
@@ -29,6 +34,11 @@ export class TopNav extends React.Component {
                         <a className="new" href="#" onClick={e => this.newGame(e)}>
                             New Game
                         </a>
+                    </li>
+                    <li>
+                      <a className="logout" href="#" onClick={e => this.logout(e)}>
+                        Logout
+                      </a>
                     </li>
                 </ul>
             </nav>
