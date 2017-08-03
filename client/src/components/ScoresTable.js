@@ -28,18 +28,16 @@ render() {
 
       return (
         <div className="high-scores-column col-lg-3">
-          <strong>
-            <table className='scores-table'>
-              <tbody>
-                <tr>
-                  <th colSpan="2">Leaderboard</th>
-                </tr>
-                <tr>
-                  {users}
-                </tr>
-              </tbody>
-            </table>
-          </strong>
+          <table className='scores-table'>
+            <tbody>
+              <tr>
+                <th colSpan="2">Leaderboard</th>
+              </tr>
+              <tr>
+                {users}
+              </tr>
+            </tbody>
+          </table>
         </div>
       )
     }

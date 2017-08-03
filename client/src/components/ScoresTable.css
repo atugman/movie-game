@@ -7,6 +7,7 @@ table {
 	top: 15%;
 	margin: auto;
 	border: 1px solid rgba(0,0,0,0.1);
+	width: 100%;
 }
 
 th {
@@ -17,4 +18,5 @@ th {
 	opacity: 0.8;
 	background: rgba(0,0,0,0.1);
 	border-radius: 3px 3px 0 0;
+	font-size: 24px;
 }

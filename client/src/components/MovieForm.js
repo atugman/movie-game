@@ -28,17 +28,22 @@ class MovieForm extends React.Component {
 
   return (
     <form onSubmit={ handleSubmit } >
-      <div className="form-div">
-        <label>Movie</label>
-        <div>
-          <Field
+      <table>
+        <tbody>
+          <tr>
+            <th>Guess A Movie!</th>
+          </tr>
+          <tr>
+            <Field
             className="Field"
             name="movie"
             component="input"
             type="text"
             placeholder="Enter Movie Title Here"/>
-        </div>
-      </div>
+          </tr>
+        </tbody>
+      </table>
+
       <div>
         <button type="submit" disabled={pristine || submitting}>Submit</button>
         <button type="button" disabled={pristine || submitting} onClick={reset}>Clear Values</button>
