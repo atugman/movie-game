@@ -13,7 +13,7 @@ import {Router, Route, hashHistory} from 'react-router'
 ReactDOM.render(
   <Provider store={store}>
     <Router history={hashHistory}>
-      <div>
+      <div> 
         <Route path='/' component={Homepage} />
         <Route path='/Game' component={App} />
         <Route path='/login' component={LoginPage} />
