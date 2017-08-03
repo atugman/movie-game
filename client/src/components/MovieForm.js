@@ -31,7 +31,12 @@ class MovieForm extends React.Component {
       <div>
         <label>Movie</label>
         <div>
-          <Field name="movie" component="input" type="text" placeholder="Enter Movie Title Here"/>
+          <Field
+            name="movie"
+            component="input"
+            type="text"
+            placeholder="Enter Movie Title Here"
+          />
         </div>
       </div>
       <div>
@@ -44,7 +49,9 @@ class MovieForm extends React.Component {
 }
 
 const FormComponent = reduxForm({
-  form: 'simple'
+  form: 'simple',
+  initialValues: { letter: 'T', max: 10 }
+
 })(MovieForm)
 
 export default connect()(FormComponent)
