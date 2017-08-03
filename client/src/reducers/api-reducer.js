@@ -5,7 +5,8 @@ const initialState = {
   username: '',
   userScore: '',
   users: [],
-  score: 0
+  score: 0,
+  loggedInUser: ''
 }
 
 const movieData = (state, action) => {
@@ -73,6 +74,12 @@ const movieData = (state, action) => {
     return {
       ...state,
       users: action.data
+    }
+  }
+  else if (action.type === 'RECEIVE_LOGIN') {
+    return {
+      ...state,
+      loggedInUser: action.data.username
     }
   }
   else {

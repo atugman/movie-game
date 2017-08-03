@@ -1,4 +1,5 @@
 import store from './store'
+import $ from 'jquery'
 
 export const NEW_GAME = 'NEW_GAME';
 export const newGame = (inputVal) => ({
@@ -117,23 +118,29 @@ export const fetchUsers = () => {
   }
 
 //dispatch RECEIVE_LOGIN this from redux form
-  export const fetchLogin = (username, password) => {
-    return (dispatch) => {
-      dispatch(requestData)
-      fetch('http://localhost:8080/api/login'
-      // , {
-      //   method: 'GET',
-      //   data: JSON.stringify({username, password})
-      // }
-    )
-        .then(response => response.json())
-        .then(data => dispatch(receiveLogin(data)))
-        .catch(err => {
-          alert('Error')
-          dispatch(newGame());
-        })
-      }
+export const fetchLogin = (username, password) => {
+  return (dispatch) => {
+    dispatch(requestData)
+    console.log('hey');
+
+    const settings = {
+     url: 'http://localhost:8080/api/login',
+     method: 'GET',
+     data: JSON.stringify({username: username, password: password}),
+     contentType: 'application/json',
+     dataType: 'json',
+     error: (res) => {
+         console.log(res)
+       }
     }
+
+    $.ajax(settings)
+       .done((response) => {
+           console.log('response ', response),
+           dispatch(receiveLogin(response))
+       })
+      }
+     }
 
 //logout action, update state with message from server
   export const fetchLogout = () => {
@@ -216,15 +223,41 @@ export const fetchCreateUser = (firstName, lastName, username, password) => {
   return (dispatch) => {
     dispatch(requestData)
     console.log('hey');
-    fetch('http://localhost:8080/api/users', {
-      method: 'POST',
-      data: JSON.stringify({firstName, lastName, username, password})
-    })
-      .then(response => response.json())
-      .then(data => console.log(data))//dispatch(createUser(data)))
-      .catch(err => {
-        alert('Error')
-        dispatch(newGame());
-      })
+
+    const settings = {
+     url: 'http://localhost:8080/api/users',
+     method: 'POST',
+     data: JSON.stringify({username: username, password: password}),
+     contentType: 'application/json',
+     dataType: 'json',
+     error: (res) => {
+         console.log(res)
+       }
     }
-  }
+
+    $.ajax(settings)
+       .done((response) => {
+           console.log('response ', response);
+       })
+      }
+     }
+
+
+
+
+
+
+  //   fetch('http://localhost:8080/api/users', {
+  //     method: 'POST',
+  //     data: {username, password},
+  //     contentType: 'application/json',
+  //     dataType: 'json'
+  //   })
+  //     .then(response => response.json())
+  //     .then(data => console.log(data))//dispatch(createUser(data)))
+  //     .catch(err => {
+  //       alert('Error')
+  //       dispatch(newGame());
+  //     })
+  //   }
+  // }

@@ -1,6 +1,9 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
+import ReactDOM from 'react-dom';
+import {Link} from 'react-router'
+
 
 let ExistingUserLoginForm = props => {
   const { handleSubmit, pristine, reset, submitting } = props
@@ -21,7 +24,9 @@ let ExistingUserLoginForm = props => {
       </div>
 
       <div>
+      <Link to="game">
         <button type="submit" disabled={pristine || submitting}>Submit</button>
+      </Link>
         <button type="button" disabled={pristine || submitting} onClick={reset}>Clear Values</button>
       </div>
     </form>

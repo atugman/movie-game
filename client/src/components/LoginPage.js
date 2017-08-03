@@ -19,7 +19,6 @@ class LoginPage extends React.Component {
   render() {
     return (
       <div>
-        <h1>hey</h1>
         <ExistingUserLoginForm onSubmit={this.submitLogin} />
         <CreateUserForm onSubmit={this.submitNewUser}/>
       </div>

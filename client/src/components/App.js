@@ -27,8 +27,11 @@ import backdrop from './backdrop.jpg'
 
 class App extends Component {
 
+  componentWillReceiveProps(nextProps) {
+  this.props.dispatch(change('simple', 'movie', nextProps.relevantLetter));
+}
+
   submit = (values) => {
-    this.props.dispatch(change('MovieForm', 'movie', 'B'));
       event.preventDefault()
       let inputVal = values.movie
       //document.getElementById("hi").className = "animated slideInRight"
@@ -59,7 +62,6 @@ class App extends Component {
           //if movie is one word, use last letter for next turn
           this.props.dispatch(fetchData2(inputVal));
         }
-    console.log(values)
   }
 
   render() {
@@ -67,6 +69,7 @@ class App extends Component {
       <div className="App">
         {/* <img className="Background" src={require('./Red-Curtains.jpg')}></img> */}
         <Header infoModal={this.props.showInfoModal}/>
+
         {/* <div className="App-header animated slideInRight">
           <img src={vhs} className="App-logo" alt="logo" />
           <h2 className='animated bounce'>The Movie Game!</h2>*/}
@@ -74,19 +77,27 @@ class App extends Component {
            <div className="row" id="hello">
              <div className="col-2">
                <MovieForm onSubmit={this.submit} relevantLetter={this.props.relevantLetter}/>
+               <div className="score">Score: {this.props.score}</div>
                <SavedScoreBox />
+               <div>{this.props.loggedInUser}</div>
                <SaveButton />
-               <LoadButton />
+               <LoadButton score={this.props.score}/>
+
+
              </div>
-             <div id="hey" className="col-8">
+             <div id="main-box" className="col-8">
+
                <div className='random'>
                  <img className="tv" src={require('../components/tv2.png')}></img>
                  <img className="Backdrop img-responsive" src={this.props.backdrop}/>
                </div>
+
+
                <div className="title-overview-box">
-                 <div className="movie-title">{this.props.title}</div>
+                 <div className="movie-title">{this.props.movieTitle}</div>
                  <div className="overview">{this.props.overview}</div>
                </div>
+
              </div>
              <div className="col-2">
                <ScoresTable />
@@ -108,12 +119,13 @@ const mapStateToProps = state => ({
     overview: state.movieData.overview,
     poster: state.movieData.poster,
     backdrop: state.movieData.backdrop,
-    score: state.reducer.score,
+    score: state.movieData.score,
     userInput: state.movieData.userInput,
     usedMovies: state.reducer.usedMovies,
     relevantLetter: state.movieData.relevantLetter,
     showInfoModal: state.reducer.showInfoModal,
-    users: state.movieData.users
+    users: state.movieData.users,
+    loggedInUser: state.movieData.loggedInUser
     // movie: state.form.simple.values.movie
 });
 

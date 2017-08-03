@@ -1,12 +1,12 @@
 const path = require('path');
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 const serveStatic = require('serve-static');
 const cookieParser = require('cookie-parser');
 const {BasicStrategy} = require('passport-http');
 
-//const jsonParser = require('body-parser').json();
+const jsonParser = require('body-parser').json();
 const passport = require('passport');
 
 const mongoose = require('mongoose');
@@ -20,9 +20,9 @@ mongoose.Promise = global.Promise;
 
 //const {PORT, DATABASE_URL} = require('./config');
 
-app.use(bodyParser.urlencoded({ extended: true, }));
-app.use(bodyParser.json());
-//app.use(jsonParser);
+// app.use(bodyParser.urlencoded({ extended: true, }));
+// app.use(bodyParser.json());
+app.use(jsonParser);
 app.use(express.static('public'));
 
 //auth

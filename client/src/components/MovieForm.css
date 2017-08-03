@@ -1,0 +1,32 @@
+form {
+	color: #fff;
+	background: #e74c3c;
+	position: relative;
+	height: auto;
+	border-radius: 3px;
+	top: 15%;
+	margin: auto;
+	border: 1px solid rgba(0,0,0,0.1);
+  font-family: sans-serif;
+}
+
+.form-div {
+  padding-top: 1px;
+}
+
+label {
+  margin-top: 5px;
+    padding-left: 45.5px;
+    padding-right: 45.5px;
+  	text-align: center;
+  	font-weight: 300;
+  	opacity: 0.8;
+  	background: rgba(0,0,0,0.1);
+  	border-radius: 3px 3px 0 0;
+}
+
+.Field {
+  margin: 3px;
+  margin-top: 5px;
+  height: 23px;
+}

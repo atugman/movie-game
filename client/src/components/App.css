@@ -46,10 +46,21 @@ html {
   height: 100%;
 }
 
+#main-box {
+  color: #fff;
+  background: #e74c3c;
+  position: relative;
+  height: auto;
+  border-radius: 3px;
+  top: 15%;
+  margin: auto;
+  border: 5px solid rgba(0,0,0,0.1);
+}
+
 .random {
-position: relative;
-top: 0;
-left: 0;
+  position: relative;
+  top: 0;
+  left: 0;
 }
 
 .tv {
@@ -185,4 +196,14 @@ main .row {
   /* 12 columns */
   .col-12 {
   }
+}
+
+.title-overview-box {
+  margin: 15px;
+}
+
+.overview {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
 }

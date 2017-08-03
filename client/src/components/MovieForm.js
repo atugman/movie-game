@@ -5,7 +5,7 @@ import {newGame,
 fetchData,
 fetchData2
 } from '../actions'
-
+import './MovieForm.css'
 
 class MovieForm extends React.Component {
 
@@ -28,10 +28,15 @@ class MovieForm extends React.Component {
 
   return (
     <form onSubmit={ handleSubmit } >
-      <div>
+      <div className="form-div">
         <label>Movie</label>
         <div>
-          <Field name="movie" component="input" type="text" placeholder="Enter Movie Title Here"/>
+          <Field
+            className="Field"
+            name="movie"
+            component="input"
+            type="text"
+            placeholder="Enter Movie Title Here"/>
         </div>
       </div>
       <div>
@@ -44,7 +49,8 @@ class MovieForm extends React.Component {
 }
 
 const FormComponent = reduxForm({
-  form: 'simple'
+  form: 'simple',
+  initialValues: { letter: 'T', max: 10 }
 })(MovieForm)
 
 export default connect()(FormComponent)
