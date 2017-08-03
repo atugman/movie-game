@@ -13,9 +13,11 @@ import {Router, Route, hashHistory} from 'react-router'
 ReactDOM.render(
   <Provider store={store}>
     <Router history={hashHistory}>
-      <Route path='/' component={Homepage} />
-      <Route path='/Game' component={App} />
-      <Route path='/login' component={LoginPage} />
+      <div>
+        <Route path='/' component={Homepage} />
+        <Route path='/Game' component={App} />
+        <Route path='/login' component={LoginPage} />
+      </div>
     </Router>
   </Provider>,
 
