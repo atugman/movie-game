@@ -27,8 +27,11 @@ import backdrop from './backdrop.jpg'
 
 class App extends Component {
 
+  componentWillReceiveProps(nextProps) {
+    this.props.dispatch(change('simple', 'movie', nextProps.relevantLetter));
+  }
+  
   submit = (values) => {
-    this.props.dispatch(change('MovieForm', 'movie', 'B'));
       event.preventDefault()
       let inputVal = values.movie
       //document.getElementById("hi").className = "animated slideInRight"
@@ -59,7 +62,6 @@ class App extends Component {
           //if movie is one word, use last letter for next turn
           this.props.dispatch(fetchData2(inputVal));
         }
-    console.log(values)
   }
 
   render() {
