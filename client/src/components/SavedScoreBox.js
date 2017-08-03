@@ -1,10 +1,18 @@
 import React from 'react'
+import './SavedScoreBox.css'
 
 const SavedScoreBox = () => (
   <div className="saved-score-box">
-    <strong>Saved Score:
+    <table>
+      <tbody>
+        <tr>
+          <th>
+    Saved Score:
       {/* {props.savedScore} */}
-  </strong>
+    </th>
+  </tr>
+</tbody>
+</table>
   </div>
 )
 

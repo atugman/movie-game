@@ -20,3 +20,22 @@ th {
 	border-radius: 3px 3px 0 0;
 	font-size: 24px;
 }
+
+
+/*tr:nth-child(even) {background-color: #f2f2f2}*/
+
+
+
+.td-score, .td-username {
+	text-align: right;
+	font-size: 22px;
+}
+
+.td-score {
+	border-right: 1px solid white;
+	padding-right: 10px;
+}
+
+.td-username {
+	padding-left: 5px;
+}

@@ -2,8 +2,16 @@ import React from 'react'
 import './CurrentScore.css'
 
 const CurrentScore = (props) => (
-  <div className="score">
+  <div className="current-game-score">
+    <table>
+      <tbody>
+        <tr>
+          <th>
     Current Game Score: {props.currentScore}
+  </th>
+</tr>
+</tbody>
+</table>
   </div>
 )
 

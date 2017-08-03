@@ -15,30 +15,30 @@ export class ScoresTable extends React.Component {
 render() {
   const users = this.props.users.map((user, index) => (
   <div key={index}>
-    <td>
-      {user.username}
-    </td>
-    <td>
-      {user.score}
-    </td>
+    <tr className="tr-username-score">
+      <td className="td-score">
+        {user.score}
+      </td>
+      <td className="td-username">
+        {user.username}
+      </td>
+    </tr>
   </div>
   ))
 
 
 
-      return (
-        <div className="high-scores-column col-lg-3">
-          <table className='scores-table'>
-            <tbody>
-              <tr>
-                <th colSpan="2">Leaderboard</th>
-              </tr>
-              <tr>
-                {users}
-              </tr>
-            </tbody>
-          </table>
-        </div>
+  return (
+  <div className="high-scores-column">
+    <table className='scores-table'>
+      <tbody>
+        <tr>
+          <th colSpan="2">Leaderboard</th>
+        </tr>
+          {users}
+      </tbody>
+    </table>
+  </div>
       )
     }
   }

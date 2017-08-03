@@ -6,6 +6,10 @@ fetchData,
 fetchData2
 } from '../actions'
 import './MovieForm.css'
+import SavedScoreBox from './SavedScoreBox'
+import SaveButton from './SaveButton'
+import LoadButton from './LoadButton'
+import CurrentScore from './CurrentScore'
 
 class MovieForm extends React.Component {
 
@@ -41,13 +45,16 @@ class MovieForm extends React.Component {
             type="text"
             placeholder="Enter Movie Title Here"/>
           </tr>
+
         </tbody>
-      </table>
+
 
       <div>
         <button type="submit" disabled={pristine || submitting}>Submit</button>
         <button type="button" disabled={pristine || submitting} onClick={reset}>Clear Values</button>
       </div>
+
+    </table>
     </form>
   )
 }
