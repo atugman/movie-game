@@ -101,12 +101,12 @@ html {
   padding-top: 5px;
 }
 
-.score {
+/*.score {
   border: 1px solid black;
   background: rgba(255,255,255,0.8);
   border-radius: 25px;
   width: 10%;
-}
+}*/
 
 .col-2 {
   width: 16.666665%;
@@ -148,7 +148,6 @@ main .row {
 }
 
 .row {
-  max-width: 1000px;
   padding-left: 20px;
   padding-right: 20px;
   margin: 0 auto;

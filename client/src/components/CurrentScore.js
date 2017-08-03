@@ -1,10 +1,10 @@
 import React from 'react'
+import './CurrentScore.css'
 
 const CurrentScore = (props) => (
-  <div>
-    {props.currentScore}
+  <div className="score">
+    Current Game Score: {props.currentScore}
   </div>
 )
-
 
 export default CurrentScore

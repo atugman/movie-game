@@ -76,18 +76,17 @@ class App extends Component {
           <h2 className='animated bounce'>The Movie Game!</h2>*/}
          {/* <div className="App-intro"> */}
            <div className="row" id="hello">
-             <div className="col-2">
+             <div className="col-3">
                <MovieForm onSubmit={this.submit} relevantLetter={this.props.relevantLetter}/>
-               <div className="score">Score: {this.props.score}</div>
                <SavedScoreBox />
-               <CurrentScore currentScore={this.props.loggedInUser}/>
+               <CurrentScore currentScore={this.props.score}/>
                {/* <div>{this.props.loggedInUser}</div> */}
                <SaveButton />
                <LoadButton score={this.props.score}/>
 
 
              </div>
-             <div id="main-box" className="col-8">
+             <div id="main-box" className="col-6">
 
                <div className='random'>
                  {/* <img className="tv" src={require('../components/tv2.png')}></img> */}
@@ -101,7 +100,7 @@ class App extends Component {
                </div>
 
              </div>
-             <div className="col-2">
+             <div className="col-3">
                <ScoresTable />
              </div>
              {/* <div id="hi" className="col-4">
