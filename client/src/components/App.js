@@ -16,6 +16,7 @@ import getScores from './ScoresTable'
 import SavedScoreBox from './SavedScoreBox'
 import SaveButton from './SaveButton'
 import LoadButton from './LoadButton'
+import CurrentScore from './CurrentScore'
 
 import { Field, reduxForm, change } from 'redux-form';
 import rootReducer from '../reducers/index'
@@ -79,7 +80,8 @@ class App extends Component {
                <MovieForm onSubmit={this.submit} relevantLetter={this.props.relevantLetter}/>
                <div className="score">Score: {this.props.score}</div>
                <SavedScoreBox />
-               <div>{this.props.loggedInUser}</div>
+               <CurrentScore currentScore={this.props.loggedInUser}/>
+               {/* <div>{this.props.loggedInUser}</div> */}
                <SaveButton />
                <LoadButton score={this.props.score}/>
 
@@ -88,7 +90,7 @@ class App extends Component {
              <div id="main-box" className="col-8">
 
                <div className='random'>
-                 <img className="tv" src={require('../components/tv2.png')}></img>
+                 {/* <img className="tv" src={require('../components/tv2.png')}></img> */}
                  <img className="Backdrop img-responsive" src={this.props.backdrop}/>
                </div>
 
