@@ -35,7 +35,7 @@ class MovieForm extends React.Component {
       <table>
         <tbody>
           <tr>
-            <th>Think of a movie that starts with</th>
+            <th>Think of a movie that starts with {this.props.relevantLetter}</th>
           </tr>
           <tr>
             <Field
@@ -60,9 +60,13 @@ class MovieForm extends React.Component {
 }
 }
 
+const mapStateToProps = state => ({
+  relevantLetter: state.movieData.relevantLetter
+});
+
 const FormComponent = reduxForm({
   form: 'simple',
   initialValues: { letter: 'T', max: 10 }
 })(MovieForm)
 
-export default connect()(FormComponent)
+export default connect(mapStateToProps)(FormComponent)
