@@ -72,7 +72,7 @@ export const eraseSavedScoreOnLoss = (user) => ({
 })
 
 export const LOAD_SAVED_SCORE = 'LOAD_SAVED_SCORE';
-export const loadSavedScore = (user) => ({
+export const loadSavedScore = (score) => ({
   type: 'LOAD_SAVED_SCORE',
 })
 
@@ -85,16 +85,49 @@ export const createUser = (user) => ({
 export const fetchNewGame = (score) => {
   return (dispatch) => {
     dispatch(requestData)
-    fetch('http://localhost:8080/api/users/' + score)
-      .then(response => response.json())
-      .then(movies => dispatch(newGame(score)))
-      .catch(err => {
-        alert('You lose!')
-        dispatch(newGame());
-      })
-    }
-  }
 
+      const settings = {//1
+       url: 'http://localhost:8080/api/eraseCurrentScore/',
+       method: 'PATCH',
+       data: score,
+       contentType: 'application/json',
+       dataType: 'json',
+       error: (res) => {
+           console.log('res ', res)
+         }
+      }
+
+      $.ajax(settings)
+         .done((response) => {//2
+                     const settings = {
+                      url: 'http://localhost:8080/api/checkScore/',
+                      method: 'GET',
+                      data: score,
+                      contentType: 'application/json',
+                      dataType: 'json',
+                      error: (res) => {
+                          console.log('res ', res)
+                        }
+                     }
+
+                     $.ajax(settings)
+                            .done((response) => {
+                              var currentHighScore = response.user.score;
+                              if (currentHighScore < score) {
+                                console.log('SCORE ', response);
+                              $.ajax({
+                              url: 'http://localhost:8080/api/users/' + score,
+                              type: "PATCH",
+                              data: score,
+                              success: function(response) {
+                                //dispatch(newGame());
+                              }
+                              })
+                              }
+                            })
+         })
+      }
+  }
 
 export const fetchData = (inputVal) => {
   return (dispatch) => {
@@ -198,28 +231,28 @@ export const fetchLogin = (username, password) => {
 
 
 //no need to update state, the leaderboard will refresh
-export const fetchUpdateScore = (score) => {
-  return (dispatch) => {
-    dispatch(requestData)
-
-    const settings = {
-     url: 'http://localhost:8080/api/users/' + score,
-     method: 'PATCH',
-     data: score,
-     contentType: 'application/json',
-     dataType: 'json',
-     error: (res) => {
-         console.log('res ', res)
-       }
-    }
-
-    $.ajax(settings)
-       .done((response) => {
-           console.log('response ', response),
-           dispatch(newGame(response))
-       })
-    }
-}
+// export const fetchUpdateScore = (score) => {
+//   return (dispatch) => {
+//     dispatch(requestData)
+//
+//     const settings = {
+//      url: 'http://localhost:8080/api/users/' + score,
+//      method: 'PATCH',
+//      data: score,
+//      contentType: 'application/json',
+//      dataType: 'json',
+//      error: (res) => {
+//          console.log('res ', res)
+//        }
+//     }
+//
+//     $.ajax(settings)
+//        .done((response) => {
+//            console.log('response ', response),
+//            dispatch(newGame(response))
+//        })
+//     }
+// }
 
 //shouldn't need to update state here
 //as the saved score box component will
@@ -267,18 +300,30 @@ export const fetchEraseCurrentScore = (user) => {
 }
 
 //need to update state with the score
-export const fetchLoadScore = (user) => {
+export const fetchLoadScore = (score) => {
   return (dispatch) => {
     dispatch(requestData)
-    fetch('http://localhost:8080/api/loadScore')
-      .then(response => response.json())
-      .then(data => dispatch(loadSavedScore(user)))
-      .catch(err => {
-        alert('Error')
-        dispatch(newGame());
-      })
+
+    const settings = {
+     url: 'http://localhost:8080/api/loadScore',
+     method: 'GET',
+     data: score,
+     contentType: 'application/json',
+     dataType: 'json',
+     error: (res) => {
+         console.log('res ', res)
+       }
     }
-}
+
+    $.ajax(settings)
+       .done((response) => {
+           console.log('response ', response),
+           dispatch(loadSavedScore(score))
+           event.preventDefault()
+       })
+      }
+    }
+
 
 export const fetchCreateUser = (firstName, lastName, username, password) => {
     console.log(firstName, lastName, username);

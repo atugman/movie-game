@@ -93,8 +93,12 @@ const movieData = (state, action) => {
   } else if (action.type === 'SAVE_SCORE_ON_CLICK') {
     return {
       ...state,
-      savedScore: action.data.score,
-      score: action.data.score
+      savedScore: action.score,
+    }
+  } else if (action.type === 'LOAD_SAVED_SCORE') {
+    return {
+      ...state,
+      score: state.savedScore
     }
   }
   else {

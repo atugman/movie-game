@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 //import '../node_modules/animate.css/animate.min.css'
 
-import {fetchUpdateScore,
+import {fetchNewGame,
   fetchLogin,
 receiveData,
 receiveData2,
@@ -45,13 +45,13 @@ class App extends Component {
         for (var i = 0; i < splitString.length; i++) {
           if (splitString[0] = "THE") {
             alert('Nice try...you know what you did... :)'),
-            this.props.dispatch(fetchUpdateScore(this.props.score))
+            this.props.dispatch(fetchNewGame(this.props.score))
           }
         }
       } else if (this.props.usedMovies.includes(inputVal)) {
           console.log('usedMovies ', this.props.usedMovies);
           alert('Hey! You already used that one! Game over pal!'),
-          this.props.dispatch(fetchUpdateScore(this.props.score));
+          this.props.dispatch(fetchNewGame(this.props.score));
       }
 
       // else if (inputVal[0] !== this.props.relevantLetter) {
