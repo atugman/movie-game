@@ -7,7 +7,8 @@ const initialState = {
   users: [],
   score: 0,
   loggedInUser: '',
-  message: ''
+  message: '',
+  usedMovies: ' '
 }
 
 const movieData = (state, action) => {
@@ -61,7 +62,6 @@ const movieData = (state, action) => {
     return {
       ...state,
       movies: [],
-      userInput: 'A',
       score: 0,
       usedMovies: '',
       relevantLetter: 'A',

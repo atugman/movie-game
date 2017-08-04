@@ -35,7 +35,7 @@ class MovieForm extends React.Component {
       <table>
         <tbody>
           <tr>
-            <th>Guess A Movie!</th>
+            <th>Think of a movie that starts with</th>
           </tr>
           <tr>
             <Field

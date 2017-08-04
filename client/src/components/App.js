@@ -42,22 +42,25 @@ class App extends Component {
       //prevents using the same movie twice
       let splitString = inputVal.toUpperCase('').split(' ');
       if (splitString.includes("THE")) {
+        console.log('inputVAl ', inputVal);
         for (var i = 0; i < splitString.length; i++) {
           if (splitString[0] = "THE") {
             alert('Nice try...you know what you did... :)'),
             this.props.dispatch(fetchNewGame(this.props.score))
           }
         }
-      } else if (this.props.usedMovies.includes(inputVal)) {
+      }
+      else if (this.props.usedMovies.includes(inputVal)) {
           console.log('usedMovies ', this.props.usedMovies);
           alert('Hey! You already used that one! Game over pal!'),
           this.props.dispatch(fetchNewGame(this.props.score));
       }
 
-      // else if (inputVal[0] !== this.props.relevantLetter) {
-      //   console.log(this.props.relevantLetter);
-      //
-      // }
+      else if (inputVal[0] !== this.props.relevantLetter) {
+        alert("Hey! That word didn't start with " + this.props.relevantLetter
+        + "! Better luck next time bucko!"),
+        this.props.dispatch(fetchNewGame(this.props.score));
+      }
         //if movie title is multiple words, the next movie must
         //use the first letter of the last word of original movie
         else if (inputVal.includes(' ')) {
@@ -66,7 +69,8 @@ class App extends Component {
           //if movie is one word, use last letter for next turn
           this.props.dispatch(fetchData2(inputVal));
         }
-  }
+      }
+
 
   handleSubmit = (values) => {
     console.log(values)
@@ -132,7 +136,7 @@ const mapStateToProps = state => ({
     backdrop: state.movieData.backdrop,
     score: state.movieData.score,
     userInput: state.movieData.userInput,
-    usedMovies: state.reducer.usedMovies,
+    usedMovies: state.movieData.usedMovies,
     relevantLetter: state.movieData.relevantLetter,
     showInfoModal: state.reducer.showInfoModal,
     users: state.movieData.users,

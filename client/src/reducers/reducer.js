@@ -1,7 +1,6 @@
 const initialState = {
   movies: [],
   userInput: 'A',
-  usedMovies: '',
   relevantLetter: 'A',
   showInfoModal: false
 };
