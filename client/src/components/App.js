@@ -68,6 +68,11 @@ class App extends Component {
         }
   }
 
+  handleSubmit = (values) => {
+    console.log(values)
+    this.props.dispatch(fetchLogin(values.existingUsername, values.existingPassword))
+  }
+
   render() {
     return (
       <div className="App">
@@ -87,6 +92,7 @@ class App extends Component {
                {/* <div>{this.props.loggedInUser}</div> */}
                <SaveButton score={this.props.score}/>
                <LoadButton />
+               <ExistingUserLoginForm onSubmit={this.handleSubmit} />
 
 
              </div>

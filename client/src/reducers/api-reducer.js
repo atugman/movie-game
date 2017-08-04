@@ -80,14 +80,15 @@ const movieData = (state, action) => {
   else if (action.type === 'RECEIVE_LOGIN') {
     return {
       ...state,
-      loggedInUser: action.data.username
+      loggedInUser: action.data.user.username,
+      savedScore: action.data.user.currentScore
     }
   }
   else if (action.type === 'RECEIVE_LOGGED_IN_USER_PROFILE') {
     return {
       ...state,
       message: action.data.message,
-      loggedInUser: action.data.username
+      loggedInUser: action.data.username,
     }
   }
   else {

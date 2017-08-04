@@ -5,7 +5,7 @@ import {fetchCreateUser, fetchLogin} from '../actions'
 import { connect } from 'react-redux';
 
 class LoginPage extends React.Component {
-  submitLogin = (values) => {
+  handleSubmit = (values) => {
     console.log(values)
     this.props.dispatch(fetchLogin(values.existingUsername, values.existingPassword))
   }
@@ -19,7 +19,7 @@ class LoginPage extends React.Component {
   render() {
     return (
       <div>
-        <ExistingUserLoginForm onSubmit={this.submitLogin} />
+        <ExistingUserLoginForm onSubmit={this.handleSubmit} />
         <CreateUserForm onSubmit={this.submitNewUser}/>
       </div>
     )

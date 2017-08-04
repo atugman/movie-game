@@ -136,19 +136,19 @@ export const fetchUsers = () => {
     }
   }
 
-export const fetchLoggedInUserProfile = () => {
-  return (dispatch) => {
-    dispatch(requestData)
-    console.log('hey');
-    fetch('http://localhost:8080/api/userProfile')
-      .then(response => response.json())
-      .then(data => dispatch(receiveLoggedInUserProfile(data)))
-      .catch(err => {
-        alert('Error')
-        dispatch(newGame());
-      })
-    }
-  }
+// export const fetchLoggedInUserProfile = () => {
+//   return (dispatch) => {
+//     dispatch(requestData)
+//     console.log('hey');
+//     fetch('http://localhost:8080/api/userProfile')
+//       .then(response => response.json())
+//       .then(data => dispatch(receiveLoggedInUserProfile(data)))
+//       .catch(err => {
+//         alert('Error')
+//         dispatch(newGame());
+//       })
+//     }
+//   }
 
 //dispatch RECEIVE_LOGIN this from redux form
 export const fetchLogin = (username, password) => {
@@ -179,27 +179,45 @@ export const fetchLogin = (username, password) => {
   export const fetchLogout = () => {
     return (dispatch) => {
       dispatch(requestData)
-      fetch('http://localhost:8080/api/logout')
-        .then(response => response.json())
-        .then(data => dispatch(logout))
-        .catch(err => {
-          alert('Error')
-          dispatch(newGame());
-        })
+      const settings = {
+       url: 'http://localhost:8080/api/logout/',
+       method: 'GET',
+       contentType: 'application/json',
+       error: (res) => {
+           console.log('res ', res)
+         }
       }
-    }
+
+      $.ajax(settings)
+         .done((response) => {
+             console.log('response ', response)
+            //  ,dispatch(newGame(response))
+         })
+        }
+      }
+
 
 //no need to update state, the leaderboard will refresh
 export const fetchUpdateScore = (score) => {
   return (dispatch) => {
     dispatch(requestData)
-    fetch('http://localhost:8080/api/:' + score)
-      .then(response => response.json())
-      .then(data => dispatch(updateScore(score)))
-      .catch(err => {
-        alert('Error')
-        dispatch(newGame());
-      })
+
+    const settings = {
+     url: 'http://localhost:8080/api/users/' + score,
+     method: 'PATCH',
+     data: score,
+     contentType: 'application/json',
+     dataType: 'json',
+     error: (res) => {
+         console.log('res ', res)
+       }
+    }
+
+    $.ajax(settings)
+       .done((response) => {
+           console.log('response ', response),
+           dispatch(newGame(response))
+       })
     }
 }
 

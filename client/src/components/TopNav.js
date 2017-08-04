@@ -17,7 +17,7 @@ export class TopNav extends React.Component {
     }
 
     logout(event) {
-
+      console.log('hello old friend');
       this.props.dispatch(fetchLogout());
     }
 
@@ -30,13 +30,13 @@ export class TopNav extends React.Component {
                             Instructions
                         </a>
                     </li>
-                    <li>
+                    <li className="new-game">
                         <a className="new" href="#" onClick={e => this.newGame(e)}>
                             New Game
                         </a>
                     </li>
                     <li>
-                      <a className="logout" href="#" onClick={e => this.logout(e)}>
+                      <a className="logout" onClick={e => this.logout(e)}>
                         Logout
                       </a>
                     </li>

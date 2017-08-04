@@ -16,9 +16,19 @@ html {
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 50px;
+  align-items: center;
 }
 
+@media only screen and (max-width: 640px) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+    height: 20px;
+  }
+}
 
+h2 {
+  width: 100%;
+}
 
 .App-intro {
   font-size: large;

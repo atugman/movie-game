@@ -19,8 +19,13 @@ nav ul li:first-child {
 	float: left;
 }
 
+nav ul li:nth-child(2) {
+	float: right
+}
+
 nav ul li:last-child {
 	float: right;
+	margin-right: 20px;
 }
 
 nav a {
@@ -35,5 +40,17 @@ nav a {
 
 	nav ul li:last-child {
 		float: right;
+	}
+}
+
+@media only screen and (max-width: 640px) {
+	nav ul li:first-child {
+		float: left;
+		margin-left: auto
+	}
+
+	nav ul li:last-child {
+		float: right;
+		margin-right: auto;
 	}
 }

@@ -7,12 +7,12 @@ const SavedScoreBox = () => (
       <tbody>
         <tr>
           <th>
-    Saved Score:
-      {/* {props.savedScore} */}
-    </th>
-  </tr>
-</tbody>
-</table>
+            Saved Score:
+            {/* {props} */}
+          </th>
+        </tr>
+      </tbody>
+    </table>
   </div>
 )
 
