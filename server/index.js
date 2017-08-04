@@ -118,6 +118,7 @@ app.get('/api/logout', (req, res) => {
 app.patch('/api/users/:score',
   //passport.authenticate('basic', {session: false}),
   (req, res) => {
+    console.log(req.params.score);
     User.findByIdAndUpdate(req.user._id, {score: req.params.score, currentScore: 0}, {new: true},
   (err, updatedItem) => {
     if (err) {

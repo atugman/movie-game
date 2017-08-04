@@ -2,9 +2,8 @@ import store from './store'
 import $ from 'jquery'
 
 export const NEW_GAME = 'NEW_GAME';
-export const newGame = (inputVal) => ({
+export const newGame = () => ({
   type: NEW_GAME,
-  inputVal
 });
 
 export const TOGGLE_INFO_MODAL = 'TOGGLE_INFO_MODAL';
@@ -82,6 +81,20 @@ export const CREATE_USER = 'CREATE_USER';
 export const createUser = (user) => ({
   type: 'CREATE_USER',
 })
+
+export const fetchNewGame = (score) => {
+  return (dispatch) => {
+    dispatch(requestData)
+    fetch('http://localhost:8080/api/users/' + score)
+      .then(response => response.json())
+      .then(movies => dispatch(newGame(score)))
+      .catch(err => {
+        alert('You lose!')
+        dispatch(newGame());
+      })
+    }
+  }
+
 
 export const fetchData = (inputVal) => {
   return (dispatch) => {
@@ -177,12 +190,12 @@ export const fetchLogin = (username, password) => {
     }
 
 //no need to update state, the leaderboard will refresh
-export const fetchUpdateScore = (user) => {
+export const fetchUpdateScore = (score) => {
   return (dispatch) => {
     dispatch(requestData)
-    fetch('http://localhost:8080/api/users/:score')
+    fetch('http://localhost:8080/api/:' + score)
       .then(response => response.json())
-      .then(data => dispatch(updateScore(user)))
+      .then(data => dispatch(updateScore(score)))
       .catch(err => {
         alert('Error')
         dispatch(newGame());
@@ -194,18 +207,29 @@ export const fetchUpdateScore = (user) => {
 //as the saved score box component will
 //make a request to the server on page load
 //delete saveScoreOnClick action
-export const fetchSaveScoreOnClick = (user) => {
+export const fetchSaveScoreOnClick = (score) => {
   return (dispatch) => {
     dispatch(requestData)
-    fetch('http://localhost:8080/api/currentScore/:score')
-      .then(response => response.json())
-      .then(data => dispatch(saveScoreOnClick(user)))
-      .catch(err => {
-        alert('Error')
-        dispatch(newGame());
-      })
+
+    const settings = {
+     url: 'http://localhost:8080/api/currentScore/' + score,
+     method: 'PATCH',
+     data: score,
+     contentType: 'application/json',
+     dataType: 'json',
+     error: (res) => {
+         console.log('res ', res)
+       }
     }
-}
+
+    $.ajax(settings)
+       .done((response) => {
+           console.log('response ', response),
+           dispatch(newGame(response))
+       })
+      }
+    }
+
 
 //shouldn't need to update state here
 //as the saved score box component will
