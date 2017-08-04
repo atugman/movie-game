@@ -136,7 +136,8 @@ const mapStateToProps = state => ({
     relevantLetter: state.movieData.relevantLetter,
     showInfoModal: state.reducer.showInfoModal,
     users: state.movieData.users,
-    loggedInUser: state.movieData.loggedInUser
+    loggedInUser: state.movieData.loggedInUser,
+    savedScore: state.movieData.savedScore
     // movie: state.form.simple.values.movie
 });
 

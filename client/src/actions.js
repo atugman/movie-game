@@ -243,7 +243,7 @@ export const fetchSaveScoreOnClick = (score) => {
     $.ajax(settings)
        .done((response) => {
            console.log('response ', response),
-           dispatch(newGame(response))
+           dispatch(saveScoreOnClick(score))
        })
       }
     }

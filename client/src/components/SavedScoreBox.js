@@ -1,14 +1,14 @@
 import React from 'react'
 import './SavedScoreBox.css'
+import {connect} from 'react-redux'
 
-const SavedScoreBox = () => (
+const SavedScoreBox = (props) => (
   <div className="saved-score-box">
     <table>
       <tbody>
         <tr>
           <th>
-            Saved Score:
-            {/* {props} */}
+            Saved Score: {props.savedScore}
           </th>
         </tr>
       </tbody>
@@ -16,6 +16,8 @@ const SavedScoreBox = () => (
   </div>
 )
 
-//mapStateToProps
+const mapStateToProps = state => ({
+  savedScore: state.movieData.savedScore
+})
 
-export default SavedScoreBox
+export default connect(mapStateToProps)(SavedScoreBox)

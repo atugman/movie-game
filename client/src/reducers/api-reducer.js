@@ -90,6 +90,12 @@ const movieData = (state, action) => {
       message: action.data.message,
       loggedInUser: action.data.username,
     }
+  } else if (action.type === 'SAVE_SCORE_ON_CLICK') {
+    return {
+      ...state,
+      savedScore: action.data.score,
+      score: action.data.score
+    }
   }
   else {
     return state

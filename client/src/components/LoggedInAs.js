@@ -27,7 +27,7 @@ render() {
         <tbody>
           <tr>
             <th>
-      Logged In As:
+      Logged In As: 
         {this.props.loggedInUser}
       </th>
     </tr>
