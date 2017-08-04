@@ -56,7 +56,7 @@ class App extends Component {
           this.props.dispatch(fetchNewGame(this.props.score));
       }
 
-      else if (inputVal[0] !== this.props.relevantLetter) {
+      else if (inputVal[0].toUpperCase() !== this.props.relevantLetter) {
         alert("Hey! That word didn't start with " + this.props.relevantLetter
         + "! Better luck next time bucko!"),
         this.props.dispatch(fetchNewGame(this.props.score));
