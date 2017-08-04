@@ -86,7 +86,7 @@ h2 {
 }
 
 .Backdrop {
-  width: 100%;
+  width: 90%;
   /*position: absolute;
   background-color: black;
   top: 17px;
@@ -211,6 +211,7 @@ main .row {
 
 .title-overview-box {
   background: rgba(255,255,255,0.5);
-  border-radius: 25px;
-  margin: 25px;
+  border-radius: 15px;
+  margin: 20px;
+  padding: 5px;
 }

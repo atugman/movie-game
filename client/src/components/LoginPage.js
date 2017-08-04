@@ -19,8 +19,14 @@ class LoginPage extends React.Component {
   render() {
     return (
       <div>
-        <ExistingUserLoginForm onSubmit={this.handleSubmit} />
-        <CreateUserForm onSubmit={this.submitNewUser}/>
+        <div className="row">
+          <div className="col-6 create-user-form">
+            <CreateUserForm onSubmit={this.submitNewUser}/>
+          </div>
+          <div className="col-6 existing-user-login-form">
+            <ExistingUserLoginForm onSubmit={this.handleSubmit} />
+          </div>
+        </div>
       </div>
     )
   }
