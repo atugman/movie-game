@@ -6,7 +6,7 @@ class StartButton extends Component {
         return (
           <div>
             <Link to="login">
-              <h1>Start Game!</h1>
+              <td className='field'>Start!</td>
             </Link>
           </div>
         );

@@ -39,11 +39,11 @@ export const receiveUsers = (data) => ({
   data
 })
 
-export const RECEIVE_LOGGED_IN_USER_PROFILE = 'RECEIVE_LOGGED_IN_USER_PROFILE';
-export const receiveLoggedInUserProfile = (data) => ({
-  type: 'RECEIVE_LOGGED_IN_USER_PROFILE',
-  data
-})
+// export const RECEIVE_LOGGED_IN_USER_PROFILE = 'RECEIVE_LOGGED_IN_USER_PROFILE';
+// export const receiveLoggedInUserProfile = (data) => ({
+//   type: 'RECEIVE_LOGGED_IN_USER_PROFILE',
+//   data
+// })
 
 export const RECEIVE_LOGIN = 'RECEIVE_LOGIN';
 export const receiveLogin = (data) => ({

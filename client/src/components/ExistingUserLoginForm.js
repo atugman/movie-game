@@ -2,7 +2,7 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import ReactDOM from 'react-dom';
-import {Link} from 'react-router'
+import {Link} from 'react-router-dom'
 import './LoginPage.css'
 
 

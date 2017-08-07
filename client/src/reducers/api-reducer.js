@@ -68,7 +68,8 @@ const movieData = (state, action) => {
       movieTitle: '',
       overview: '',
       backdrop: '',
-      poster: ''
+      poster: '',
+      score: 0
     }
   }
   else if (action.type === 'RECEIVE_USERS') {
@@ -81,16 +82,18 @@ const movieData = (state, action) => {
     return {
       ...state,
       loggedInUser: action.data.user.username,
-      savedScore: action.data.user.currentScore
+      savedScore: action.data.user.currentScore,
+      message: action.data.message,
     }
   }
-  else if (action.type === 'RECEIVE_LOGGED_IN_USER_PROFILE') {
-    return {
-      ...state,
-      message: action.data.message,
-      loggedInUser: action.data.username,
-    }
-  } else if (action.type === 'SAVE_SCORE_ON_CLICK') {
+  // else if (action.type === 'RECEIVE_LOGGED_IN_USER_PROFILE') {
+  //   return {
+  //     ...state,
+  //     message: action.data.message,
+  //     loggedInUser: action.data.username,
+  //   }
+  // }
+  else if (action.type === 'SAVE_SCORE_ON_CLICK') {
     return {
       ...state,
       savedScore: action.score,
