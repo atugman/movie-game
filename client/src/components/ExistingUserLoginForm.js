@@ -16,20 +16,24 @@ let ExistingUserLoginForm = props => {
             <th>Existing Users</th>
           </tr>
           <tr>
-            <Field
-              className="field"
-              name="existingUsername"
-              component="input"
-              type="text"
-              placeholder="Username"/>
+            <td>
+              <Field
+                className="field"
+                name="existingUsername"
+                component="input"
+                type="text"
+                placeholder="Username"/>
+            </td>
           </tr>
           <tr>
-            <Field
-              className="field"
-              name="existingPassword"
-              component="input"
-              type="password"
-              placeholder="Password"/>
+            <td>
+              <Field
+                className="field"
+                name="existingPassword"
+                component="input"
+                type="password"
+                placeholder="Password"/>
+            </td>
           </tr>
         </tbody>
 

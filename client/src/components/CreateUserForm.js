@@ -7,50 +7,53 @@ let CreateUserForm = props => {
   const { handleSubmit, pristine, reset, submitting } = props
   return (
     <form onSubmit={ handleSubmit } >
-      <table className="create-user-table">
-        <tbody>
-          <tr>
-            <th>New Users</th>
-          </tr>
-          <tr>
+      <div className="create-user-table">
+        <h2>New Users</h2>
+        <tr>
+          <td>
             <Field
               className="field"
               name="firstName"
               component="input"
               type="text"
               placeholder="First Name"/>
-          </tr>
-          <tr>
+          </td>
+        </tr>
+        <tr>
+          <td>
             <Field
               className="field"
               name="lastName"
               component="input"
               type="text"
               placeholder="Last Name"/>
-          </tr>
-          <tr>
+          </td>
+        </tr>
+        <tr>
+          <td>
             <Field
               className="field"
               name="username"
               component="input"
               type="text"
               placeholder="Username"/>
-          </tr>
-          <tr>
+          </td>
+        </tr>
+        <tr>
+          <td>
             <Field
               className="field"
               name="password"
               component="input"
               type="password"
               placeholder="Password"/>
-          </tr>
-        </tbody>
-
+          </td>
+        </tr>
       <div className="login-page-buttons">
         <button type="submit" disabled={pristine || submitting}>Submit</button>
         <button type="button" disabled={pristine || submitting} onClick={reset}>Clear Values</button>
       </div>
-    </table>
+    </div>
     </form>
   )
 }
