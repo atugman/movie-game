@@ -19,12 +19,9 @@ const Main = ({ isLoggedIn, loggedOut }) => (
   </Router>
 )
 
-const mapStateToProps = (state) => {
-  console.log(state.movieData);
-  return {
-    isLoggedIn: state.movieData.isLoggedIn,
-    loggedOut: state.movieData.loggedOut
-  }
-}
+const mapStateToProps = (state) => ({
+  isLoggedIn: state.movieData.isLoggedIn,
+  loggedOut: state.movieData.loggedOut
+})
 
 export default connect(mapStateToProps)(Main)

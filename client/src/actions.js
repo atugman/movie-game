@@ -192,16 +192,18 @@ export const fetchUsers = () => {
 export const fetchLogin = (username, password) => {
   return (dispatch) => {
     dispatch(requestData)
-    console.log('hey');
 
     const settings = {
      url: 'http://localhost:8080/api/login',
      method: 'GET',
-     data: JSON.stringify({username: username, password: password}),
+     headers: {
+       'content-type': "application/json",
+       authorization: "Basic " + btoa(username + ':' + password)
+     },
      contentType: 'application/json',
      dataType: 'json',
      error: (res) => {
-         console.log('res ', res)
+         console.log('error ', res)
        }
     }
 
