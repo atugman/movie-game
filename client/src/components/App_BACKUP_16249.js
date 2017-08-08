@@ -142,12 +142,18 @@ console.log('state ', state);
     usedMovies: state.movieData.usedMovies,
     relevantLetter: state.movieData.relevantLetter,
     showInfoModal: state.reducer.showInfoModal,
+<<<<<<< HEAD
     users: state.movieData.users,
     loggedInUser: state.movieData.loggedInUser,
     savedScore: state.movieData.savedScore
     // movie: state.form.simple.values.movie
+});
+=======
+    users: state.movieData.users
+    // firstName: state.form.simple.values.firstName
 }
 };
+>>>>>>> master
 
 App = reduxForm({
   form: 'movieForm'
