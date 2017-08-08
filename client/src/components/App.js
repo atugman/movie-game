@@ -22,7 +22,6 @@ import LoggedInAs from './LoggedInAs'
 import ExistingUserLoginForm from './ExistingUserLoginForm'
 
 import { Field, reduxForm, change } from 'redux-form';
-import rootReducer from '../reducers/index'
 import { connect } from 'react-redux';
 import store from '../store'
 //import InfoModal from './InfoModal'
@@ -129,8 +128,6 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-console.log('state ', state);
-
   return {
     usedMovies: state.movieData.usedMovies,
     movieTitle: state.movieData.movieTitle,
@@ -145,7 +142,6 @@ console.log('state ', state);
     users: state.movieData.users,
     loggedInUser: state.movieData.loggedInUser,
     savedScore: state.movieData.savedScore
-    // movie: state.form.simple.values.movie
 }
 };
 

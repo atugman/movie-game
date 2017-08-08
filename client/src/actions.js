@@ -51,6 +51,11 @@ export const receiveLogin = (data) => ({
   data
 })
 
+export const RECEIVE_LOGOUT = 'RECEIVE_LOGOUT';
+export const receivelogout = () => ({
+  type: 'RECEIVE_LOGOUT'
+})
+
 export const LOGOUT = 'LOGOUT';
 export const logout = () => ({
   type: 'LOGOUT',
@@ -187,22 +192,24 @@ export const fetchUsers = () => {
 export const fetchLogin = (username, password) => {
   return (dispatch) => {
     dispatch(requestData)
-    console.log('hey');
 
     const settings = {
      url: 'http://localhost:8080/api/login',
      method: 'GET',
-     data: JSON.stringify({username: username, password: password}),
+     headers: {
+       'content-type': "application/json",
+       authorization: "Basic " + btoa(username + ':' + password)
+     },
      contentType: 'application/json',
      dataType: 'json',
      error: (res) => {
-         console.log('res ', res)
+         console.log('error ', res)
        }
     }
 
     $.ajax(settings)
        .done((response) => {
-           console.log('response ', response),
+         console.log('205', response);
            dispatch(receiveLogin(response))
        })
       }
@@ -223,8 +230,10 @@ export const fetchLogin = (username, password) => {
 
       $.ajax(settings)
          .done((response) => {
-             console.log('response ', response)
-            //  ,dispatch(newGame(response))
+           if(response.loggedOut) {
+             dispatch(newGame())
+             dispatch(receivelogout())
+           }
          })
         }
       }

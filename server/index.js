@@ -94,13 +94,9 @@ app.get('/api/users', (req, res) => {
   })
 })
 
-//login working
-app.get('/api/login',
-  passport.authenticate('basic'),
-  (req, res) => {
+app.get('/api/login', passport.authenticate('basic'), (req, res) => {
     res.json({user: req.user.apiRepr()})
-  }
-);
+});
 
 //logout
 //response working
