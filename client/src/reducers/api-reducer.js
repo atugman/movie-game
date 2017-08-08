@@ -8,7 +8,9 @@ const initialState = {
   score: 0,
   loggedInUser: '',
   message: '',
-  usedMovies: ' '
+  usedMovies: ' ',
+  isLoggedIn: false,
+  loggedOut: false
 }
 
 const movieData = (state, action) => {
@@ -69,7 +71,8 @@ const movieData = (state, action) => {
       overview: '',
       backdrop: '',
       poster: '',
-      score: 0
+      score: 0,
+      isLoggedIn: false
     }
   }
   else if (action.type === 'RECEIVE_USERS') {
@@ -84,6 +87,14 @@ const movieData = (state, action) => {
       loggedInUser: action.data.user.username,
       savedScore: action.data.user.currentScore,
       message: action.data.message,
+      isLoggedIn: true,
+      loggedOut: false
+    }
+  }
+  else if (action.type === 'RECEIVE_LOGOUT') {
+    return {
+      ...state,
+      loggedOut: true
     }
   }
   // else if (action.type === 'RECEIVE_LOGGED_IN_USER_PROFILE') {

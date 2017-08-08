@@ -51,6 +51,11 @@ export const receiveLogin = (data) => ({
   data
 })
 
+export const RECEIVE_LOGOUT = 'RECEIVE_LOGOUT';
+export const receivelogout = () => ({
+  type: 'RECEIVE_LOGOUT'
+})
+
 export const LOGOUT = 'LOGOUT';
 export const logout = () => ({
   type: 'LOGOUT',
@@ -202,7 +207,7 @@ export const fetchLogin = (username, password) => {
 
     $.ajax(settings)
        .done((response) => {
-           console.log('response ', response),
+         console.log('205', response);
            dispatch(receiveLogin(response))
        })
       }
@@ -223,8 +228,10 @@ export const fetchLogin = (username, password) => {
 
       $.ajax(settings)
          .done((response) => {
-             console.log('response ', response)
-            //  ,dispatch(newGame(response))
+           if(response.loggedOut) {
+             dispatch(newGame())
+             dispatch(receivelogout())
+           }
          })
         }
       }
