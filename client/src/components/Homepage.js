@@ -5,13 +5,13 @@ import './Homepage.css'
 const Homepage = () => (
   <div>
     <form>
-      <table className="existing-user-login-table">
+      <table className="homepage-table">
         <tbody>
           <tr>
             <th>The Movie Game</th>
           </tr>
           <tr>
-            <td className='saved-score-box'>
+            <td className='homepage-box'>
               <StartButton />
             </td>
           </tr>
