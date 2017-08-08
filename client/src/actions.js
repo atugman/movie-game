@@ -1,5 +1,7 @@
 import store from './store'
 import $ from 'jquery'
+const apiURL = 'http://obscure-peak-69363.herokuapp.com'
+//const apiURL = apiURL + ''
 
 export const NEW_GAME = 'NEW_GAME';
 export const newGame = () => ({
@@ -87,7 +89,7 @@ export const fetchNewGame = (score) => {
     dispatch(requestData)
 
       const settings = {//1
-       url: 'http://localhost:8080/api/eraseCurrentScore/',
+       url: apiURL + '/api/eraseCurrentScore/',
        method: 'PATCH',
        data: score,
        contentType: 'application/json',
@@ -100,7 +102,7 @@ export const fetchNewGame = (score) => {
       $.ajax(settings)
          .done((response) => {//2
                      const settings = {
-                      url: 'http://localhost:8080/api/checkScore/',
+                      url: apiURL + '/api/checkScore/',
                       method: 'GET',
                       data: score,
                       contentType: 'application/json',
@@ -116,7 +118,7 @@ export const fetchNewGame = (score) => {
                               if (currentHighScore < score) {
                                 console.log('SCORE ', response);
                               $.ajax({
-                              url: 'http://localhost:8080/api/users/' + score,
+                              url: apiURL + '/api/users/' + score,
                               type: "PATCH",
                               data: score,
                               success: function(response) {
@@ -159,7 +161,7 @@ export const fetchData2 = (inputVal) => {
 export const fetchUsers = () => {
   return (dispatch) => {
     dispatch(requestData)
-    fetch('http://localhost:8080/api/users')
+    fetch(apiURL + '/api/users')
       .then(response => response.json())
       .then(data => dispatch(receiveUsers(data.users)))
       .catch(err => {
@@ -173,7 +175,7 @@ export const fetchUsers = () => {
 //   return (dispatch) => {
 //     dispatch(requestData)
 //     console.log('hey');
-//     fetch('http://localhost:8080/api/userProfile')
+//     fetch(apiURL + '/api/userProfile')
 //       .then(response => response.json())
 //       .then(data => dispatch(receiveLoggedInUserProfile(data)))
 //       .catch(err => {
@@ -190,7 +192,7 @@ export const fetchLogin = (username, password) => {
     console.log('hey');
 
     const settings = {
-     url: 'http://localhost:8080/api/login',
+     url: apiURL + '/api/login',
      method: 'GET',
      data: JSON.stringify({username: username, password: password}),
      contentType: 'application/json',
@@ -213,7 +215,7 @@ export const fetchLogin = (username, password) => {
     return (dispatch) => {
       dispatch(requestData)
       const settings = {
-       url: 'http://localhost:8080/api/logout/',
+       url: apiURL + '/api/logout/',
        method: 'GET',
        contentType: 'application/json',
        error: (res) => {
@@ -236,7 +238,7 @@ export const fetchLogin = (username, password) => {
 //     dispatch(requestData)
 //
 //     const settings = {
-//      url: 'http://localhost:8080/api/users/' + score,
+//      url: apiURL + '/api/users/' + score,
 //      method: 'PATCH',
 //      data: score,
 //      contentType: 'application/json',
@@ -263,7 +265,7 @@ export const fetchSaveScoreOnClick = (score) => {
     dispatch(requestData)
 
     const settings = {
-     url: 'http://localhost:8080/api/currentScore/' + score,
+     url: apiURL + '/api/currentScore/' + score,
      method: 'PATCH',
      data: score,
      contentType: 'application/json',
@@ -289,7 +291,7 @@ export const fetchSaveScoreOnClick = (score) => {
 export const fetchEraseCurrentScore = (user) => {
   return (dispatch) => {
     dispatch(requestData)
-    fetch('http://localhost:8080/api/eraseCurrentScore')
+    fetch(apiURL + '/api/eraseCurrentScore')
       .then(response => response.json())
       .then(data => dispatch(eraseSavedScoreOnLoss(user)))
       .catch(err => {
@@ -305,7 +307,7 @@ export const fetchLoadScore = (score) => {
     dispatch(requestData)
 
     const settings = {
-     url: 'http://localhost:8080/api/loadScore',
+     url: apiURL + '/api/loadScore',
      method: 'GET',
      data: score,
      contentType: 'application/json',
@@ -332,7 +334,7 @@ export const fetchCreateUser = (firstName, lastName, username, password) => {
     console.log('hey');
 
     const settings = {
-     url: 'http://localhost:8080/api/users',
+     url: apiURL + '/api/users',
      method: 'POST',
      data: JSON.stringify({username: username, password: password}),
      contentType: 'application/json',
@@ -356,7 +358,7 @@ export const fetchCreateUser = (firstName, lastName, username, password) => {
 
 
 
-  //   fetch('http://localhost:8080/api/users', {
+  //   fetch(apiURL + '/api/users', {
   //     method: 'POST',
   //     data: {username, password},
   //     contentType: 'application/json',
