@@ -6,5 +6,10 @@
 .start-button-link {
   color: white;
   text-decoration: none;
-  font-size: 200%;
+  font-size: 28px;
+}
+
+.start-button-link:hover {
+    background-color: rgba(0,0,0,0.1);
+    font-size: 150%;
 }

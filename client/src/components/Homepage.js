@@ -11,6 +11,15 @@ const Homepage = () => (
             <th>The Movie Game</th>
           </tr>
           <tr>
+            <td className="homepage-td">The Movie Game reminds you of your favorite movies while testing your knowledge of specific Hollywood films.</td>
+          </tr>
+          <tr>
+            <td className="homepage-td">Those who are new to movies should use it as a fun way to learn!</td>
+          </tr>
+          <tr>
+            <td className="homepage-td last-td">So sit back, relax, and enjoy the game!</td>
+          </tr>
+          <tr>
             <td className='homepage-box'>
               <StartButton />
             </td>

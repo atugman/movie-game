@@ -1,9 +1,8 @@
 .homepage-table {
-  margin: 3px;
-  width: 35%;
+  width: 55%;
   font-size: 20px;
   margin: auto;
-  margin-top: 15%;
+  margin-top: 12%;
 }
 
 th {
@@ -15,6 +14,17 @@ th {
 	background: rgba(0,0,0,0.1);
 	border-radius: 3px 3px 0 0;
 	font-size: 24px;
+}
+
+.homepage-td {
+  margin: 0;
+	padding: 0.4em;
+	text-align: center;
+	font-weight: 300;
+	opacity: 0.8;
+	background: rgba(0,0,0,0.1);
+	border-radius: 3px 3px 0 0;
+
 }
 
 @media only screen and (max-width: 640px) {

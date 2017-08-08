@@ -7,7 +7,7 @@ class StartButton extends Component {
         return (
           <div className='start-button-box'>
             <Link to="login" className='start-button-link'>
-              <td>Start!</td>
+              <td>Click to Start!</td>
             </Link>
           </div>
         );
