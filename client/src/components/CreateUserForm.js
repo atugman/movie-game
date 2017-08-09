@@ -48,7 +48,6 @@ let CreateUserForm = props => {
 
       <div className="login-page-buttons">
         <button type="submit" disabled={pristine || submitting}>Submit</button>
-        <button type="button" disabled={pristine || submitting} onClick={reset}>Clear Values</button>
       </div>
     </table>
     </form>

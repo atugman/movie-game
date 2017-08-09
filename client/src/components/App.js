@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-//import '../node_modules/animate.css/animate.min.css'
 
 import {fetchNewGame,
   fetchLogin,
-receiveData,
-receiveData2,
-input,
-fetchData,
-fetchData2
+  receiveData,
+  receiveData2,
+  input,
+  fetchData,
+  fetchData2
 } from '../actions'
 
 import MovieForm from './MovieForm'
@@ -22,10 +21,9 @@ import LoggedInAs from './LoggedInAs'
 import ExistingUserLoginForm from './ExistingUserLoginForm'
 
 import { Field, reduxForm, change } from 'redux-form';
-import rootReducer from '../reducers/index'
+
 import { connect } from 'react-redux';
 import store from '../store'
-//import InfoModal from './InfoModal'
 import Header from './Header'
 import backdrop from './backdrop.jpg'
 
@@ -38,7 +36,6 @@ class App extends Component {
   submit = (values) => {
       event.preventDefault()
       let inputVal = values.movie
-      //document.getElementById("hi").className = "animated slideInRight"
       //prevents using the same movie twice
       let splitString = inputVal.toUpperCase('').split(' ');
       if (splitString.includes("THE")) {
@@ -80,30 +77,20 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <img className="Background" src={require('./Red-Curtains.jpg')}></img> */}
         <Header infoModal={this.props.showInfoModal}/>
-
-        {/* <div className="App-header animated slideInRight">
-          <img src={vhs} className="App-logo" alt="logo" />
-          <h2 className='animated bounce'>The Movie Game!</h2>*/}
-         {/* <div className="App-intro"> */}
            <div className="row" id="hello">
              <div className="col-3">
                <MovieForm onSubmit={this.submit} relevantLetter={this.props.relevantLetter}/>
                <LoggedInAs />
                <SavedScoreBox currentScore={this.props.score}/>
                <CurrentScore currentScore={this.props.score}/>
-               {/* <div>{this.props.loggedInUser}</div> */}
                <SaveButton score={this.props.score}/>
                <LoadButton />
-               <ExistingUserLoginForm onSubmit={this.handleSubmit} />
-
 
              </div>
              <div id="main-box" className="col-6">
 
                <div className='random'>
-                 {/* <img className="tv" src={require('../components/tv2.png')}></img> */}
                  <img className="Backdrop img-responsive" src={this.props.backdrop}/>
                </div>
 
@@ -117,19 +104,13 @@ class App extends Component {
              <div className="col-3">
                <ScoresTable />
              </div>
-             {/* <div id="hi" className="col-4">
-               <img className="Poster img-responsive" src={this.props.poster}/>
-            </div> */}
           </div>
-         {/* </div> */}
-
       </div>
     );
   }
 }
 
 const mapStateToProps = state => {
-console.log('state ', state);
 
   return {
     usedMovies: state.movieData.usedMovies,
@@ -145,7 +126,6 @@ console.log('state ', state);
     users: state.movieData.users,
     loggedInUser: state.movieData.loggedInUser,
     savedScore: state.movieData.savedScore
-    // movie: state.form.simple.values.movie
 }
 };
 

@@ -6,19 +6,6 @@ import {fetchLoggedInUserProfile} from '../actions';
 import './SavedScoreBox.css'
 
 export class LoggedInAs extends React.Component {
-  // componentDidMount() {
-  //   this.props.dispatch(fetchLoggedInUserProfile());
-  //   console.log('hi ', this.props);
-  // }
-
-  // determineMessage() {
-  //   if (typeof this.props.loggedInUser !== undefined) {
-  //     return this.props.loggedInUser
-  //   } else {
-  //     // <Message />
-  //     return this.props.message
-  //   }
-  // }
 
 render() {
   return (
@@ -27,7 +14,7 @@ render() {
         <tbody>
           <tr>
             <th>
-      Logged In As: 
+      Logged in as:<br></br>
         {this.props.loggedInUser}
       </th>
     </tr>

@@ -13,15 +13,9 @@ const mongoose = require('mongoose');
 
 const {User} = require('./models/users')
 
-//mongoose.connect('mongodb://atugman:unc123@ds157529.mlab.com:57529/arcade')
-//mongoose.connect('mongodb://localhost:27017/andrewtugman-arcade')
 mongoose.connect('mongodb://atugman:HeyWhatsUpHello@ds127983.mlab.com:27983/movie-game')
 mongoose.Promise = global.Promise;
 
-//const {PORT, DATABASE_URL} = require('./config');
-
-// app.use(bodyParser.urlencoded({ extended: true, }));
-// app.use(bodyParser.json());
 app.use(jsonParser);
 app.use(express.static('public'));
 
@@ -85,7 +79,7 @@ app.get('/api/existing',
   }
 );
 
-//get and display scores working
+//get and display scores
 app.get('/api/users', (req, res) => {
   User.find({}, null, {sort: '-score'}, function(err, users) {
     if(err)
@@ -94,16 +88,12 @@ app.get('/api/users', (req, res) => {
   })
 })
 
-//login working
-app.get('/api/login',
-  passport.authenticate('basic'),
-  (req, res) => {
-    res.json({user: req.user.apiRepr()})
-  }
-);
+//login
+app.get('/api/login', passport.authenticate('basic'), (req, res) => {
+  res.json({user: req.user.apiRepr()})
+});
 
 //logout
-//response working
 app.get('/api/logout', (req, res) => {
    req.session.destroy((err) => {
       if(err) {
@@ -113,10 +103,8 @@ app.get('/api/logout', (req, res) => {
     });
 });
 
-//update user profile with new score ON GAME OVER
-//working
+//update user profile with new score on game over
 app.patch('/api/users/:score',
-  //passport.authenticate('basic', {session: false}),
   (req, res) => {
     console.log(req.params.score);
     User.findByIdAndUpdate(req.user._id, {score: req.params.score, currentScore: 0}, {new: true},
@@ -128,9 +116,8 @@ app.patch('/api/users/:score',
   })
 });
 
-//update current score ON SAVE BUTTON
+//update current score on save button click
 app.patch('/api/currentScore/:score',
-  //passport.authenticate('basic', {session: false}),
   (req, res) => {
     User.findByIdAndUpdate(req.user._id, {currentScore: req.params.score}, {new: true},
   (err, updatedItem) => {
@@ -143,7 +130,6 @@ app.patch('/api/currentScore/:score',
 
 //ON GAME OVER, erase users current score first
 app.patch('/api/eraseCurrentScore',
-  //passport.authenticate('basic', {session: false}),
   (req, res) => {
     User.findByIdAndUpdate(req.user._id, {currentScore: 0}, {new: true},
   (err, updatedItem) => {
@@ -154,9 +140,8 @@ app.patch('/api/eraseCurrentScore',
   })
 });
 
-//load score button should populate game with current score
+//populate game with current score on load score button click
 app.get('/api/loadScore',
-  //passport.authenticate('basic', {session: false}),
   (req, res) => {
     User.findById(req.user._id,
       (err, item) => {
@@ -167,7 +152,7 @@ app.get('/api/loadScore',
         })
     })
 
-//create user working
+//create user
 app.post('/api/users', (req, res) => {
   console.log('hey yall ', req.body);
   if (!req.body) {
@@ -235,8 +220,7 @@ app.post('/api/users', (req, res) => {
     });
 });
 
-//should return user profile only when logged in
-//working
+//return user profile only when logged in
 app.get('/api/userProfile', isAuthenticated, (req, res) => {
   res.json({user: req.user.apiRepr()})
 })

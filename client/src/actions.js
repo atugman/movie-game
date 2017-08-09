@@ -1,7 +1,7 @@
 import store from './store'
 import $ from 'jquery'
-const apiURL = 'http://obscure-peak-69363.herokuapp.com'
-//const apiURL = apiURL + ''
+//const apiURL = 'http://obscure-peak-69363.herokuapp.com'
+const apiURL = 'http://localhost:8080'
 
 export const NEW_GAME = 'NEW_GAME';
 export const newGame = () => ({
@@ -51,6 +51,11 @@ export const RECEIVE_LOGIN = 'RECEIVE_LOGIN';
 export const receiveLogin = (data) => ({
   type: 'RECEIVE_LOGIN',
   data
+})
+
+export const RECEIVE_LOGOUT = 'RECEIVE_LOGOUT';
+export const receiveLogout = () => ({
+  type: 'RECEIVE_LOGOUT'
 })
 
 export const LOGOUT = 'LOGOUT';
@@ -122,12 +127,13 @@ export const fetchNewGame = (score) => {
                               type: "PATCH",
                               data: score,
                               success: function(response) {
-                                //dispatch(newGame());
+
                               }
                               })
                               }
                             })
-         })
+                            dispatch(newGame());
+                          })
       }
   }
 
@@ -171,95 +177,56 @@ export const fetchUsers = () => {
     }
   }
 
-// export const fetchLoggedInUserProfile = () => {
-//   return (dispatch) => {
-//     dispatch(requestData)
-//     console.log('hey');
-//     fetch(apiURL + '/api/userProfile')
-//       .then(response => response.json())
-//       .then(data => dispatch(receiveLoggedInUserProfile(data)))
-//       .catch(err => {
-//         alert('Error')
-//         dispatch(newGame());
-//       })
-//     }
-//   }
-
 //dispatch RECEIVE_LOGIN this from redux form
 export const fetchLogin = (username, password) => {
   return (dispatch) => {
     dispatch(requestData)
-    console.log('hey');
 
     const settings = {
      url: apiURL + '/api/login',
      method: 'GET',
-     data: JSON.stringify({username: username, password: password}),
+     headers: {
+       'content-type': "application/json",
+       authorization: "Basic " + btoa(username + ':' + password)
+     },
      contentType: 'application/json',
      dataType: 'json',
      error: (res) => {
-         console.log('res ', res)
+         console.log('error ', res)
        }
     }
 
     $.ajax(settings)
        .done((response) => {
-           console.log('response ', response),
+           console.log('205', response),
            dispatch(receiveLogin(response))
        })
       }
      }
 
 //logout action, update state with message from server
-  export const fetchLogout = () => {
-    return (dispatch) => {
-      dispatch(requestData)
-      const settings = {
-       url: apiURL + '/api/logout/',
-       method: 'GET',
-       contentType: 'application/json',
-       error: (res) => {
-           console.log('res ', res)
-         }
-      }
+export const fetchLogout = () => {
+return (dispatch) => {
+  dispatch(requestData)
+  const settings = {
+   url: 'http://localhost:8080/api/logout/',
+   method: 'GET',
+   contentType: 'application/json',
+   error: (res) => {
+       console.log('res ', res)
+     }
+  }
 
-      $.ajax(settings)
-         .done((response) => {
-             console.log('response ', response)
-            //  ,dispatch(newGame(response))
-         })
-        }
-      }
+  $.ajax(settings)
+     .done((response) => {
+       if(response.loggedOut) {
+         dispatch(newGame())
+         dispatch(receiveLogout())
+       }
+     })
+    }
+  }
 
-
-//no need to update state, the leaderboard will refresh
-// export const fetchUpdateScore = (score) => {
-//   return (dispatch) => {
-//     dispatch(requestData)
-//
-//     const settings = {
-//      url: apiURL + '/api/users/' + score,
-//      method: 'PATCH',
-//      data: score,
-//      contentType: 'application/json',
-//      dataType: 'json',
-//      error: (res) => {
-//          console.log('res ', res)
-//        }
-//     }
-//
-//     $.ajax(settings)
-//        .done((response) => {
-//            console.log('response ', response),
-//            dispatch(newGame(response))
-//        })
-//     }
-// }
-
-//shouldn't need to update state here
-//as the saved score box component will
-//make a request to the server on page load
-//delete saveScoreOnClick action
 export const fetchSaveScoreOnClick = (score) => {
   return (dispatch) => {
     dispatch(requestData)
@@ -283,11 +250,6 @@ export const fetchSaveScoreOnClick = (score) => {
       }
     }
 
-
-//shouldn't need to update state here
-//as the saved score box component will
-//make a request to the server on page load
-//delete eraseSavedScoreOnLoss action
 export const fetchEraseCurrentScore = (user) => {
   return (dispatch) => {
     dispatch(requestData)
@@ -301,7 +263,6 @@ export const fetchEraseCurrentScore = (user) => {
     }
 }
 
-//need to update state with the score
 export const fetchLoadScore = (score) => {
   return (dispatch) => {
     dispatch(requestData)
@@ -352,23 +313,3 @@ export const fetchCreateUser = (firstName, lastName, username, password) => {
        })
       }
      }
-
-
-
-
-
-
-  //   fetch(apiURL + '/api/users', {
-  //     method: 'POST',
-  //     data: {username, password},
-  //     contentType: 'application/json',
-  //     dataType: 'json'
-  //   })
-  //     .then(response => response.json())
-  //     .then(data => console.log(data))//dispatch(createUser(data)))
-  //     .catch(err => {
-  //       alert('Error')
-  //       dispatch(newGame());
-  //     })
-  //   }
-  // }

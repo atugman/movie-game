@@ -8,7 +8,9 @@ const initialState = {
   score: 0,
   loggedInUser: '',
   message: '',
-  usedMovies: ' '
+  usedMovies: ' ',
+  isLoggedIn: false,
+  loggedOut: false
 }
 
 const movieData = (state, action) => {
@@ -31,7 +33,6 @@ const movieData = (state, action) => {
     let firstLetterOfLastWord = lastWord[0];
     return {
       ...state,
-      // movies: //movies,
       movieTitle: action.data.results[0].title,
       overview: action.data.results[0].overview,
       backdrop: 'https://image.tmdb.org/t/p/w500' + action.data.results[0].backdrop_path,
@@ -48,7 +49,6 @@ const movieData = (state, action) => {
     let lastLetterOfWord = highRegString[highRegString.length -1];
     return {
       ...state,
-      // movies: //movies,
       movieTitle: action.data.results[0].title,
       overview: action.data.results[0].overview,
       backdrop: 'https://image.tmdb.org/t/p/w500' + action.data.results[0].backdrop_path,
@@ -69,31 +69,29 @@ const movieData = (state, action) => {
       overview: '',
       backdrop: '',
       poster: '',
-      score: 0
+      score: 0,
+      isLoggedIn: false
     }
-  }
-  else if (action.type === 'RECEIVE_USERS') {
+  } else if (action.type === 'RECEIVE_USERS') {
     return {
       ...state,
       users: action.data
     }
-  }
-  else if (action.type === 'RECEIVE_LOGIN') {
+  } else if (action.type === 'RECEIVE_LOGIN') {
     return {
       ...state,
       loggedInUser: action.data.user.username,
       savedScore: action.data.user.currentScore,
       message: action.data.message,
+      isLoggedIn: true,
+      loggedOut: false
     }
-  }
-  // else if (action.type === 'RECEIVE_LOGGED_IN_USER_PROFILE') {
-  //   return {
-  //     ...state,
-  //     message: action.data.message,
-  //     loggedInUser: action.data.username,
-  //   }
-  // }
-  else if (action.type === 'SAVE_SCORE_ON_CLICK') {
+  } else if (action.type === 'RECEIVE_LOGOUT') {
+    return {
+      ...state,
+      loggedOut: true
+    }
+  } else if (action.type === 'SAVE_SCORE_ON_CLICK') {
     return {
       ...state,
       savedScore: action.score,
@@ -108,6 +106,5 @@ const movieData = (state, action) => {
     return state
   }
 }
-
 
 export default movieData
