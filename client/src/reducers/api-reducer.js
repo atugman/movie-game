@@ -10,7 +10,8 @@ const initialState = {
   message: '',
   usedMovies: ' ',
   isLoggedIn: false,
-  loggedOut: false
+  loggedOut: false,
+  overview: 'Guess a movie!'
 }
 
 const movieData = (state, action) => {

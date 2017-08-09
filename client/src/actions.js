@@ -1,7 +1,7 @@
 import store from './store'
 import $ from 'jquery'
-//const apiURL = 'http://obscure-peak-69363.herokuapp.com'
-const apiURL = 'http://localhost:8080'
+const apiURL = 'http://obscure-peak-69363.herokuapp.com'
+//const apiURL = 'http://localhost:8080'
 
 export const NEW_GAME = 'NEW_GAME';
 export const newGame = () => ({
@@ -41,12 +41,6 @@ export const receiveUsers = (data) => ({
   data
 })
 
-// export const RECEIVE_LOGGED_IN_USER_PROFILE = 'RECEIVE_LOGGED_IN_USER_PROFILE';
-// export const receiveLoggedInUserProfile = (data) => ({
-//   type: 'RECEIVE_LOGGED_IN_USER_PROFILE',
-//   data
-// })
-
 export const RECEIVE_LOGIN = 'RECEIVE_LOGIN';
 export const receiveLogin = (data) => ({
   type: 'RECEIVE_LOGIN',
@@ -83,7 +77,6 @@ export const loadSavedScore = (score) => ({
   type: 'LOAD_SAVED_SCORE',
 })
 
-//this may need more params
 export const CREATE_USER = 'CREATE_USER';
 export const createUser = (user) => ({
   type: 'CREATE_USER',
@@ -93,7 +86,7 @@ export const fetchNewGame = (score) => {
   return (dispatch) => {
     dispatch(requestData)
 
-      const settings = {//1
+      const settings = {
        url: apiURL + '/api/eraseCurrentScore/',
        method: 'PATCH',
        data: score,
@@ -105,7 +98,7 @@ export const fetchNewGame = (score) => {
       }
 
       $.ajax(settings)
-         .done((response) => {//2
+         .done((response) => {
                      const settings = {
                       url: apiURL + '/api/checkScore/',
                       method: 'GET',
@@ -280,7 +273,6 @@ export const fetchLoadScore = (score) => {
 
     $.ajax(settings)
        .done((response) => {
-           console.log('response ', response),
            dispatch(loadSavedScore(score))
            event.preventDefault()
        })
@@ -289,10 +281,8 @@ export const fetchLoadScore = (score) => {
 
 
 export const fetchCreateUser = (firstName, lastName, username, password) => {
-    console.log(firstName, lastName, username);
   return (dispatch) => {
     dispatch(requestData)
-    console.log('hey');
 
     const settings = {
      url: apiURL + '/api/users',
@@ -307,9 +297,17 @@ export const fetchCreateUser = (firstName, lastName, username, password) => {
 
     $.ajax(settings)
        .done((response) => {
-           console.log('response ', response);
            dispatch(createUser(response))
-
+           if (!(response.hasOwnProperty("message"))) {
+            alert("User created! Please log in.")
+            event.target.username.value = '';
+            event.target.password.value = '';
+            event.target.firstName.value = '';
+            event.target.lastName.value = '';
+          } else {
+            var html = response.message
+            alert("Oops..." + html);
+          }
        })
       }
      }

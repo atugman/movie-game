@@ -35,10 +35,7 @@ let ExistingUserLoginForm = props => {
 
 
       <div className="login-page-buttons">
-      {/* <Link to="game"> */}
         <button type="submit" disabled={pristine || submitting}>Submit</button>
-      {/* </Link> */}
-        <button type="button" disabled={pristine || submitting} onClick={reset}>Clear Values</button>
       </div>
     </table>
     </form>
