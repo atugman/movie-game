@@ -70,7 +70,6 @@ class App extends Component {
 
 
   handleSubmit = (values) => {
-    console.log(values)
     this.props.dispatch(fetchLogin(values.existingUsername, values.existingPassword))
   }
 
