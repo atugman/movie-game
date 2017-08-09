@@ -73,12 +73,6 @@ function isAuthenticated (req, res, next) {
 }
 
 // API endpoints
-app.get('/api/existing',
-  (req, res) => {console.log(req.user)
-    res.json({user: req.user})
-  }
-);
-
 //get and display scores
 app.get('/api/users', (req, res) => {
   User.find({}, null, {sort: '-score'}, function(err, users) {

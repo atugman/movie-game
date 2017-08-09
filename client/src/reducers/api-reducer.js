@@ -85,7 +85,8 @@ const movieData = (state, action) => {
       savedScore: action.data.user.currentScore,
       message: action.data.message,
       isLoggedIn: true,
-      loggedOut: false
+      loggedOut: false,
+      overview: 'Guess a movie!'
     }
   } else if (action.type === 'RECEIVE_LOGOUT') {
     return {

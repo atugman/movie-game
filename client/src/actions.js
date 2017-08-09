@@ -1,7 +1,7 @@
 import store from './store'
 import $ from 'jquery'
-const apiURL = 'http://obscure-peak-69363.herokuapp.com'
-//const apiURL = 'http://localhost:8080'
+//const apiURL = 'http://obscure-peak-69363.herokuapp.com'
+const apiURL = 'http://localhost:8080'
 
 export const NEW_GAME = 'NEW_GAME';
 export const newGame = () => ({
