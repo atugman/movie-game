@@ -74,7 +74,9 @@ const movieData = (state, action) => {
       poster: '',
       score: 0,
       isLoggedIn: false,
-      users: action.users.users
+      users: action.users.users,
+      savedScore: 0,
+      currentScore: 0
     }
   } else if (action.type === 'RECEIVE_USERS') {
     return {

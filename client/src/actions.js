@@ -64,8 +64,9 @@ export const updateScore = (user) => ({
 })
 
 export const SAVE_SCORE_ON_CLICK = 'SAVE_SCORE_ON_CLICK';
-export const saveScoreOnClick = (user) => ({
+export const saveScoreOnClick = (score) => ({
   type: 'SAVE_SCORE_ON_CLICK',
+  score
 })
 
 export const ERASE_SAVED_SCORE_ON_LOSS = 'ERASE_SAVED_SCORE_ON_LOSS';
@@ -150,9 +151,9 @@ export const fetchNewGame = (score) => {
 
 
                             })
-                            }
-                            // dispatch(newGame())
-                            // dispatch(fetchUsers())
+                          } else {
+                            dispatch(newGame(response))
+                          }
                           })
       })
   }
@@ -252,9 +253,17 @@ return (dispatch) => {
     }
   }
 
-export const fetchSaveScoreOnClick = (score) => {
+export const fetchSaveScoreOnClick = (score, username) => {
+  console.log(username);
+  console.log(score);
   return (dispatch) => {
     dispatch(requestData)
+
+    let data = {
+      score: score,
+      username: username
+    }
+    console.log(data);
 
     const settings = {
      url: apiURL + '/api/currentScore/' + score,
@@ -269,10 +278,10 @@ export const fetchSaveScoreOnClick = (score) => {
 
     $.ajax(settings)
        .done((response) => {
-           console.log('response ', response),
-           dispatch(saveScoreOnClick(score))
-           dispatch(fetchNewGame());
-           dispatch(fetchUsers())
+         console.log(response);
+           dispatch(saveScoreOnClick(response.currentScore))
+
+//////
        })
       }
     }

@@ -127,7 +127,6 @@ const mapStateToProps = state => {
     showInfoModal: state.reducer.showInfoModal,
     users: state.movieData.users,
     loggedInUser: state.movieData.loggedInUser,
-    savedScore: state.movieData.savedScore
 }
 };
 

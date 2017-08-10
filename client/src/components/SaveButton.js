@@ -5,7 +5,7 @@ import {fetchSaveScoreOnClick} from '../actions'
 class SaveButton extends Component {
   onClick = () => {
     console.log(this.props);
-    this.props.dispatch(fetchSaveScoreOnClick(this.props.score))
+    this.props.dispatch(fetchSaveScoreOnClick(this.props.score, this.props.loggedInUser))
   }
 
     render() {
@@ -15,4 +15,9 @@ class SaveButton extends Component {
     }
 }
 
-export default connect()(SaveButton)
+const mapStateToProps = state => ({
+  savedScore: state.movieData.savedScore,
+  loggedInUser: state.movieData.loggedInUser
+})
+
+export default connect(mapStateToProps)(SaveButton)
