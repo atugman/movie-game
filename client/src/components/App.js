@@ -3,11 +3,12 @@ import './App.css';
 
 import {fetchNewGame,
   fetchLogin,
-  receiveData,
-  receiveData2,
+  receiveMultiWordMovieData,
+  receiveSingleWordMovieData,
   input,
-  fetchData,
-  fetchData2
+  fetchMultiWordMovieData,
+  fetchSingleWordMovieData,
+  fetchUserProfile
 } from '../actions'
 
 import MovieForm from './MovieForm'
@@ -33,13 +34,16 @@ class App extends Component {
   this.props.dispatch(change('simple', 'movie', nextProps.relevantLetter));
 }
 
+  componentDidMount() {
+    this.props.dispatch(fetchUserProfile())
+  }
+
   submit = (values) => {
       event.preventDefault()
       let inputVal = values.movie
       //prevents using the same movie twice
       let splitString = inputVal.toUpperCase('').split(' ');
       if (splitString.includes("THE")) {
-        console.log('inputVAl ', inputVal);
         for (var i = 0; i < splitString.length; i++) {
           if (splitString[0] = "THE") {
             alert('Nice try...you know what you did... :)'),
@@ -48,7 +52,6 @@ class App extends Component {
         }
       }
       else if (this.props.usedMovies.includes(inputVal)) {
-          console.log('usedMovies ', this.props.usedMovies);
           alert('Hey! You already used that one! Game over pal!'),
           this.props.dispatch(fetchNewGame(this.props.score));
       }
@@ -61,10 +64,10 @@ class App extends Component {
         //if movie title is multiple words, the next movie must
         //use the first letter of the last word of original movie
         else if (inputVal.includes(' ')) {
-          this.props.dispatch(fetchData(inputVal));
+          this.props.dispatch(fetchMultiWordMovieData(inputVal, this.props.score));
         } else {
           //if movie is one word, use last letter for next turn
-          this.props.dispatch(fetchData2(inputVal));
+          this.props.dispatch(fetchSingleWordMovieData(inputVal, this.props.score));
         }
       }
 

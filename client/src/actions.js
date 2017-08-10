@@ -23,15 +23,15 @@ export const requestData = () => ({
   type: 'REQUEST_DATA',
 })
 
-export const RECEIVE_DATA = 'RECEIVE_DATA';
-export const receiveData = (data) => ({
-  type: 'RECEIVE_DATA',
+export const RECEIVE_MULTI_WORD_MOVIE_DATA = 'RECEIVE_MULTI_WORD_MOVIE_DATA';
+export const receiveMultiWordMovieData = (data) => ({
+  type: 'RECEIVE_MULTI_WORD_MOVIE_DATA',
   data
 })
 
-export const RECEIVE_DATA2 = 'RECEIVE_DATA2';
-export const receiveData2 = (data) => ({
-  type: 'RECEIVE_DATA2',
+export const RECEIVE_SINGLE_WORD_MOVIE_DATA = 'RECEIVE_SINGLE_WORD_MOVIE_DATA';
+export const receiveSingleWordMovieData = (data) => ({
+  type: 'RECEIVE_SINGLE_WORD_MOVIE_DATA',
   data
 })
 
@@ -82,7 +82,14 @@ export const createUser = (user) => ({
   type: 'CREATE_USER',
 })
 
+export const RECEIVE_AUTHENTICATED_USER = 'RECEIVE_AUTHENTICATED_USER';
+export const receiveAuthenticatedUser = (user) => ({
+  type: 'RECEIVE_AUTHENTICATED_USER',
+  user
+})
+
 export const fetchNewGame = (score) => {
+  console.log('fetch new game is dispatched');
   return (dispatch) => {
     dispatch(requestData)
 
@@ -113,8 +120,8 @@ export const fetchNewGame = (score) => {
                      $.ajax(settings)
                             .done((response) => {
                               var currentHighScore = response.user.score;
+                              console.log('score ', score);
                               if (currentHighScore < score) {
-                                console.log('SCORE ', response);
                               $.ajax({
                               url: apiURL + '/api/users/' + score,
                               type: "PATCH",
@@ -125,34 +132,39 @@ export const fetchNewGame = (score) => {
                               })
                               }
                             })
-                            dispatch(newGame());
                           })
+                          dispatch(newGame());
+                          dispatch(fetchUsers());
       }
   }
 
-export const fetchData = (inputVal) => {
+export const fetchMultiWordMovieData = (inputVal, score) => {
+  console.log(score);
   return (dispatch) => {
     dispatch(requestData)
     fetch('https://api.themoviedb.org/3/search/movie?query=' + inputVal + '&api_key=2301535fa250c0bcc1f89c74b2a2a9b4')
       .then(response => response.json())
-      .then(movies => dispatch(receiveData(movies)))
+      .then(movies => dispatch(receiveMultiWordMovieData(movies)))
       .catch(err => {
         alert('You lose!')
-        dispatch(newGame());
+        dispatch(fetchNewGame(score));
+        dispatch(fetchUsers())
       })
     }
   }
 
 
-export const fetchData2 = (inputVal) => {
+export const fetchSingleWordMovieData = (inputVal, score) => {
+  console.log(score);
   return (dispatch) => {
     dispatch(requestData)
     fetch('https://api.themoviedb.org/3/search/movie?query=' + inputVal + '&api_key=2301535fa250c0bcc1f89c74b2a2a9b4')
       .then(response => response.json())
-      .then(movies => dispatch(receiveData2(movies)))
+      .then(movies => dispatch(receiveSingleWordMovieData(movies)))
       .catch(err => {
         alert('You lose!')
-        dispatch(newGame());
+        dispatch(fetchNewGame(score));
+        dispatch(fetchUsers())
       })
     }
   }
@@ -239,6 +251,8 @@ export const fetchSaveScoreOnClick = (score) => {
        .done((response) => {
            console.log('response ', response),
            dispatch(saveScoreOnClick(score))
+           dispatch(fetchNewGame());
+           dispatch(fetchUsers())
        })
       }
     }
@@ -311,3 +325,26 @@ export const fetchCreateUser = (firstName, lastName, username, password) => {
        })
       }
      }
+
+
+
+     export const fetchUserProfile = () => {
+       return (dispatch) => {
+         dispatch(requestData)
+
+         const settings = {
+          url: apiURL + '/api/userProfile',
+          method: 'GET',
+          contentType: 'application/json',
+          dataType: 'json',
+          error: (res) => {
+              alert('Please log in.')
+            }
+         }
+
+         $.ajax(settings)
+            .done((response) => {
+              dispatch(receiveAuthenticatedUser(response.user))
+            })
+           }
+         }

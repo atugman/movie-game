@@ -11,7 +11,8 @@ const initialState = {
   usedMovies: ' ',
   isLoggedIn: false,
   loggedOut: false,
-  overview: 'Guess a movie!'
+  overview: 'Guess a movie!',
+  api: 0
 }
 
 const movieData = (state, action) => {
@@ -20,9 +21,10 @@ const movieData = (state, action) => {
     return {
       ...state,
       loading: true,
-      input: action.movies.results[0].title
+      input: action.movies.results[0].title,
+      api: state.api+1
     }
-  } else if (action.type === 'RECEIVE_DATA') {
+  } else if (action.type === 'RECEIVE_MULTI_WORD_MOVIE_DATA') {
     let input = action.data.results[0].title
     let removeDigits = /[0-9]/g
     let highRegString = input.toUpperCase().replace(removeDigits, '');
@@ -41,9 +43,10 @@ const movieData = (state, action) => {
       userInput: firstLetterOfLastWord,
       score: state.score+1,
       usedMovies: state.usedMovies + ' ' + input,
-      relevantLetter: firstLetterOfLastWord
+      relevantLetter: firstLetterOfLastWord,
+      api: state.api+1
     }
-  } else if (action.type === 'RECEIVE_DATA2') {
+  } else if (action.type === 'RECEIVE_SINGLE_WORD_MOVIE_DATA') {
     let input = action.data.results[0].title
     let removeDigits = /[0-9]/g
     let highRegString = input.toUpperCase().replace(removeDigits, '');
@@ -57,7 +60,8 @@ const movieData = (state, action) => {
       userInput: lastLetterOfWord,
       score: state.score+1,
       usedMovies: state.usedMovies + ' ' + input,
-      relevantLetter: lastLetterOfWord
+      relevantLetter: lastLetterOfWord,
+      api: state.api+1
     }
   } else if (action.type === 'NEW_GAME') {
     return {
@@ -71,12 +75,14 @@ const movieData = (state, action) => {
       backdrop: '',
       poster: '',
       score: 0,
-      isLoggedIn: false
+      isLoggedIn: false,
+      api: state.api+1
     }
   } else if (action.type === 'RECEIVE_USERS') {
     return {
       ...state,
-      users: action.data
+      users: action.data,
+      api: state.api+1
     }
   } else if (action.type === 'RECEIVE_LOGIN') {
     return {
@@ -86,22 +92,32 @@ const movieData = (state, action) => {
       message: action.data.message,
       isLoggedIn: true,
       loggedOut: false,
-      overview: 'Guess a movie!'
+      overview: 'Guess a movie!',
+      api: state.api+1
     }
   } else if (action.type === 'RECEIVE_LOGOUT') {
     return {
       ...state,
-      loggedOut: true
+      loggedOut: true,
+      api: state.api+1
     }
   } else if (action.type === 'SAVE_SCORE_ON_CLICK') {
     return {
       ...state,
       savedScore: action.score,
+      api: state.api+1
     }
   } else if (action.type === 'LOAD_SAVED_SCORE') {
     return {
       ...state,
-      score: state.savedScore
+      score: state.savedScore,
+      api: state.api+1
+    }
+  } else if (action.type === 'RECEIVE_AUTHENTICATED_USER') {
+    return {
+      ...state,
+      loggedInUser: action.user.username,
+      api: state.api+1
     }
   }
   else {
