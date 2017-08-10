@@ -76,7 +76,8 @@ const movieData = (state, action) => {
       poster: '',
       score: 0,
       isLoggedIn: false,
-      api: state.api+1
+      api: state.api+1,
+      users: state.users
     }
   } else if (action.type === 'RECEIVE_USERS') {
     return {
