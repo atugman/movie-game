@@ -8,7 +8,6 @@ import './ScoresTable.css';
 export class ScoresTable extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchUsers());
-    console.log('hi ', this.props.users);
   }
 
 
@@ -47,5 +46,4 @@ const mapStateToProps = state => ({
   users: state.movieData.users
 });
 
-// export default connect(mapStateToProps)(ScoresTable);
 export default connect(mapStateToProps)(ScoresTable)

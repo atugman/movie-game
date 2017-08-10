@@ -43,8 +43,7 @@ const movieData = (state, action) => {
       userInput: firstLetterOfLastWord,
       score: state.score+1,
       usedMovies: state.usedMovies + ' ' + input,
-      relevantLetter: firstLetterOfLastWord,
-      api: state.api+1
+      relevantLetter: firstLetterOfLastWord
     }
   } else if (action.type === 'RECEIVE_SINGLE_WORD_MOVIE_DATA') {
     let input = action.data.results[0].title
@@ -60,8 +59,7 @@ const movieData = (state, action) => {
       userInput: lastLetterOfWord,
       score: state.score+1,
       usedMovies: state.usedMovies + ' ' + input,
-      relevantLetter: lastLetterOfWord,
-      api: state.api+1
+      relevantLetter: lastLetterOfWord
     }
   } else if (action.type === 'NEW_GAME') {
     return {
@@ -76,14 +74,12 @@ const movieData = (state, action) => {
       poster: '',
       score: 0,
       isLoggedIn: false,
-      api: state.api+1,
-      users: state.users
+      users: action.users.users
     }
   } else if (action.type === 'RECEIVE_USERS') {
     return {
       ...state,
-      users: action.data,
-      api: state.api+1
+      users: action.data
     }
   } else if (action.type === 'RECEIVE_LOGIN') {
     return {
@@ -93,32 +89,27 @@ const movieData = (state, action) => {
       message: action.data.message,
       isLoggedIn: true,
       loggedOut: false,
-      overview: 'Guess a movie!',
-      api: state.api+1
+      overview: 'Guess a movie!'
     }
   } else if (action.type === 'RECEIVE_LOGOUT') {
     return {
       ...state,
-      loggedOut: true,
-      api: state.api+1
+      loggedOut: true
     }
   } else if (action.type === 'SAVE_SCORE_ON_CLICK') {
     return {
       ...state,
-      savedScore: action.score,
-      api: state.api+1
+      savedScore: action.score
     }
   } else if (action.type === 'LOAD_SAVED_SCORE') {
     return {
       ...state,
-      score: state.savedScore,
-      api: state.api+1
+      score: state.savedScore
     }
   } else if (action.type === 'RECEIVE_AUTHENTICATED_USER') {
     return {
       ...state,
-      loggedInUser: action.user.username,
-      api: state.api+1
+      loggedInUser: action.user.username
     }
   }
   else {

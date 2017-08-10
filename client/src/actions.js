@@ -4,8 +4,9 @@ import $ from 'jquery'
 const apiURL = 'http://localhost:8080'
 
 export const NEW_GAME = 'NEW_GAME';
-export const newGame = () => ({
+export const newGame = (users) => ({
   type: NEW_GAME,
+  users
 });
 
 export const TOGGLE_INFO_MODAL = 'TOGGLE_INFO_MODAL';
@@ -128,15 +129,34 @@ export const fetchNewGame = (score) => {
                               data: score,
                               success: function(response) {
 
-                              }
-                              })
-                              }
+                                        const settings = {
+                                         url: apiURL + '/api/users/',
+                                         method: 'GET',
+                                         contentType: 'application/json',
+                                         dataType: 'json',
+                                         error: (res) => {
+                                             console.log('res ', res)
+                                           }
+                                        }
+
+                                        $.ajax(settings)
+                                               .done((response) => {
+                                                 dispatch(newGame(response))
+                                               })
+                                             }
+
+
+
+
+
                             })
+                            }
+                            // dispatch(newGame())
+                            // dispatch(fetchUsers())
                           })
-                          dispatch(newGame());
-                          dispatch(fetchUsers());
-      }
+      })
   }
+}
 
 export const fetchMultiWordMovieData = (inputVal, score) => {
   console.log(score);
