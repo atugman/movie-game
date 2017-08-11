@@ -62,19 +62,20 @@ const movieData = (state, action) => {
       relevantLetter: lastLetterOfWord
     }
   } else if (action.type === 'NEW_GAME') {
+    console.log('action ', action);
     return {
       ...state,
+      users: action.users.users,
       movies: [],
       score: 0,
       usedMovies: '',
       relevantLetter: 'A',
       movieTitle: '',
-      overview: '',
+      overview: 'Guess a movie!',
       backdrop: '',
       poster: '',
       score: 0,
       isLoggedIn: false,
-      users: action.users.users,
       savedScore: 0,
       currentScore: 0
     }
@@ -96,7 +97,20 @@ const movieData = (state, action) => {
   } else if (action.type === 'RECEIVE_LOGOUT') {
     return {
       ...state,
-      loggedOut: true
+      loggedOut: true,
+      data: [],
+      relevantLetter: 'A',
+      username: '',
+      userScore: '',
+      users: [],
+      score: 0,
+      loggedInUser: '',
+      message: '',
+      usedMovies: ' ',
+      isLoggedIn: false,
+      loggedOut: false,
+      overview: 'Guess a movie!',
+      api: 0
     }
   } else if (action.type === 'SAVE_SCORE_ON_CLICK') {
     return {

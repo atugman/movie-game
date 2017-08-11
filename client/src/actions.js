@@ -160,7 +160,6 @@ export const fetchNewGame = (score) => {
 }
 
 export const fetchMultiWordMovieData = (inputVal, score) => {
-  console.log(score);
   return (dispatch) => {
     dispatch(requestData)
     fetch('https://api.themoviedb.org/3/search/movie?query=' + inputVal + '&api_key=2301535fa250c0bcc1f89c74b2a2a9b4')
@@ -203,7 +202,6 @@ export const fetchUsers = () => {
     }
   }
 
-//dispatch RECEIVE_LOGIN this from redux form
 export const fetchLogin = (username, password) => {
   return (dispatch) => {
     dispatch(requestData)
@@ -230,7 +228,6 @@ export const fetchLogin = (username, password) => {
       }
      }
 
-//logout action, update state with message from server
 export const fetchLogout = () => {
 return (dispatch) => {
   dispatch(requestData)
@@ -245,8 +242,8 @@ return (dispatch) => {
 
   $.ajax(settings)
      .done((response) => {
+       console.log('logout ', response);
        if(response.loggedOut) {
-         dispatch(newGame())
          dispatch(receiveLogout())
        }
      })
@@ -254,8 +251,6 @@ return (dispatch) => {
   }
 
 export const fetchSaveScoreOnClick = (score, username) => {
-  console.log(username);
-  console.log(score);
   return (dispatch) => {
     dispatch(requestData)
 
@@ -263,7 +258,6 @@ export const fetchSaveScoreOnClick = (score, username) => {
       score: score,
       username: username
     }
-    console.log(data);
 
     const settings = {
      url: apiURL + '/api/currentScore/' + score,
@@ -280,8 +274,6 @@ export const fetchSaveScoreOnClick = (score, username) => {
        .done((response) => {
          console.log(response);
            dispatch(saveScoreOnClick(response.currentScore))
-
-//////
        })
       }
     }

@@ -1,10 +1,12 @@
 import React from 'react'
 import { Field, reduxForm, change } from 'redux-form'
 import {connect} from 'react-redux'
+
 import {newGame,
-fetchData,
-fetchData2
+  fetchData,
+  fetchData2
 } from '../actions'
+
 import './MovieForm.css'
 import SavedScoreBox from './SavedScoreBox'
 import SaveButton from './SaveButton'
@@ -16,19 +18,10 @@ class MovieForm extends React.Component {
 
   componentDidMount() {
       this.props.initialize({ movie:  this.props.relevantLetter});
-      // set the value individually
     }
-
-  // componentWillReceiveProps() {
-  //   // this.props.initialize({ movie:  this.props.relevantLetter});
-  //   this.props.dispatch(change('MovieForm', 'movie', this.props.relevantLetter));
-  // }
-
 
   render() {
     const { handleSubmit, pristine, reset, submitting } = this.props
-
-    // this.props.fields.movie.onChange('B')
 
   return (
     <form onSubmit={ handleSubmit } >
@@ -51,7 +44,6 @@ class MovieForm extends React.Component {
 
       <div>
         <button type="submit" disabled={pristine || submitting}>Submit</button>
-        <button type="button" disabled={pristine || submitting} onClick={reset}>Clear Values</button>
       </div>
 
     </table>

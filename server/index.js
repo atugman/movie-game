@@ -75,6 +75,7 @@ function isAuthenticated (req, res, next) {
 // API endpoints
 //get and display scores
 app.get('/api/users', (req, res) => {
+  console.log('req.user ', req.user)
   User.find({}, null, {sort: '-score'}, function(err, users) {
     if(err)
       return res.send(err)
