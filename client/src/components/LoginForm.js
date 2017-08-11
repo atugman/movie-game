@@ -6,6 +6,7 @@ let LoginForm = props => {
   const { handleSubmit, pristine, reset, submitting } = this.props
   return (
     <form onSubmit={ handleSubmit } >
+
       <div>
         <label>First Name</label>
         <div>
@@ -39,12 +40,12 @@ let LoginForm = props => {
           <button type="submit" disabled={pristine || submitting}>Submit</button>
         </Link>
       </div>
+
     </form>
   )
 }
 
 LoginForm = reduxForm({
-  // a unique name for the form
   form: 'contact'
 })(LoginForm)
 

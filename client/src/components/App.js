@@ -26,7 +26,6 @@ import { Field, reduxForm, change } from 'redux-form';
 import { connect } from 'react-redux';
 import store from '../store'
 import Header from './Header'
-import backdrop from './backdrop.jpg'
 
 class App extends Component {
 
@@ -41,7 +40,6 @@ class App extends Component {
   submit = (values) => {
       event.preventDefault()
       let inputVal = values.movie
-      //prevents using the same movie twice
       let splitString = inputVal.toUpperCase('').split(' ');
       if (splitString.includes("THE")) {
         for (var i = 0; i < splitString.length; i++) {
@@ -50,26 +48,19 @@ class App extends Component {
             this.props.dispatch(fetchNewGame(this.props.score))
           }
         }
-      }
-      else if (this.props.usedMovies.includes(inputVal)) {
+      } else if (this.props.usedMovies.includes(inputVal)) {
           alert('Hey! You already used that one! Game over pal!'),
           this.props.dispatch(fetchNewGame(this.props.score));
-      }
-
-      else if (inputVal[0].toUpperCase() !== this.props.relevantLetter) {
+      } else if (inputVal[0].toUpperCase() !== this.props.relevantLetter) {
         alert("Hey! That word didn't start with " + this.props.relevantLetter
         + "! Better luck next time bucko!"),
         this.props.dispatch(fetchNewGame(this.props.score));
+      } else if (inputVal.includes(' ')) {
+        this.props.dispatch(fetchMultiWordMovieData(inputVal, this.props.score));
+      } else {
+        this.props.dispatch(fetchSingleWordMovieData(inputVal, this.props.score));
       }
-        //if movie title is multiple words, the next movie must
-        //use the first letter of the last word of original movie
-        else if (inputVal.includes(' ')) {
-          this.props.dispatch(fetchMultiWordMovieData(inputVal, this.props.score));
-        } else {
-          //if movie is one word, use last letter for next turn
-          this.props.dispatch(fetchSingleWordMovieData(inputVal, this.props.score));
-        }
-      }
+    }
 
 
   handleSubmit = (values) => {

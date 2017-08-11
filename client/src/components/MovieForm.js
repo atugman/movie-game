@@ -17,12 +17,11 @@ class MovieForm extends React.Component {
 
 
   componentDidMount() {
-      this.props.initialize({ movie:  this.props.relevantLetter});
-    }
+    this.props.initialize({ movie:  this.props.relevantLetter});
+  }
 
   render() {
     const { handleSubmit, pristine, reset, submitting } = this.props
-
   return (
     <form onSubmit={ handleSubmit } >
       <table>
@@ -38,15 +37,13 @@ class MovieForm extends React.Component {
             type="text"
             placeholder="Enter Movie Title Here"/>
           </tr>
-
         </tbody>
 
+        <div>
+          <button type="submit" disabled={pristine || submitting}>Submit</button>
+        </div>
 
-      <div>
-        <button type="submit" disabled={pristine || submitting}>Submit</button>
-      </div>
-
-    </table>
+      </table>
     </form>
   )
 }

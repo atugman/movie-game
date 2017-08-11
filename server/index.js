@@ -1,7 +1,6 @@
 const path = require('path');
 const express = require('express');
 const app = express();
-// const bodyParser = require('body-parser');
 const serveStatic = require('serve-static');
 const cookieParser = require('cookie-parser');
 const {BasicStrategy} = require('passport-http');

@@ -16,7 +16,6 @@ export class TopNav extends React.Component {
     }
 
     logout(event) {
-      console.log('fetch logout');
       this.props.dispatch(fetchLogout());
     }
 

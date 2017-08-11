@@ -7,11 +7,11 @@ const CurrentScore = (props) => (
       <tbody>
         <tr>
           <th>
-    Current Game Score: {props.currentScore}
-  </th>
-</tr>
-</tbody>
-</table>
+            Current Game Score: {props.currentScore}
+          </th>
+        </tr>
+      </tbody>
+    </table>
   </div>
 )
 

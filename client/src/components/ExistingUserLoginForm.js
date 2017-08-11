@@ -33,7 +33,6 @@ let ExistingUserLoginForm = props => {
           </tr>
         </tbody>
 
-
       <div className="login-page-buttons">
         <button type="submit" disabled={pristine || submitting}>Submit</button>
       </div>

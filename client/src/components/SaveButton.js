@@ -4,15 +4,14 @@ import {fetchSaveScoreOnClick} from '../actions'
 
 class SaveButton extends Component {
   onClick = () => {
-    console.log(this.props);
     this.props.dispatch(fetchSaveScoreOnClick(this.props.score, this.props.loggedInUser))
   }
 
-    render() {
-        return (
-          <button className='save' onClick={this.onClick}>Save</button>
-        );
-    }
+  render() {
+    return (
+      <button className='save' onClick={this.onClick}>Save</button>
+    );
+  }
 }
 
 const mapStateToProps = state => ({

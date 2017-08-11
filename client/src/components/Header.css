@@ -2,10 +2,6 @@ h2 {
   width: 100%;
 }
 
-.App-header {
-
-}
-
 @media only screen and (max-width: 640px) {
 	.App-header {
 		text-align: center;

@@ -25,6 +25,5 @@ export default (state, action, inputVal) => {
         ...state,
         showInfoModal: !state.showInfoModal
       }
-    }
-    return state;
+    } return state;
 };

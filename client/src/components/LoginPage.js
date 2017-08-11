@@ -32,8 +32,4 @@ class LoginPage extends React.Component {
   }
 }
 
-// const mapStateToProps = state => ({
-//   savedScore: state.movieData.savedScore
-// })
-
 export default connect()(LoginPage)

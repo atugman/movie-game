@@ -91,7 +91,6 @@ export const receiveAuthenticatedUser = (user) => ({
 })
 
 export const fetchNewGame = (score) => {
-  console.log('fetch new game is dispatched');
   return (dispatch) => {
     dispatch(requestData)
 
@@ -107,57 +106,51 @@ export const fetchNewGame = (score) => {
       }
 
       $.ajax(settings)
-         .done((response) => {
-                     const settings = {
-                      url: apiURL + '/api/checkScore/',
-                      method: 'GET',
-                      data: score,
-                      contentType: 'application/json',
-                      dataType: 'json',
-                      error: (res) => {
-                          console.log('res ', res)
-                        }
+      .done((response) => {
+        const settings = {
+          url: apiURL + '/api/checkScore/',
+          method: 'GET',
+          data: score,
+          contentType: 'application/json',
+          dataType: 'json',
+          error: (res) => {
+              console.log('res ', res)
+            }
+          }
+
+          $.ajax(settings)
+          .done((response) => {
+            var currentHighScore = response.user.score;
+            console.log('score ', score);
+            if (currentHighScore < score) {
+            $.ajax({
+            url: apiURL + '/api/users/' + score,
+            type: "PATCH",
+            data: score,
+            success: function(response) {
+              const settings = {
+                url: apiURL + '/api/users/',
+                method: 'GET',
+                contentType: 'application/json',
+                dataType: 'json',
+                error: (res) => {
+                  console.log('res ', res)
+                }
+              }
+
+                $.ajax(settings)
+                       .done((response) => {
+                         dispatch(newGame(response))
+                       })
                      }
-
-                     $.ajax(settings)
-                            .done((response) => {
-                              var currentHighScore = response.user.score;
-                              console.log('score ', score);
-                              if (currentHighScore < score) {
-                              $.ajax({
-                              url: apiURL + '/api/users/' + score,
-                              type: "PATCH",
-                              data: score,
-                              success: function(response) {
-
-                                        const settings = {
-                                         url: apiURL + '/api/users/',
-                                         method: 'GET',
-                                         contentType: 'application/json',
-                                         dataType: 'json',
-                                         error: (res) => {
-                                             console.log('res ', res)
-                                           }
-                                        }
-
-                                        $.ajax(settings)
-                                               .done((response) => {
-                                                 dispatch(newGame(response))
-                                               })
-                                             }
-
-
-
-
-
-                            })
-                          } else {
-                            dispatch(newGame(response))
-                          }
-                          })
-      })
-  }
-}
+                  })
+                } else {
+                  dispatch(newGame(response))
+                }
+              })
+            })
+          }
+        }
 
 export const fetchMultiWordMovieData = (inputVal, score) => {
   return (dispatch) => {
@@ -347,25 +340,23 @@ export const fetchCreateUser = (firstName, lastName, username, password) => {
       }
      }
 
+ export const fetchUserProfile = () => {
+   return (dispatch) => {
+     dispatch(requestData)
 
+     const settings = {
+      url: apiURL + '/api/userProfile',
+      method: 'GET',
+      contentType: 'application/json',
+      dataType: 'json',
+      error: (res) => {
+          alert('Please log in.')
+        }
+     }
 
-     export const fetchUserProfile = () => {
-       return (dispatch) => {
-         dispatch(requestData)
-
-         const settings = {
-          url: apiURL + '/api/userProfile',
-          method: 'GET',
-          contentType: 'application/json',
-          dataType: 'json',
-          error: (res) => {
-              alert('Please log in.')
-            }
-         }
-
-         $.ajax(settings)
-            .done((response) => {
-              dispatch(receiveAuthenticatedUser(response.user))
-            })
-           }
-         }
+     $.ajax(settings)
+        .done((response) => {
+          dispatch(receiveAuthenticatedUser(response.user))
+        })
+       }
+     }
