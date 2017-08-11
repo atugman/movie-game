@@ -6,7 +6,11 @@ The game allows users to explore different movies while testing their knowledge 
 
 ## How it's made
 
-I created The Movie Game using React, Redux and jQuery on the client side. I used Node.js and Express on the server side. I used MongoDB as the database and Passport.js for authentication. 
+I created The Movie Game using React, Redux and jQuery on the client side.
+
+I used Node.js and Express on the server side.
+
+I used MongoDB as the database and Passport.js for authentication. 
 
 ## How to play
 
