@@ -1,7 +1,6 @@
 import $ from 'jquery'
-const apiURL = 'https://http://still-ocean-47498.herokuapp.com'
+const apiURL = 'http://still-ocean-47498.herokuapp.com/'
 //const apiURL = 'http://localhost:8080'
-
 
 export const NEW_GAME = 'NEW_GAME';
 export const newGame = (users) => ({
