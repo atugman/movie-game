@@ -11,8 +11,7 @@ const initialState = {
   usedMovies: ' ',
   isLoggedIn: false,
   loggedOut: false,
-  overview: 'Guess a movie!',
-  api: 0
+  overview: 'Guess a movie!'
 }
 
 const movieData = (state, action) => {
@@ -110,7 +109,7 @@ const movieData = (state, action) => {
       isLoggedIn: false,
       loggedOut: false,
       overview: 'Guess a movie!',
-      api: 0
+      loggedOut: true
     }
   } else if (action.type === 'SAVE_SCORE_ON_CLICK') {
     return {
