@@ -2,6 +2,7 @@ import $ from 'jquery'
 const apiURL = 'https://obscure-peak-69363.herokuapp.com'
 //const apiURL = 'http://localhost:8080'
 
+
 export const NEW_GAME = 'NEW_GAME';
 export const newGame = (users) => ({
   type: NEW_GAME,
