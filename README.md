@@ -1,58 +1,35 @@
-# Thinkful Full Stack Template
+# The Movie Game
 
-A template for developing and deploying full stack JavaScript apps.
+Creating The Movie Game was a concerted effort to bring to life a popular family road trip game.
 
-## Getting started
+The game allows users to explore different movies while testing their knowledge of movie titles.
 
-### Setting up a project
+## How it's made
 
-* Move into your projects directory: `cd ~/YOUR_PROJECTS_DIRECTORY`
-* Clone this repository: `git clone https://github.com/Thinkful-Ed/full-stack-template YOUR_PROJECT_NAME`
-* Move into the project directory: `cd YOUR_PROJECT_NAME`
-* Install the dependencies: `npm install`
-* Create a new repo on GitHub: https://github.com/new
-    * Make sure the "Initialize this repository with a README" option is left **un**checked
-* Update the remote to point to your GitHub repository: `git remote set-url origin https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPOSITORY_NAME`
+I created The Movie Game using React, Redux and jQuery on the client side. I used Node.js and Express on the server side. I used MongoDB as the database and Passport.js for authentication. 
 
-### Working on the project
+## How to play
 
-* Move into the project directory: `cd ~/YOUR_PROJECTS_DIRECTORY/YOUR_PROJECT_NAME`
-* Run the development task: `npm run dev`
-    * Starts a server running at http://localhost:8080
-    * Automatically rebuilds when any of your files change
+The object of the game is to think of as many movies as possible, and type them submit them into the form 1 by 1 to increase their score.
 
-## Proxying
+Users must first create an account and log in, as their score will be saved to their user profile.
 
-In development, the full stack template works by proxying requests from port 8080 to the server or the client.  Any requests to routes which start with `/api/`, (for example, `/api/foo`, or `/api/foo/bar`) will be sent to the server.  All other requests, will serve the client.
+After logging in, users are redirected to the game page where they can start to guess movies.
 
-*tl;dr* Make sure your API endpoints start with `/api`.
+The movie titles that are submitted must start with a particular letter that is based on the previous movie guessed.
 
-## Installing dependencies
+If the previously guessed movie title is multiple words, the next letter will be the first letter of the last word of the movie.
 
-Client-side dependencies should be installed into the `client` directory:
+If the previously guessed movie title is a single word, the next letter will be the last letter of the single word.
 
-```
-cd ~/YOUR_PROJECTS_DIRECTORY/YOUR_PROJECT_NAME/client
-npm install --save dependency-name
-```
+For instance, if a user guesses "Fight Club," the next movie that they guess will have to start with "C."
 
-Server-side dependencies should be installed into the `server` directory:
+And if a user guesses "Aladdin," the next movie that they guess will have to start with "N."
 
-```
-cd ~/YOUR_PROJECTS_DIRECTORY/YOUR_PROJECT_NAME/server
-npm install --save dependency-name
-```
+Users cannot use the word "the," as that would be too easy. If a user wanted to submit the movie "The Shining," they could simply type in "Shining," assuming the letter they are required to start with is "S."
 
-## Deployment
+Users will be able to compete for the top score by keeping up with the leaderboard presented in the app.
 
-Requires the [Heroku CLI client](https://devcenter.heroku.com/articles/heroku-command-line).
+## Closing thoughts
 
-### Setting up the project on Heroku
-
-* Move into the project directory: `cd ~/YOUR_PROJECTS_DIRECTORY/YOUR_PROJECT_NAME`
-* Create the Heroku app: `heroku create PROJECT_NAME`
-
-### Deploying to Heroku
-
-* Push your code to Heroku: `git push heroku master`
-
+The Movie Game brings a big part of my childhood to life - my family always played this game to keep ourselves entertained on road trips. I hope you enjoy it!
