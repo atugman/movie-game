@@ -1,5 +1,5 @@
 import $ from 'jquery'
-const apiURL = 'https://obscure-peak-69363.herokuapp.com'
+const apiURL = 'https://http://still-ocean-47498.herokuapp.com'
 //const apiURL = 'http://localhost:8080'
 
 
@@ -221,7 +221,7 @@ export const fetchLogout = () => {
 return (dispatch) => {
   dispatch(requestData)
   const settings = {
-   url: 'http://localhost:8080/api/logout/',
+   url: apiURL + '/api/logout/',
    method: 'GET',
    contentType: 'application/json',
    error: (res) => {
