@@ -3,9 +3,6 @@ import './App.css';
 
 import {fetchNewGame,
   fetchLogin,
-  receiveMultiWordMovieData,
-  receiveSingleWordMovieData,
-  input,
   fetchMultiWordMovieData,
   fetchSingleWordMovieData,
   fetchUserProfile
@@ -13,19 +10,15 @@ import {fetchNewGame,
 
 import MovieForm from './MovieForm'
 import ScoresTable from './ScoresTable'
-import getScores from './ScoresTable'
 import SavedScoreBox from './SavedScoreBox'
 import SaveButton from './SaveButton'
 import LoadButton from './LoadButton'
 import CurrentScore from './CurrentScore'
 import LoggedInAs from './LoggedInAs'
-import ExistingUserLoginForm from './ExistingUserLoginForm'
-
-import { Field, reduxForm, change } from 'redux-form';
-
-import { connect } from 'react-redux';
-import store from '../store'
 import Header from './Header'
+
+import {reduxForm, change } from 'redux-form';
+import { connect } from 'react-redux';
 
 class App extends Component {
 
@@ -44,7 +37,7 @@ class App extends Component {
       if (splitString.includes("THE")) {
         for (var i = 0; i < splitString.length; i++) {
           if (splitString[0] = "THE") {
-            alert('Nice try...you know what you did... :)'),
+            alert('Nice try, but you can\t use the word "The!"'),
             this.props.dispatch(fetchNewGame(this.props.score))
           }
         }
@@ -62,7 +55,6 @@ class App extends Component {
       }
     }
 
-
   handleSubmit = (values) => {
     this.props.dispatch(fetchLogin(values.existingUsername, values.existingPassword))
   }
@@ -79,12 +71,11 @@ class App extends Component {
                <CurrentScore currentScore={this.props.score}/>
                <SaveButton score={this.props.score}/>
                <LoadButton />
-
              </div>
              <div className="col-6 main-box">
 
                <div className='random'>
-                 <img className="Backdrop img-responsive" src={this.props.backdrop}/>
+                 <img alt=' ' className="Backdrop img-responsive" src={this.props.backdrop}/>
                </div>
 
                <div className="title-overview-box">
@@ -112,7 +103,6 @@ const mapStateToProps = state => {
     backdrop: state.movieData.backdrop,
     score: state.movieData.score,
     userInput: state.movieData.userInput,
-    usedMovies: state.movieData.usedMovies,
     relevantLetter: state.movieData.relevantLetter,
     showInfoModal: state.reducer.showInfoModal,
     users: state.movieData.users,

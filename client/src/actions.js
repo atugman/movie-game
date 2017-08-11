@@ -1,7 +1,6 @@
-import store from './store'
 import $ from 'jquery'
-//const apiURL = 'http://obscure-peak-69363.herokuapp.com'
-const apiURL = 'http://localhost:8080'
+const apiURL = 'http://obscure-peak-69363.herokuapp.com'
+//const apiURL = 'http://localhost:8080'
 
 export const NEW_GAME = 'NEW_GAME';
 export const newGame = (users) => ({
@@ -121,7 +120,6 @@ export const fetchNewGame = (score) => {
           $.ajax(settings)
           .done((response) => {
             var currentHighScore = response.user.score;
-            console.log('score ', score);
             if (currentHighScore < score) {
             $.ajax({
             url: apiURL + '/api/users/' + score,
@@ -134,7 +132,7 @@ export const fetchNewGame = (score) => {
                 contentType: 'application/json',
                 dataType: 'json',
                 error: (res) => {
-                  console.log('res ', res)
+
                 }
               }
 
@@ -161,14 +159,12 @@ export const fetchMultiWordMovieData = (inputVal, score) => {
       .catch(err => {
         alert('You lose!')
         dispatch(fetchNewGame(score));
-        dispatch(fetchUsers())
       })
     }
   }
 
 
 export const fetchSingleWordMovieData = (inputVal, score) => {
-  console.log(score);
   return (dispatch) => {
     dispatch(requestData)
     fetch('https://api.themoviedb.org/3/search/movie?query=' + inputVal + '&api_key=2301535fa250c0bcc1f89c74b2a2a9b4')
@@ -177,7 +173,6 @@ export const fetchSingleWordMovieData = (inputVal, score) => {
       .catch(err => {
         alert('You lose!')
         dispatch(fetchNewGame(score));
-        dispatch(fetchUsers())
       })
     }
   }
@@ -215,7 +210,7 @@ export const fetchLogin = (username, password) => {
 
     $.ajax(settings)
        .done((response) => {
-           console.log('205', response),
+           console.log('205')
            dispatch(receiveLogin(response))
        })
       }
@@ -235,7 +230,7 @@ return (dispatch) => {
 
   $.ajax(settings)
      .done((response) => {
-       console.log('logout ', response);
+       console.log('logout');
        if(response.loggedOut) {
          dispatch(receiveLogout())
        }

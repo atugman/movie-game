@@ -1,8 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import {fetchLoggedInUserProfile} from '../actions';
-
 import './SavedScoreBox.css'
 
 export class LoggedInAs extends React.Component {

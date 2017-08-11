@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import './LoginPage.css'
 
 let CreateUserForm = props => {
-  const { handleSubmit, pristine, reset, submitting } = props
+  const { handleSubmit, pristine, submitting } = props
   return (
     <form onSubmit={ handleSubmit } >
       <table className="create-user-table">

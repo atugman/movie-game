@@ -60,7 +60,6 @@ const movieData = (state, action) => {
       relevantLetter: lastLetterOfWord
     }
   } else if (action.type === 'NEW_GAME') {
-    console.log('action ', action);
     return {
       ...state,
       users: action.users.users,
@@ -72,7 +71,6 @@ const movieData = (state, action) => {
       overview: 'Guess a movie!',
       backdrop: '',
       poster: '',
-      score: 0,
       isLoggedIn: false,
       savedScore: 0,
       currentScore: 0
@@ -97,6 +95,7 @@ const movieData = (state, action) => {
     return {
       ...state,
       loggedOut: true,
+      isLoggedIn: false,
       data: [],
       relevantLetter: 'A',
       username: '',
@@ -106,10 +105,7 @@ const movieData = (state, action) => {
       loggedInUser: '',
       message: '',
       usedMovies: ' ',
-      isLoggedIn: false,
-      loggedOut: false,
       overview: 'Guess a movie!',
-      loggedOut: true
     }
   } else if (action.type === 'SAVE_SCORE_ON_CLICK') {
     return {

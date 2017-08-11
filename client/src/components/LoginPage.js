@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 
 class LoginPage extends React.Component {
   handleSubmit = (values) => {
-    console.log(values)
     this.props.dispatch(fetchLogin(values.existingUsername, values.existingPassword))
   }
 

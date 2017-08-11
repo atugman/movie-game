@@ -23,6 +23,8 @@ export class InfoModal extends React.Component {
                             <li>2. Think of a movie that starts with the letter 'A,' type it into the box and click 'Submit'.</li>
                             <li>3. If you thought of a movie, your score will increase by 1!</li>
                             <li>4. Now think of another movie - <strong>BUT!</strong> It has to start with the specified letter, which is either the first letter of the last word of your last movie, or the last letter of the only word.</li>
+                            <li>5. You can't use the same movie twice!</li>
+                            <li>6. Remember, you can't use the word "The" as that would be too easy. You'll want to omit the word "The" from the game entirely. So if you want to submit "The Shining" then you would only submit "Shining" when you the letter you need to start with is "S."</li>
                         </ul>
                         <p>So, Are you ready?</p>
                         <a className="close" href="#" onClick={e => this.hide(e)}>Got It!</a>

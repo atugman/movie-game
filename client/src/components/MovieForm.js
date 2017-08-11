@@ -1,27 +1,17 @@
 import React from 'react'
-import { Field, reduxForm, change } from 'redux-form'
+import { Field, reduxForm } from 'redux-form'
 import {connect} from 'react-redux'
 
-import {newGame,
-  fetchData,
-  fetchData2
-} from '../actions'
-
 import './MovieForm.css'
-import SavedScoreBox from './SavedScoreBox'
-import SaveButton from './SaveButton'
-import LoadButton from './LoadButton'
-import CurrentScore from './CurrentScore'
 
 class MovieForm extends React.Component {
-
 
   componentDidMount() {
     this.props.initialize({ movie:  this.props.relevantLetter});
   }
 
   render() {
-    const { handleSubmit, pristine, reset, submitting } = this.props
+    const { handleSubmit, pristine, submitting } = this.props
   return (
     <form onSubmit={ handleSubmit } >
       <table>

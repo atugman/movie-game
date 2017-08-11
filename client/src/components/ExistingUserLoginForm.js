@@ -1,13 +1,10 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
-import ReactDOM from 'react-dom';
-import {Link} from 'react-router-dom'
 import './LoginPage.css'
 
-
 let ExistingUserLoginForm = props => {
-  const { handleSubmit, pristine, reset, submitting } = props
+  const { handleSubmit, pristine, submitting } = props
   return (
     <form onSubmit={ handleSubmit }>
       <table className="existing-user-login-table">
