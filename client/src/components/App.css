@@ -17,6 +17,7 @@ html {
   animation: App-logo-spin infinite 20s linear;
   height: 50px;
   align-items: center;
+  margin-left: 4%;
 }
 
 @media only screen and (max-width: 640px) {

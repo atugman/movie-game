@@ -22,7 +22,7 @@ const UserSchema = mongoose.Schema({
 UserSchema.methods.apiRepr = function() {
   return {
     username: this.username || '',
-    score: this.score || '',
+    score: this.score || 0,
     currentScore: this.currentScore || 0,
     firstName: this.firstName || '',
     lastName: this.lastName || ''

@@ -90,7 +90,8 @@ const movieData = (state, action) => {
       message: action.data.message,
       isLoggedIn: true,
       loggedOut: false,
-      overview: 'Guess a movie!'
+      overview: 'Guess a movie!',
+      score: 0
     }
   } else if (action.type === 'RECEIVE_LOGOUT') {
     return {

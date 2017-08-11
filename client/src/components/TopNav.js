@@ -1,14 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import {newGame, toggleInfoModal, fetchLogout} from '../actions';
+import {fetchNewGame, toggleInfoModal, fetchLogout} from '../actions';
 
 import './TopNav.css';
 
 export class TopNav extends React.Component {
     newGame(event) {
-        event.preventDefault();
-        this.props.dispatch(newGame());
+        this.props.dispatch(fetchNewGame());
     }
 
     toggleInfoModal(event) {
