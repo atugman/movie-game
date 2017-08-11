@@ -1,6 +1,22 @@
-h1 {
-	font-weight: 900;
-	font-size: 3em;
-	padding: 0.8em;
-	color: blue;
+h2 {
+  width: 100%;
+}
+
+.App-header {
+
+}
+
+@media only screen and (max-width: 640px) {
+	.App-header {
+		text-align: center;
+	}
+	h2 {
+		width: 60%;
+	}
+}
+
+@media only screen and (max-width: 321px) {
+	h2 {
+		width: 60%;
+	}
 }

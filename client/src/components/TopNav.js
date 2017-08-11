@@ -36,7 +36,7 @@ export class TopNav extends React.Component {
                         </a>
                     </li>
                     <li>
-                      <a className="logout" onClick={e => this.logout(e)}>
+                      <a className="logout" href="#" onClick={e => this.logout(e)}>
                         Logout
                       </a>
                     </li>

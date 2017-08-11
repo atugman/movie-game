@@ -1,5 +1,4 @@
 const initialState = {
-  loading: false,
   data: [],
   relevantLetter: 'A',
   username: '',

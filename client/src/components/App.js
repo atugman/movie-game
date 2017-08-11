@@ -90,12 +90,11 @@ class App extends Component {
                <LoadButton />
 
              </div>
-             <div id="main-box" className="col-6">
+             <div className="col-6 main-box">
 
                <div className='random'>
                  <img className="Backdrop img-responsive" src={this.props.backdrop}/>
                </div>
-
 
                <div className="title-overview-box">
                  <div className="movie-title">{this.props.movieTitle}</div>

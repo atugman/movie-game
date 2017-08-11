@@ -30,10 +30,6 @@ h2 {
   width: 100%;
 }
 
-.App-intro {
-  font-size: large;
-}
-
 .instructions {
   font-size: large;
 }
@@ -51,35 +47,9 @@ h2 {
   left: 0;
   overflow: hidden;
   z-index: -100;
-  /*opacity: 0.7;*/
   width: 100%;
   height: 100%;
 }
-
-#main-box {
-  color: #fff;
-  background: #e74c3c;
-  position: relative;
-  height: auto;
-  border-radius: 3px;
-  top: 15%;
-  margin: auto;
-  border: 5px solid rgba(0,0,0,0.1);
-}
-
-/*.random {
-  position: relative;
-  top: 0;
-  left: 0;
-}*/
-
-/*.tv {
-  position: relative;
-  top: 10px;
-  left: 0;
-  width: 400px;
-  height: 266px;
-}*/
 
 .Background {
   width: 100%;
@@ -87,12 +57,6 @@ h2 {
 
 .Backdrop {
   width: 90%;
-  /*position: absolute;
-  background-color: black;
-  top: 17px;
-  left: 120px;
-  width: 389px;
-  height: 219px;*/
 }
 
 .Poster {
@@ -110,13 +74,6 @@ h2 {
   font-size: 25px;
   padding-top: 5px;
 }
-
-/*.score {
-  border: 1px solid black;
-  background: rgba(255,255,255,0.8);
-  border-radius: 25px;
-  width: 10%;
-}*/
 
 .col-2 {
   width: 16.666665%;
@@ -137,9 +94,19 @@ h2 {
 }
 
 .col-6 {
+  box-sizing: border-box;
   width: 50%;
-  padding-left: 1.04166666%;
   float: left;
+}
+
+.main-box {
+  color: #fff;
+  background: #e74c3c;
+  height: auto;
+  border-radius: 3px;
+  margin: auto;
+  margin-left: 10px;
+  border: 5px solid rgba(0,0,0,0.1);
 }
 
 .col-8 {
@@ -150,7 +117,6 @@ h2 {
 
 main {
   padding-top: 100px;
-
 }
 
 main .row {
@@ -161,9 +127,6 @@ main .row {
   padding-left: 20px;
   padding-right: 20px;
   margin: 0 auto;
-  /*border: 1px solid black;*/
-  /*background: rgba(255,255,255,0.5);
-  border-radius: 25px;*/
 }
 
 .row::before,
@@ -180,14 +143,13 @@ main .row {
   width: 100%;
 }
 
-/* Non-mobile, grid */
 @media only screen and (min-width: 640px) {
   .col-2 {
     width: 16.666665%;
   }
 
   .col-3 {
-    width: 25%;
+    width: 24%;
   }
 
   .col-4 {
@@ -205,11 +167,18 @@ main .row {
   .col-12 {
     width: 100%;
   }
+
+  h2 {
+    width: 50%;
+    box-sizing: border-box;
+  }
 }
+
 
 .title-overview-box {
   background: rgba(255,255,255,0.5);
   border-radius: 15px;
   margin: 20px;
   padding: 5px;
+  box-sizing: border-box;
 }

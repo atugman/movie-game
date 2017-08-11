@@ -4,10 +4,6 @@ nav {
 	padding-right: 40px;
 }
 
-nav ul {
-
-}
-
 nav ul li {
 	text-transform: uppercase;
 	font-weight: 700;
@@ -29,7 +25,6 @@ nav ul li:last-child {
 }
 
 nav a {
-
 	color: #fff;
 }
 
@@ -52,5 +47,9 @@ nav a {
 	nav ul li:last-child {
 		float: right;
 		margin-right: auto;
+	}
+
+	nav ul li:nth-child(2) {
+		float: right
 	}
 }
