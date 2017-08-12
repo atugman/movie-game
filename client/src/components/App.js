@@ -36,17 +36,20 @@ class App extends Component {
       let splitString = inputVal.toUpperCase('').split(' ');
       if (splitString.includes("THE")) {
         for (var i = 0; i < splitString.length; i++) {
-          if (splitString[0] = "THE") {
-            alert('Nice try, but you can\t use the word "The!"'),
+          if (splitString[0] === "THE") {
+            alert("Nice try, but you can't use the word 'The!'"),
             this.props.dispatch(fetchNewGame(this.props.score))
+          } else {
+            console.log('');
           }
         }
-      } else if (this.props.usedMovies.includes(inputVal)) {
+      }
+      if (this.props.usedMovies.includes(inputVal)) {
           alert('Hey! You already used that one! Game over pal!'),
           this.props.dispatch(fetchNewGame(this.props.score));
       } else if (inputVal[0].toUpperCase() !== this.props.relevantLetter) {
         alert("Hey! That word didn't start with " + this.props.relevantLetter
-        + "! Better luck next time bucko!"),
+        + "! Better luck next time!"),
         this.props.dispatch(fetchNewGame(this.props.score));
       } else if (inputVal.includes(' ')) {
         this.props.dispatch(fetchMultiWordMovieData(inputVal, this.props.score));
