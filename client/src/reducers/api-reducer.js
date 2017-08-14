@@ -7,7 +7,7 @@ const initialState = {
   score: 0,
   loggedInUser: '',
   message: '',
-  usedMovies: ' ',
+  usedMovies: [],
   isLoggedIn: false,
   loggedOut: false,
   overview: 'Guess a movie!'
@@ -23,7 +23,7 @@ const movieData = (state, action) => {
       api: state.api+1
     }
   } else if (action.type === 'RECEIVE_MULTI_WORD_MOVIE_DATA') {
-    let input = action.data.results[0].title
+    let input = action.data.results[0].title.toUpperCase()
     let removeDigits = /[0-9]/g
     let highRegString = input.toUpperCase().replace(removeDigits, '');
     let splitString = highRegString.split(' ');
@@ -40,11 +40,11 @@ const movieData = (state, action) => {
       poster: 'https://image.tmdb.org/t/p/w500' + action.data.results[0].poster_path,
       userInput: firstLetterOfLastWord,
       score: state.score+1,
-      usedMovies: state.usedMovies + ' ' + action.data.results[0].title,
+      usedMovies: state.usedMovies + ' ' + action.inputVal,
       relevantLetter: firstLetterOfLastWord
     }
   } else if (action.type === 'RECEIVE_SINGLE_WORD_MOVIE_DATA') {
-    let input = action.data.results[0].title
+    let input = action.data.results[0].title.toUpperCase()
     let removeDigits = /[0-9]/g
     let highRegString = input.toUpperCase().replace(removeDigits, '');
     let lastLetterOfWord = highRegString[highRegString.length -1];
@@ -56,7 +56,7 @@ const movieData = (state, action) => {
       poster: 'https://image.tmdb.org/t/p/w500' + action.data.results[0].poster_path,
       userInput: lastLetterOfWord,
       score: state.score+1,
-      usedMovies: state.usedMovies + ' ' + action.data.results[0].title,
+      usedMovies: state.usedMovies + ' ' + action.inputVal,
       relevantLetter: lastLetterOfWord
     }
   } else if (action.type === 'NEW_GAME') {

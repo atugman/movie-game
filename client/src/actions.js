@@ -1,6 +1,6 @@
 import $ from 'jquery'
-const apiURL = 'http://still-ocean-47498.herokuapp.com'
-//const apiURL = 'http://localhost:8080'
+//const apiURL = 'http://still-ocean-47498.herokuapp.com'
+const apiURL = 'http://localhost:8080'
 
 export const NEW_GAME = 'NEW_GAME';
 export const newGame = (users) => ({
@@ -24,14 +24,16 @@ export const requestData = () => ({
 })
 
 export const RECEIVE_MULTI_WORD_MOVIE_DATA = 'RECEIVE_MULTI_WORD_MOVIE_DATA';
-export const receiveMultiWordMovieData = (data) => ({
+export const receiveMultiWordMovieData = (inputVal, data) => ({
   type: 'RECEIVE_MULTI_WORD_MOVIE_DATA',
+  inputVal,
   data
 })
 
 export const RECEIVE_SINGLE_WORD_MOVIE_DATA = 'RECEIVE_SINGLE_WORD_MOVIE_DATA';
-export const receiveSingleWordMovieData = (data) => ({
+export const receiveSingleWordMovieData = (inputVal, data) => ({
   type: 'RECEIVE_SINGLE_WORD_MOVIE_DATA',
+  inputVal,
   data
 })
 
@@ -155,7 +157,7 @@ export const fetchMultiWordMovieData = (inputVal, score) => {
     dispatch(requestData)
     fetch('https://api.themoviedb.org/3/search/movie?query=' + inputVal + '&api_key=2301535fa250c0bcc1f89c74b2a2a9b4')
       .then(response => response.json())
-      .then(movies => dispatch(receiveMultiWordMovieData(movies)))
+      .then(movies => dispatch(receiveMultiWordMovieData(inputVal, movies)))
       .catch(err => {
         alert('You lose!')
         dispatch(fetchNewGame(score));
@@ -169,7 +171,7 @@ export const fetchSingleWordMovieData = (inputVal, score) => {
     dispatch(requestData)
     fetch('https://api.themoviedb.org/3/search/movie?query=' + inputVal + '&api_key=2301535fa250c0bcc1f89c74b2a2a9b4')
       .then(response => response.json())
-      .then(movies => dispatch(receiveSingleWordMovieData(movies)))
+      .then(movies => dispatch(receiveSingleWordMovieData(inputVal, movies)))
       .catch(err => {
         alert('You lose!')
         dispatch(fetchNewGame(score));
