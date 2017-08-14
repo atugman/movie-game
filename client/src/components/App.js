@@ -44,7 +44,7 @@ class App extends Component {
           }
         }
       }
-      if (this.props.usedMovies.includes(inputVal)) {
+      if (this.props.usedMovies.includes(inputVal.toUpperCase())) {
           alert('Hey! You already used that one! Game over pal!'),
           this.props.dispatch(fetchNewGame(this.props.score));
       } else if (inputVal[0].toUpperCase() !== this.props.relevantLetter) {

@@ -19,19 +19,19 @@ const movieData = (state, action) => {
     return {
       ...state,
       loading: true,
-      input: action.movies.results[0].title,
       api: state.api+1
     }
   } else if (action.type === 'RECEIVE_MULTI_WORD_MOVIE_DATA') {
-    let input = action.data.results[0].title.toUpperCase()
+    let movieTitleFromAPI = action.data.results[0].title.toUpperCase()
     let removeDigits = /[0-9]/g
-    let highRegString = input.toUpperCase().replace(removeDigits, '');
+    let highRegString = movieTitleFromAPI.toUpperCase().replace(removeDigits, '');
     let splitString = highRegString.split(' ');
     if (splitString.includes('')) {
       splitString.splice(-1, 1);
     }
     let lastWord = splitString[splitString.length -1];
     let firstLetterOfLastWord = lastWord[0];
+    let userFormInput = action.inputVal.toUpperCase()
     return {
       ...state,
       movieTitle: action.data.results[0].title,
@@ -40,14 +40,15 @@ const movieData = (state, action) => {
       poster: 'https://image.tmdb.org/t/p/w500' + action.data.results[0].poster_path,
       userInput: firstLetterOfLastWord,
       score: state.score+1,
-      usedMovies: state.usedMovies + ' ' + action.inputVal,
+      usedMovies: state.usedMovies + ' ' + userFormInput,
       relevantLetter: firstLetterOfLastWord
     }
   } else if (action.type === 'RECEIVE_SINGLE_WORD_MOVIE_DATA') {
-    let input = action.data.results[0].title.toUpperCase()
+    let movieTitleFromAPI = action.data.results[0].title.toUpperCase()
     let removeDigits = /[0-9]/g
-    let highRegString = input.toUpperCase().replace(removeDigits, '');
+    let highRegString = movieTitleFromAPI.toUpperCase().replace(removeDigits, '');
     let lastLetterOfWord = highRegString[highRegString.length -1];
+    let userFormInput = action.inputVal.toUpperCase()
     return {
       ...state,
       movieTitle: action.data.results[0].title,
@@ -56,7 +57,7 @@ const movieData = (state, action) => {
       poster: 'https://image.tmdb.org/t/p/w500' + action.data.results[0].poster_path,
       userInput: lastLetterOfWord,
       score: state.score+1,
-      usedMovies: state.usedMovies + ' ' + action.inputVal,
+      usedMovies: state.usedMovies + ' ' + userFormInput,
       relevantLetter: lastLetterOfWord
     }
   } else if (action.type === 'NEW_GAME') {
