@@ -3,16 +3,17 @@
 }
 
 .existing-user-login-table, .create-user-table {
-  width: 40%;
-  margin-top: 35%;
+  width: 25%;
+  margin-right: 55%;
+  background: black;
 }
 
 .existing-user-login-table {
-  margin-left: 10%;
+  margin-top: 2%;
 }
 
 .create-user-table {
-  margin-right: 10%;
+  margin-top: 10%;
 }
 
 .field {
@@ -20,9 +21,15 @@
   font-size: 16px;
 }
 
+.login-button {
+  color: black;
+}
+
 @media only screen and (max-width: 640px) {
   .existing-user-login-table, .create-user-table {
-    width: 50%;
-    margin: auto;
+    margin-right: 100%;
+  }
+  .existing-user-login-table {
+    margin-top: 2%;
   }
 }

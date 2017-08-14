@@ -3,6 +3,7 @@ import ExistingUserLoginForm from './ExistingUserLoginForm'
 import CreateUserForm from './CreateUserForm'
 import {fetchCreateUser, fetchLogin} from '../actions'
 import { connect } from 'react-redux';
+import './Bane.jpg'
 
 class LoginPage extends React.Component {
   handleSubmit = (values) => {
@@ -18,11 +19,14 @@ class LoginPage extends React.Component {
   render() {
     return (
       <div>
+        <img className="Background" src={require('./Bane.jpg')}></img>
         <div className="row">
-          <div className="col-6 create-user-form">
+          <div className="create-user-form">
             <CreateUserForm onSubmit={this.submitNewUser}/>
           </div>
-          <div className="col-6 existing-user-login-form">
+        </div>
+        <div className="row">
+          <div className="existing-user-login-form">
             <ExistingUserLoginForm onSubmit={this.handleSubmit} />
           </div>
         </div>

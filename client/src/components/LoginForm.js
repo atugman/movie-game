@@ -10,34 +10,50 @@ let LoginForm = props => {
       <div>
         <label>First Name</label>
         <div>
-          <Field name="firstName" component="input" type="text" placeholder="First Name"/>
+          <Field
+            name="firstName"
+            component="input"
+            type="text"
+            placeholder="First Name"/>
         </div>
       </div>
 
       <div>
         <label>Last Name</label>
         <div>
-          <Field name="lastName" component="input" type="text" placeholder="Last Name"/>
+          <Field
+            name="lastName"
+            component="input"
+            type="text"
+            placeholder="Last Name"/>
         </div>
       </div>
 
       <div>
         <label>First Name</label>
         <div>
-          <Field name="firstName" component="input" type="text" placeholder="First Name"/>
+          <Field
+            name="firstName"
+            component="input"
+            type="text"
+            placeholder="First Name"/>
         </div>
       </div>
 
       <div>
         <label>First Name</label>
         <div>
-          <Field name="firstName" component="input" type="text" placeholder="First Name"/>
+          <Field
+            name="firstName"
+            component="input"
+            type="text"
+            placeholder="First Name"/>
         </div>
       </div>
 
       <div>
         <Link to='/game'>
-          <button type="submit" disabled={pristine || submitting}>Submit</button>
+          <button className="login-button" type="submit" disabled={pristine || submitting}>Submit</button>
         </Link>
       </div>
 

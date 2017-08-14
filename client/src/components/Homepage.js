@@ -1,9 +1,11 @@
 import React from 'react'
 import StartButton from './StartButton'
 import './Homepage.css'
+import './Deadpool.jpg'
 
 const Homepage = () => (
   <div>
+    <img className="Background" src={require('./Deadpool.jpg')}></img>
     <form>
       <table className="homepage-table">
         <tbody>

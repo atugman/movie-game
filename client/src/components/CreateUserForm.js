@@ -47,7 +47,7 @@ let CreateUserForm = props => {
         </tbody>
 
       <div className="login-page-buttons">
-        <button type="submit" disabled={pristine || submitting}>Submit</button>
+        <button className="login-button" type="submit" disabled={pristine || submitting}>Submit</button>
       </div>
     </table>
     </form>
