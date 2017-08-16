@@ -6,7 +6,7 @@ import InfoModal from './InfoModal';
 
 import './Header.css';
 import './App.css';
-import vhs from './vhs.png';
+import vhs from './img/vhs.png';
 
 
 export function Header(props) {

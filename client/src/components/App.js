@@ -65,6 +65,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <img className="Background Background-App" src={require('./img/batman-bane.jpg')}></img>
         <Header infoModal={this.props.showInfoModal}/>
            <div className="row" id="hello">
              <div className="col-3">

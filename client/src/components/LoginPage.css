@@ -25,11 +25,26 @@
   color: black;
 }
 
-@media only screen and (max-width: 640px) {
-  .existing-user-login-table, .create-user-table {
-    margin-right: 100%;
+@media only screen and (max-width: 515px) {
+  img.Background-login-page {
+    height: 50%;
+    width: 100%;
   }
-  .existing-user-login-table {
-    margin-top: 2%;
+}
+
+@media only screen and (max-width: 768px) {
+  img.Background-login-page {
+    height: 80%;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  img.Background-login-page {
+    height: 58%;
+    width: 100%;
+  }
+  .existing-user-login-table, .create-user-table {
+    width: 40%;
   }
 }

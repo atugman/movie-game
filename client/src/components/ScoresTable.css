@@ -1,13 +1,13 @@
 table {
 	color: #fff;
-	background: #e74c3c;
+	background: black;
 	position: relative;
 	height: auto;
 	border-radius: 3px;
 	top: 15%;
 	margin: auto;
-	border: 1px solid rgba(0,0,0,0.1);
 	width: 100%;
+	opacity: .7;
 }
 
 th {
@@ -15,10 +15,14 @@ th {
 	padding: 0.4em;
 	text-align: center;
 	font-weight: 300;
-	opacity: 0.8;
+	opacity: 1;
 	background: rgba(0,0,0,0.1);
 	border-radius: 3px 3px 0 0;
 	font-size: 24px;
+}
+
+td {
+	opacity: 1;
 }
 
 .td-score, .td-username {
@@ -33,4 +37,10 @@ th {
 
 .td-username {
 	padding-left: 5px;
+}
+
+@media only screen and (max-width: 640px) {
+  th, td {
+		font-size: 12px;
+  }
 }

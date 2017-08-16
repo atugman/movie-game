@@ -1,16 +1,15 @@
 import React from 'react'
 import StartButton from './StartButton'
 import './Homepage.css'
-import './Deadpool.jpg'
 
 const Homepage = () => (
   <div>
-    <img className="Background" src={require('./Deadpool.jpg')}></img>
+    <img className="Background Background-homepage" src={require('./img/Deadpool.jpg')}></img>
     <form>
       <table className="homepage-table">
         <tbody>
           <tr>
-            <th>The Movie Game</th>
+            <th className="homepage-th">The Movie Game</th>
           </tr>
           <tr>
             <td className="homepage-td">The Movie Game reminds you of your favorite movies while testing your knowledge of specific Hollywood films.</td>

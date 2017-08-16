@@ -6,6 +6,8 @@
 
 @media only screen and (max-width: 640px) {
   .current-game-score {
-    margin-top: 5%;
-  }
+      margin-top: 5%;
+      width: 33%;
+      float: left;
+    }
 }

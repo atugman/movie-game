@@ -40,7 +40,7 @@ const movieData = (state, action) => {
       poster: 'https://image.tmdb.org/t/p/w500' + action.data.results[0].poster_path,
       userInput: firstLetterOfLastWord,
       score: state.score+1,
-      usedMovies: state.usedMovies + ' ' + userFormInput,
+      usedMovies: [...state.usedMovies, userFormInput],
       relevantLetter: firstLetterOfLastWord
     }
   } else if (action.type === 'RECEIVE_SINGLE_WORD_MOVIE_DATA') {
@@ -57,7 +57,7 @@ const movieData = (state, action) => {
       poster: 'https://image.tmdb.org/t/p/w500' + action.data.results[0].poster_path,
       userInput: lastLetterOfWord,
       score: state.score+1,
-      usedMovies: state.usedMovies + ' ' + userFormInput,
+      usedMovies: [...state.usedMovies, userFormInput],
       relevantLetter: lastLetterOfWord
     }
   } else if (action.type === 'NEW_GAME') {
@@ -98,6 +98,8 @@ const movieData = (state, action) => {
       loggedOut: true,
       isLoggedIn: false,
       data: [],
+      movieTitle: '',
+      backdrop: '',
       relevantLetter: 'A',
       username: '',
       userScore: '',
