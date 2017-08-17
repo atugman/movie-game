@@ -2,21 +2,27 @@ nav {
 	position: relative;
 	height: 10%;
 	padding-right: 40px;
+	text-decoration: none;
 }
+
+ul {text-decoration: none;}
 
 nav ul li {
 	text-transform: uppercase;
-	font-weight: 700;
+	font-weight: 500;
 	font-size: 1.2em;
 	list-style-type: none;
+	text-decoration: none;
 }
 
 nav ul li:first-child {
 	float: left;
+	text-decoration: none;
 }
 
 nav ul li:nth-child(2) {
-	float: right
+	float: right;
+	text-decoration: none;
 }
 
 nav ul li:last-child {
@@ -31,6 +37,8 @@ nav a {
 @media only screen and (min-width: 640px) {
 	nav ul li:first-child {
 		float: left;
+		text-decoration: none;
+
 	}
 
 	nav ul li:last-child {
@@ -38,7 +46,7 @@ nav a {
 	}
 }
 
-@media only screen and (max-width: 640px) {
+@media only screen and (min-width: 321px, max-width: 640px) {
 	nav ul li:first-child {
 		float: left;
 		margin-left: auto
@@ -51,5 +59,22 @@ nav a {
 
 	nav ul li:nth-child(2) {
 		float: right
+	}
+}
+
+@media only screen and (max-width: 320px) {
+	nav ul li:first-child {
+		font-size: 10px;
+		float: left
+	}
+
+	nav ul li:last-child {
+		font-size: 10px;
+		float: none;
+	}
+
+	nav ul li:nth-child(2) {
+		font-size: 10px;
+		float: right;
 	}
 }

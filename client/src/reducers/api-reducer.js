@@ -10,7 +10,8 @@ const initialState = {
   usedMovies: [],
   isLoggedIn: false,
   loggedOut: false,
-  overview: 'Guess a movie!'
+  overview: '',
+  movieTitle: 'Your movie will appear here!'
 }
 
 const movieData = (state, action) => {
@@ -68,8 +69,8 @@ const movieData = (state, action) => {
       score: 0,
       usedMovies: '',
       relevantLetter: 'A',
-      movieTitle: '',
-      overview: 'Guess a movie!',
+      movieTitle: 'Your movie will appear here!',
+      overview: '',
       backdrop: '',
       poster: '',
       isLoggedIn: false,
@@ -89,8 +90,8 @@ const movieData = (state, action) => {
       message: action.data.message,
       isLoggedIn: true,
       loggedOut: false,
-      overview: 'Guess a movie!',
-      score: 0
+      score: 0,
+      movieTitle: 'Your movie will appear here!'
     }
   } else if (action.type === 'RECEIVE_LOGOUT') {
     return {
@@ -98,7 +99,7 @@ const movieData = (state, action) => {
       loggedOut: true,
       isLoggedIn: false,
       data: [],
-      movieTitle: '',
+      movieTitle: 'Your movie will appear here!',
       backdrop: '',
       relevantLetter: 'A',
       username: '',
@@ -108,7 +109,7 @@ const movieData = (state, action) => {
       loggedInUser: '',
       message: '',
       usedMovies: ' ',
-      overview: 'Guess a movie!',
+      overview: '',
     }
   } else if (action.type === 'SAVE_SCORE_ON_CLICK') {
     return {

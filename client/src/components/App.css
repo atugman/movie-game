@@ -1,6 +1,7 @@
 .App {
   text-align: center;
 }
+
 * {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -194,7 +195,6 @@ main .row {
 
 .title-overview-box {
   background: rgba(255,255,255,0.5);
-  border-radius: 15px;
   margin: 20px;
   padding: 5px;
   box-sizing: border-box;

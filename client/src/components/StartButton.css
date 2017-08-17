@@ -4,12 +4,15 @@
 }
 
 .start-button-link {
-  color: white;
+  color: black;
+  background-color: white;
   text-decoration: none;
   font-size: 28px;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
 .start-button-link:hover {
-    background-color: rgba(0,0,0,0.1);
-    font-size: 150%;
+    background-color: red;
+    color: black;
 }
