@@ -25,26 +25,49 @@
   color: black;
 }
 
-@media only screen and (max-width: 515px) {
-  img.Background-login-page {
-    height: 50%;
-    width: 100%;
-  }
+.Background-login-page {
+  background: url("./img/Bane.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 @media only screen and (max-width: 768px) {
   img.Background-login-page {
-    height: 80%;
-    width: 100%;
+    background: url("./img/Bane.jpg") no-repeat 85% 15% fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  .existing-user-login-table {
+    margin-right: 0%;
+    margin-top: -25%;
+  }
+  .create-user-table {
+    margin-right: 75%;
   }
 }
 
 @media only screen and (max-width: 640px) {
   img.Background-login-page {
-    height: 58%;
-    width: 100%;
+    background: url("./img/Bane.jpg") no-repeat 80% 20% fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  .existing-user-login-table {
+    margin-top: -46.5%;
   }
   .existing-user-login-table, .create-user-table {
-    width: 40%;
+    width: 30%;
+  }
+}
+
+@media only screen and (max-width: 330px) {
+  .existing-user-login-table {
+    margin-top: -56%;
   }
 }

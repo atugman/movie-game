@@ -10,7 +10,6 @@ class LoginPage extends React.Component {
   }
 
   submitNewUser = (values) => {
-    console.log(values);
     this.props.dispatch(fetchCreateUser(values.firstName, values.lastName, values.username, values.password))
   }
 
@@ -18,7 +17,7 @@ class LoginPage extends React.Component {
   render() {
     return (
       <div>
-        <img className="Background Background-login-page" src={require('./img/Bane.jpg')}></img>
+        <img className="Background Background-login-page"></img>
         <div className="row">
           <div className="create-user-form">
             <CreateUserForm onSubmit={this.submitNewUser}/>
