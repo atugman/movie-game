@@ -44,6 +44,14 @@ let CreateUserForm = props => {
               type="password"
               placeholder="Password"/>
           </tr>
+          <tr>
+            <Field
+              className="field"
+              name="confirmPassword"
+              component="input"
+              type="password"
+              placeholder="Confirm Password"/>
+          </tr>
         </tbody>
 
       <div className="login-page-buttons">

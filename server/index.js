@@ -74,7 +74,6 @@ function isAuthenticated (req, res, next) {
 // API endpoints
 //get and display scores
 app.get('/api/users', (req, res) => {
-  console.log('req.user ', req.user)
   User.find({}, null, {sort: '-score'}, function(err, users) {
     if(err)
       return res.send(err)
@@ -156,7 +155,7 @@ app.post('/api/users', (req, res) => {
     return res.json({message: 'Missing field: username'});
   }
 
-  let {username, password, firstName, lastName} = req.body;
+  let {username, password, confirmPassword, firstName, lastName} = req.body;
 
   if (typeof username !== 'string') {
     return res.json({message: 'Incorrect field type: username'});
@@ -171,7 +170,11 @@ app.post('/api/users', (req, res) => {
   if (!(password)) {
     return res.json({message: 'Missing field: password'});
   }
-
+//
+  if (confirmPassword !== password) {
+    return res.json({message: 'Passwords do not match'})
+  }
+//
   if (typeof password !== 'string') {
     return res.json({message: 'Incorrect field type: password'});
   }

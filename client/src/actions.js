@@ -1,6 +1,6 @@
 import $ from 'jquery'
-const apiURL = 'http://still-ocean-47498.herokuapp.com'
-//const apiURL = 'http://localhost:8080'
+//const apiURL = 'http://still-ocean-47498.herokuapp.com'
+const apiURL = 'http://localhost:8080'
 
 export const NEW_GAME = 'NEW_GAME';
 export const newGame = (users) => ({
@@ -305,14 +305,14 @@ export const fetchLoadScore = (score) => {
     }
 
 
-export const fetchCreateUser = (firstName, lastName, username, password) => {
+export const fetchCreateUser = (firstName, lastName, username, password, confirmPassword) => {
   return (dispatch) => {
     dispatch(requestData)
 
     const settings = {
      url: apiURL + '/api/users',
      method: 'POST',
-     data: JSON.stringify({username: username, password: password}),
+     data: JSON.stringify({username: username, password: password, confirmPassword: confirmPassword}),
      contentType: 'application/json',
      dataType: 'json',
      error: (res) => {
@@ -329,6 +329,7 @@ export const fetchCreateUser = (firstName, lastName, username, password) => {
             event.target.password.value = '';
             event.target.firstName.value = '';
             event.target.lastName.value = '';
+            event.target.confirmPassword.value = '';
           } else {
             var html = response.message
             alert("Oops..." + html);

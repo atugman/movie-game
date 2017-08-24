@@ -10,7 +10,7 @@ class LoginPage extends React.Component {
   }
 
   submitNewUser = (values) => {
-    this.props.dispatch(fetchCreateUser(values.firstName, values.lastName, values.username, values.password))
+    this.props.dispatch(fetchCreateUser(values.firstName, values.lastName, values.username, values.password, values.confirmPassword))
   }
 
 
