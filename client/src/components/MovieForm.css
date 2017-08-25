@@ -28,4 +28,14 @@ th {
 	width: 95%;
 	font-size: 20px;
 	padding: 10px;
+	font-weight: bold;
+}
+
+.submit-movie-button {
+	color: black;
+	padding: 2% 5%;
+	border: none;
+	font-size: 14px;
+	border-radius: 3px;
+	cursor: pointer;
 }

@@ -46,23 +46,7 @@ nav a {
 	}
 }
 
-@media only screen and (min-width: 321px, max-width: 640px) {
-	nav ul li:first-child {
-		float: left;
-		margin-left: auto
-	}
-
-	nav ul li:last-child {
-		float: right;
-		margin-right: auto;
-	}
-
-	nav ul li:nth-child(2) {
-		float: right
-	}
-}
-
-@media only screen and (max-width: 320px) {
+@media only screen and (max-width: 640px) {
 	nav ul li:first-child {
 		font-size: 10px;
 		float: left

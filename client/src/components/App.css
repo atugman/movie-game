@@ -199,3 +199,47 @@ main .row {
   padding: 5px;
   box-sizing: border-box;
 }
+
+.save {
+  color: white;
+  background-color: black;
+  opacity: .7;
+  width: 40%;
+  padding: 2% 5%;
+  margin-right: 3%;
+  border: none;
+  border-radius: 3px;
+  font-size: 16px;
+}
+
+.load {
+  color: white;
+  background-color: black;
+  opacity: .7;
+  width: 40%;
+  padding: 2% 5%;
+  border: none;
+  border-radius: 3px;
+  font-size: 16px;
+}
+
+.save:hover {
+  background-color: white;
+  color: black;
+}
+
+.load:hover {
+  background-color: white;
+  color: black;
+}
+
+@media only screen and (max-width: 640px) {
+  .save {
+    margin: 2%;
+    font-size: 14px;
+  }
+  .load {
+    margin: 2%;
+    font-size: 14px;
+  }
+}

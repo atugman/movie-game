@@ -20,7 +20,7 @@ export function Header(props) {
             <TopNav />
             {infoModal}
             <div className="App-header animated slideInRight">
-              <img src={vhs} className="App-logo" alt="logo" />
+
               <h2 className='animated bounce'>The Movie Game!</h2>
             </div>
         </header>

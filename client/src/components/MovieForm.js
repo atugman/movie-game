@@ -30,7 +30,7 @@ class MovieForm extends React.Component {
         </tbody>
 
         <div>
-          <button type="submit" disabled={pristine || submitting}>Submit</button>
+          <button className="submit-movie-button" type="submit" disabled={pristine || submitting}>Submit</button>
         </div>
 
       </table>
