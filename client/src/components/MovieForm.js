@@ -1,6 +1,7 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import {connect} from 'react-redux'
+import ReduxSweetAlert, { swal, close } from 'react-redux-sweetalert';
 
 import './MovieForm.css'
 

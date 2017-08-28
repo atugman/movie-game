@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import './App.css';
 
 import {fetchNewGame,
@@ -20,24 +20,37 @@ import Header from './Header'
 import {reduxForm, change } from 'redux-form';
 import { connect } from 'react-redux';
 
+import ReduxSweetAlert, { swal, close } from 'react-redux-sweetalert';
+
 class App extends Component {
+
+  static propTypes = {
+    close: PropTypes.func.isRequired,
+    swal: PropTypes.func.isRequired,
+  };
 
   componentWillReceiveProps(nextProps) {
   this.props.dispatch(change('simple', 'movie', nextProps.relevantLetter));
 }
 
-  componentDidMount() {
+  componentDidMount(props) {
     this.props.dispatch(fetchUserProfile())
   }
 
-  submit = (values) => {
+  submit = (values, props) => {
+    console.log(props);
       event.preventDefault()
       let inputVal = values.movie
       let splitString = inputVal.toUpperCase('').split(' ');
       if (splitString.includes("THE")) {
         for (var i = 0; i < splitString.length; i++) {
           if (splitString[0] === "THE") {
-            alert("Nice try, but you can't use the word 'The!'"),
+            // alert("Nice try, but you can't use the word 'The!'"),
+            this.props.swal({
+                        title: 'Demo',
+                        text: 'SweetAlert in React',
+                        onConfirm: this.props.close,
+                      })
             this.props.dispatch(fetchNewGame(this.props.score))
           } else {
             console.log('');
@@ -69,7 +82,12 @@ class App extends Component {
         <Header infoModal={this.props.showInfoModal}/>
            <div className="row" id="hello">
              <div className="col-3">
-               <MovieForm onSubmit={this.submit} relevantLetter={this.props.relevantLetter}/>
+               <MovieForm onSubmit={this.submit} alert={() => this.props.swal(
+                 'Good job!',
+                 'hi',
+                 'success',
+               )} relevantLetter={this.props.relevantLetter}/>
+               <ReduxSweetAlert />
                <LoggedInAs />
                <SavedScoreBox currentScore={this.props.score}/>
                <CurrentScore currentScore={this.props.score}/>
@@ -108,7 +126,7 @@ const mapStateToProps = state => {
     score: state.movieData.score,
     userInput: state.movieData.userInput,
     relevantLetter: state.movieData.relevantLetter,
-    showInfoModal: state.reducer.showInfoModal,
+    showInfoModal: state.mainReducer.showInfoModal,
     users: state.movieData.users,
     loggedInUser: state.movieData.loggedInUser,
 }

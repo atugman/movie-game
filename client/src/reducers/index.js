@@ -1,10 +1,12 @@
-import {combineReducers} from 'redux';
-import reducer from './reducer'
+import {combineReducers} from 'redux'
+import mainReducer from './reducer'
 import movieData from './api-reducer'
 import { reducer as formReducer } from 'redux-form'
+import { reducer } from 'react-redux-sweetalert'
 
 const rootReducer = combineReducers({
-  reducer,
+  sweetalert: reducer,
+  mainReducer,
   movieData,
   form: formReducer
 })

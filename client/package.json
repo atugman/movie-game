@@ -10,6 +10,7 @@
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.5",
+    "react-redux-sweetalert": "^1.0.1",
     "react-router-dom": "^4.1.2",
     "redux": "^3.7.1",
     "redux-form": "^7.0.0",
