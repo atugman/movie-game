@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import './App.css';
 
 import {fetchNewGame,
@@ -20,24 +20,35 @@ import Header from './Header'
 import {reduxForm, change } from 'redux-form';
 import { connect } from 'react-redux';
 
+import ReduxSweetAlert, { swal, close } from 'react-redux-sweetalert';
+
 class App extends Component {
+
+  static propTypes = {
+    close: PropTypes.func.isRequired,
+    swal: PropTypes.func.isRequired,
+  };
 
   componentWillReceiveProps(nextProps) {
   this.props.dispatch(change('simple', 'movie', nextProps.relevantLetter));
 }
 
-  componentDidMount() {
+  componentDidMount(props) {
     this.props.dispatch(fetchUserProfile())
   }
 
-  submit = (values) => {
+  submit = (values, props) => {
       event.preventDefault()
       let inputVal = values.movie
       let splitString = inputVal.toUpperCase('').split(' ');
       if (splitString.includes("THE")) {
         for (var i = 0; i < splitString.length; i++) {
           if (splitString[0] === "THE") {
-            alert("Nice try, but you can't use the word 'The!'"),
+            this.props.swal({
+              title: 'Nice try!',
+              text: "You can't use the word 'The!'",
+              onConfirm: this.props.close,
+            })
             this.props.dispatch(fetchNewGame(this.props.score))
           } else {
             console.log('');
@@ -45,11 +56,19 @@ class App extends Component {
         }
       }
       if (this.props.usedMovies.includes(inputVal.toUpperCase())) {
-          alert('Hey! You already used that one! Game over pal!'),
-          this.props.dispatch(fetchNewGame(this.props.score));
+        this.props.swal({
+          title: 'Hey!',
+          text: "You already used that one! Game over pal!",
+          onConfirm: this.props.close,
+        })
+        this.props.dispatch(fetchNewGame(this.props.score));
       } else if (inputVal[0].toUpperCase() !== this.props.relevantLetter) {
-        alert("Hey! That word didn't start with " + this.props.relevantLetter
-        + "! Better luck next time!"),
+        this.props.swal({
+          title: 'Hey!',
+          text: "That word didn't start with " + this.props.relevantLetter
+          + "! Better luck next time!",
+          onConfirm: this.props.close,
+        })
         this.props.dispatch(fetchNewGame(this.props.score));
       } else if (inputVal.includes(' ')) {
         this.props.dispatch(fetchMultiWordMovieData(inputVal, this.props.score));
@@ -66,6 +85,7 @@ class App extends Component {
     return (
       <div className="App">
         <img className="Background Background-App" src={require('./img/batman-bane.jpg')}></img>
+        <ReduxSweetAlert />
         <Header infoModal={this.props.showInfoModal}/>
            <div className="row" id="hello">
              <div className="col-3">
@@ -108,7 +128,7 @@ const mapStateToProps = state => {
     score: state.movieData.score,
     userInput: state.movieData.userInput,
     relevantLetter: state.movieData.relevantLetter,
-    showInfoModal: state.reducer.showInfoModal,
+    showInfoModal: state.mainReducer.showInfoModal,
     users: state.movieData.users,
     loggedInUser: state.movieData.loggedInUser,
 }
@@ -118,4 +138,4 @@ App = reduxForm({
   form: 'movieForm'
 })(App);
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, {swal, close})(App);

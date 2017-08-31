@@ -5,7 +5,7 @@ const initialState = {
   showInfoModal: false
 };
 
-export default (state, action, inputVal) => {
+const mainReducer = (state, action, inputVal) => {
     state = state || initialState;
     if (action.type === 'NEW_GAME') {
         return {
@@ -27,3 +27,5 @@ export default (state, action, inputVal) => {
       }
     } return state;
 };
+
+export default mainReducer

@@ -170,11 +170,11 @@ app.post('/api/users', (req, res) => {
   if (!(password)) {
     return res.json({message: 'Missing field: password'});
   }
-//
+
   if (confirmPassword !== password) {
     return res.json({message: 'Passwords do not match'})
   }
-//
+
   if (typeof password !== 'string') {
     return res.json({message: 'Incorrect field type: password'});
   }
