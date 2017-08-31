@@ -38,19 +38,17 @@ class App extends Component {
   }
 
   submit = (values, props) => {
-    console.log(props);
       event.preventDefault()
       let inputVal = values.movie
       let splitString = inputVal.toUpperCase('').split(' ');
       if (splitString.includes("THE")) {
         for (var i = 0; i < splitString.length; i++) {
           if (splitString[0] === "THE") {
-            // alert("Nice try, but you can't use the word 'The!'"),
             this.props.swal({
-                        title: 'Demo',
-                        text: 'SweetAlert in React',
-                        onConfirm: this.props.close,
-                      })
+              title: 'Nice try!',
+              text: "You can't use the word 'The!'",
+              onConfirm: this.props.close,
+            })
             this.props.dispatch(fetchNewGame(this.props.score))
           } else {
             console.log('');
@@ -58,11 +56,19 @@ class App extends Component {
         }
       }
       if (this.props.usedMovies.includes(inputVal.toUpperCase())) {
-          alert('Hey! You already used that one! Game over pal!'),
-          this.props.dispatch(fetchNewGame(this.props.score));
+        this.props.swal({
+          title: 'Hey!',
+          text: "You already used that one! Game over pal!",
+          onConfirm: this.props.close,
+        })
+        this.props.dispatch(fetchNewGame(this.props.score));
       } else if (inputVal[0].toUpperCase() !== this.props.relevantLetter) {
-        alert("Hey! That word didn't start with " + this.props.relevantLetter
-        + "! Better luck next time!"),
+        this.props.swal({
+          title: 'Hey!',
+          text: "That word didn't start with " + this.props.relevantLetter
+          + "! Better luck next time!",
+          onConfirm: this.props.close,
+        })
         this.props.dispatch(fetchNewGame(this.props.score));
       } else if (inputVal.includes(' ')) {
         this.props.dispatch(fetchMultiWordMovieData(inputVal, this.props.score));
@@ -79,15 +85,11 @@ class App extends Component {
     return (
       <div className="App">
         <img className="Background Background-App" src={require('./img/batman-bane.jpg')}></img>
+        <ReduxSweetAlert />
         <Header infoModal={this.props.showInfoModal}/>
            <div className="row" id="hello">
              <div className="col-3">
-               <MovieForm onSubmit={this.submit} alert={() => this.props.swal(
-                 'Good job!',
-                 'hi',
-                 'success',
-               )} relevantLetter={this.props.relevantLetter}/>
-               <ReduxSweetAlert />
+               <MovieForm onSubmit={this.submit} relevantLetter={this.props.relevantLetter}/>
                <LoggedInAs />
                <SavedScoreBox currentScore={this.props.score}/>
                <CurrentScore currentScore={this.props.score}/>
@@ -136,4 +138,4 @@ App = reduxForm({
   form: 'movieForm'
 })(App);
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, {swal, close})(App);

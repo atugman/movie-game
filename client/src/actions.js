@@ -1,6 +1,7 @@
 import $ from 'jquery'
 //const apiURL = 'http://still-ocean-47498.herokuapp.com'
 const apiURL = 'http://localhost:8080'
+import ReduxSweetAlert, { swal, close } from 'react-redux-sweetalert';
 
 export const NEW_GAME = 'NEW_GAME';
 export const newGame = (users) => ({
@@ -159,7 +160,11 @@ export const fetchMultiWordMovieData = (inputVal, score) => {
       .then(response => response.json())
       .then(movies => dispatch(receiveMultiWordMovieData(inputVal, movies)))
       .catch(err => {
-        alert('You lose!')
+        dispatch(swal({
+          title: 'You lose!',
+          text: 'Try again!',
+          onConfirm: close,
+        }))
         dispatch(fetchNewGame(score));
       })
     }
@@ -173,7 +178,11 @@ export const fetchSingleWordMovieData = (inputVal, score) => {
       .then(response => response.json())
       .then(movies => dispatch(receiveSingleWordMovieData(inputVal, movies)))
       .catch(err => {
-        alert('You lose!')
+        dispatch(swal({
+          title: 'You lose!',
+          text: 'Try again!',
+          onConfirm: close,
+        }))
         dispatch(fetchNewGame(score));
       })
     }
