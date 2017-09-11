@@ -2,9 +2,10 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import './LoginPage.css'
+import {reset} from 'redux-form';
 
 let CreateUserForm = props => {
-  const { handleSubmit, pristine, submitting } = props
+  const { handleSubmit, pristine, reset, submitting } = props
   return (
     <form onSubmit={ handleSubmit } >
       <table className="create-user-table">

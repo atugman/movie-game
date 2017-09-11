@@ -13,7 +13,6 @@ class LoginPage extends React.Component {
     this.props.dispatch(fetchCreateUser(values.firstName, values.lastName, values.username, values.password, values.confirmPassword))
   }
 
-
   render() {
     return (
       <div>

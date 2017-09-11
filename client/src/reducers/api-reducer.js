@@ -1,6 +1,6 @@
 const initialState = {
   data: [],
-  relevantLetter: 'T',
+  relevantLetter: 'A',
   username: '',
   userScore: '',
   users: [],

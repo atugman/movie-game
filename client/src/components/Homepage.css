@@ -1,12 +1,10 @@
 .homepage-table {
-  width: 38%;
+  width: 45%;
   margin: auto;
   margin-top: 1%;
-  margin-right: 61%;
-  opacity: .9;
+  opacity: .7;
   border-radius: 10px;
   background: black;
-  opacity: .8;
 }
 
 .homepage-td {

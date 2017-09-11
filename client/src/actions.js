@@ -1,7 +1,7 @@
 import $ from 'jquery'
-const apiURL = 'http://obscure-springs-71769.herokuapp.com'
-//const apiURL = 'http://localhost:8080'
-import ReduxSweetAlert, { swal, close } from 'react-redux-sweetalert';
+//const apiURL = 'http://obscure-springs-71769.herokuapp.com'
+const apiURL = 'http://localhost:8080'
+import ReduxSweetAlert, { swal, close } from 'react-redux-sweetalert';  
 
 export const NEW_GAME = 'NEW_GAME';
 export const newGame = (users) => ({
@@ -331,17 +331,23 @@ export const fetchCreateUser = (firstName, lastName, username, password, confirm
 
     $.ajax(settings)
        .done((response) => {
+         console.log('response ', response);
            dispatch(createUser(response))
            if (!(response.hasOwnProperty("message"))) {
-            alert("User created! Please log in.")
-            event.target.username.value = '';
-            event.target.password.value = '';
-            event.target.firstName.value = '';
-            event.target.lastName.value = '';
-            event.target.confirmPassword.value = '';
+            //  alert('hey it worked')
+             dispatch(swal({
+               title: 'User Created!',
+               text: 'Please log in.',
+               onConfirm: close,
+             }))
           } else {
             var html = response.message
-            alert("Oops..." + html);
+            // alert("Oops..." + html);
+            dispatch(swal({
+              title: "Oops...",
+              text: html,
+              onConfirm: close,
+            }))
           }
        })
       }
