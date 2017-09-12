@@ -1,7 +1,8 @@
 import $ from 'jquery'
-//const apiURL = 'http://obscure-springs-71769.herokuapp.com'
-const apiURL = 'http://localhost:8080'
-import ReduxSweetAlert, { swal, close } from 'react-redux-sweetalert';  
+const apiURL = 'http://obscure-springs-71769.herokuapp.com'
+//const apiURL = 'http://localhost:8080'
+import ReduxSweetAlert, { swal, close } from 'react-redux-sweetalert';
+import {reset} from 'redux-form';
 
 export const NEW_GAME = 'NEW_GAME';
 export const newGame = (users) => ({
@@ -316,6 +317,12 @@ export const fetchLoadScore = (score) => {
 
 export const fetchCreateUser = (firstName, lastName, username, password, confirmPassword) => {
   return (dispatch) => {
+
+    dispatch(swal({
+      title: 'User Created!',
+      text: 'Please log in.',
+      onConfirm: close,
+    }))
     dispatch(requestData)
 
     const settings = {
@@ -334,20 +341,20 @@ export const fetchCreateUser = (firstName, lastName, username, password, confirm
          console.log('response ', response);
            dispatch(createUser(response))
            if (!(response.hasOwnProperty("message"))) {
-            //  alert('hey it worked')
              dispatch(swal({
                title: 'User Created!',
                text: 'Please log in.',
                onConfirm: close,
              }))
+             dispatch(reset('contact'));
           } else {
             var html = response.message
-            // alert("Oops..." + html);
             dispatch(swal({
               title: "Oops...",
               text: html,
               onConfirm: close,
             }))
+            dispatch(reset('contact'));
           }
        })
       }
