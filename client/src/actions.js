@@ -1,6 +1,6 @@
 import $ from 'jquery'
-const apiURL = 'http://obscure-springs-71769.herokuapp.com'
-//const apiURL = 'http://localhost:8080'
+//const apiURL = 'http://obscure-springs-71769.herokuapp.com'
+const apiURL = 'http://localhost:8080'
 import ReduxSweetAlert, { swal, close } from 'react-redux-sweetalert';
 import {reset} from 'redux-form';
 
@@ -317,12 +317,6 @@ export const fetchLoadScore = (score) => {
 
 export const fetchCreateUser = (firstName, lastName, username, password, confirmPassword) => {
   return (dispatch) => {
-
-    dispatch(swal({
-      title: 'User Created!',
-      text: 'Please log in.',
-      onConfirm: close,
-    }))
     dispatch(requestData)
 
     const settings = {

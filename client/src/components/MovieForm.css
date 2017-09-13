@@ -32,6 +32,7 @@ th {
 }
 
 .submit-movie-button {
+	background-color: gray;
 	color: black;
 	padding: 2% 5%;
 	border: none;
