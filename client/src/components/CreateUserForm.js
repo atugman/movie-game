@@ -51,7 +51,7 @@ let CreateUserForm = props => {
               name="confirmPassword"
               component="input"
               type="password"
-              placeholder="Confirm Password"/>
+              placeholder="Confirm Pass"/>
           </tr>
         </tbody>
 
