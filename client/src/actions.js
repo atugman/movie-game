@@ -1,6 +1,6 @@
 import $ from 'jquery'
-//const apiURL = 'http://obscure-springs-71769.herokuapp.com'
-const apiURL = 'http://localhost:8080'
+const apiURL = 'http://obscure-springs-71769.herokuapp.com'
+//const apiURL = 'http://localhost:8080'
 import ReduxSweetAlert, { swal, close } from 'react-redux-sweetalert';
 import {reset} from 'redux-form';
 
