@@ -25,11 +25,11 @@
     "serve-static": "^1.12.1"
   },
   "devDependencies": {
-  "chai": "^3.5.0",
-  "chai-http": "^3.0.0",
-  "mocha": "^3.3.0",
-  "mongo": "^0.1.0",
-  "mongodb": "^2.2.24",
-  "monk": "*"
-}
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.3.0",
+    "mongo": "^0.1.0",
+    "mongodb": "^2.2.24",
+    "monk": "*"
+  }
 }

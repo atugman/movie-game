@@ -12,7 +12,7 @@ const mongoose = require('mongoose');
 
 const {User} = require('./models/users')
 
-mongoose.connect('mongodb://atugman:HeyWhatsUpHello@ds127983.mlab.com:27983/movie-game')
+mongoose.connect('mongodb://atugman:unc123@ds151059.mlab.com:51059/test2')
 mongoose.Promise = global.Promise;
 
 app.use(jsonParser);
